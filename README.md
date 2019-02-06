@@ -12,9 +12,9 @@ The upgraded code is still a mess of untyped stuff; please feel free to add type
 
 Also, some bugs may occur from upgrading all dependencies to their latest major version.
 
-- [] Add more TypeScript type annotations.
-- [] Re-enable type checking service once all type annotations are properly added.
-- [] Change Firebase, Segment, Sentry and FullStory API Key and Account.
-- [] Update design and form to match JWC11 CI and requirements.
-- [] Add the major selection page in this project.
-- [] Add some unit and/or integration tests! (I recommend `jest + react-testing-library`)
+- [ ] Add more TypeScript type annotations.
+- [ ] Re-enable type checking service once all type annotations are properly added.
+- [ ] Change Firebase, Segment, Sentry and FullStory API Key and Account.
+- [ ] Update design and form to match JWC11 CI and requirements.
+- [ ] Add the major selection page in this project.
+- [ ] Add some unit and/or integration tests! (I recommend `jest + react-testing-library`)
