@@ -1,4 +1,4 @@
-import message from 'antd/lib/message'
+import {message} from 'antd'
 import {connect} from 'react-redux'
 import {reduxForm} from 'redux-form'
 import {compose} from 'recompose'

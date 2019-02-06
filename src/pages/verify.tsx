@@ -145,21 +145,6 @@ const GeneralSection = ({data}) => (
   </Card>
 )
 
-const imageStyle = css`
-  position: relative;
-  z-index: 2;
-
-  width: 100%;
-  min-height: 400px;
-  max-width: 100%;
-
-  margin-top: 0.8em;
-  margin-bottom: 0.8em;
-  box-shadow: 0 1px 1.5px 1px rgba(0, 0, 0, 0.12);
-
-  background-color: #efefef;
-`
-
 const MajorSection = ({data}) => {
   const major = getMajorFromPath()
 
@@ -197,7 +182,10 @@ const MajorSection = ({data}) => {
 
         {major === 'design' ? (
           <Image
-            image={{src: data.majorAnswer3, className: imageStyle}}
+            image={{
+              src: data.majorAnswer3,
+              className: 'question-3-image'
+            }}
             imageZoom={{src: data.majorAnswer3}}
           />
         ) : (

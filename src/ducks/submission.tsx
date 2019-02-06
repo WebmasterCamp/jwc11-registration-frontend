@@ -1,5 +1,5 @@
 import * as R from 'ramda'
-import message from 'antd/lib/message'
+import {message} from 'antd'
 import {takeEvery, call, select, put, fork} from 'redux-saga/effects'
 import {navigate} from '@reach/router'
 import {captureException} from '@sentry/browser'

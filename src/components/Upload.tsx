@@ -2,11 +2,12 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import styled from '@emotion/styled'
 import {captureException} from '@sentry/browser'
+import {Icon} from 'antd'
 
 import {css} from '@emotion/core'
 
 import ReactDropzone from 'react-dropzone'
-import message from 'antd/lib/message'
+import {message} from 'antd'
 import * as firebase from 'firebase/app'
 import {Field} from 'redux-form'
 
@@ -21,7 +22,7 @@ interface DropZoneProp {
 }
 
 // prettier-ignore
-const DropZone = styled(ReactDropzone)<DropZoneProp>`
+const DropZoneContainer = styled.div<DropZoneProp>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,16 +61,16 @@ const DropZone = styled(ReactDropzone)<DropZoneProp>`
   `};
 `
 
-// const DropIcon = styled(Icon)`
-//   color: #555;
-//   font-size: 1.8em;
+const dropIconStyle = css`
+  color: #555;
+  font-size: 1.8em;
 
-//   margin-bottom: 1em;
+  margin-bottom: 1em;
 
-//   padding: 0.5em;
-//   border: 1px solid #555;
-//   border-radius: 50%;
-// `
+  padding: 0.5em;
+  border: 1px solid #555;
+  border-radius: 50%;
+`
 
 const DropTitle = styled.div`
   color: #555;
@@ -106,6 +107,8 @@ const Overlay = styled.div<OverlayProps>`
 
   width: 100%;
   height: 100%;
+
+  opacity: 1;
 
   ${props => props.active && css`
     opacity: 0;
@@ -201,7 +204,7 @@ class Upload extends Component<UploadProps, UploadState> {
       const avatar = storage.child(`avatar/${uid}.jpg`)
 
       const [file] = acceptedFiles
-      this.setState({preview: file.preview})
+      this.setState({preview: URL.createObjectURL(file)})
 
       const snapshot = await avatar.put(file)
 
@@ -231,32 +234,35 @@ class Upload extends Component<UploadProps, UploadState> {
     const {meta} = this.props
 
     return (
-      <DropZone
+      <ReactDropzone
         onDrop={this.onDrop}
-        preview={!!preview}
         meta={meta}
         maxSize={10000000}
         multiple={false}
         accept="image/*"
       >
-        {() => (
-          <Overlay active={!!preview}>
-            {/* <DropIcon type="upload" /> */}
+        {({getRootProps, getInputProps, isDragActive}) => (
+          <DropZoneContainer {...getRootProps()} preview={preview}>
+            <input {...getInputProps()} />
 
-            {meta && meta.touched && meta.error ? (
-              <DropWarning>
-                กรุณาอัพโหลด
-                <br />
-                รูปประจำตัว
-              </DropWarning>
-            ) : (
-              <DropTitle>อัพโหลดรูปประจำตัว</DropTitle>
-            )}
+            <Overlay active={!!preview}>
+              <Icon type="upload" css={dropIconStyle} />
 
-            <Small>ขอเป็นรูปที่เห็นหน้าชัดนะจ๊ะ</Small>
-          </Overlay>
+              {meta && meta.touched && meta.error ? (
+                <DropWarning>
+                  กรุณาอัพโหลด
+                  <br />
+                  รูปประจำตัว
+                </DropWarning>
+              ) : (
+                <DropTitle>อัพโหลดรูปประจำตัว</DropTitle>
+              )}
+
+              <Small>ขอเป็นรูปที่เห็นหน้าชัดนะจ๊ะ</Small>
+            </Overlay>
+          </DropZoneContainer>
         )}
-      </DropZone>
+      </ReactDropzone>
     )
   }
 }

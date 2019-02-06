@@ -1,7 +1,6 @@
 import React from 'react'
 import {call, put, select} from 'redux-saga/effects'
-import message from 'antd/lib/message'
-import Modal from 'antd/lib/modal'
+import {message, Modal} from 'antd'
 import {navigate} from '@reach/router'
 import {configureScope, captureException} from '@sentry/browser'
 

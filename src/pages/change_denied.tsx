@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import {connect} from 'react-redux'
-import {Link} from 'react-static'
+import {Link} from '@reach/router'
 
 import Button from '../components/Button'
 import {Backdrop, Container, Row, Paper, Heading} from '../components/Layout'

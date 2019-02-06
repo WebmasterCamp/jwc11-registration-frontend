@@ -36,6 +36,7 @@ const Label = styled.label<LabelProps>`
   top: 9px;
   left: calc(0.625em + 3px);
   z-index: 1;
+  line-height: 1.5;
 
   font-size: 1em;
   font-weight: 600;

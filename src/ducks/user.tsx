@@ -1,7 +1,6 @@
 import React from 'react'
 import * as R from 'ramda'
-import message from 'antd/lib/message'
-import Modal from 'antd/lib/modal'
+import {message, Modal} from 'antd'
 import * as firebase from 'firebase/app'
 import {takeEvery, call, put, fork} from 'redux-saga/effects'
 import {captureException} from '@sentry/browser'

@@ -54,6 +54,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.2.3",
     "@babel/plugin-proposal-decorators": "^7.2.3",
+    "@emotion/babel-preset-css-prop": "^10.0.7",
     "@types/node": "^10.12.18",
     "@types/ramda": "^0.25.46",
     "@types/reach__router": "^1.2.2",

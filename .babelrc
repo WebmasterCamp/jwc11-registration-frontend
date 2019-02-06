@@ -1,5 +1,5 @@
 {
-  "presets": ["react-static/babel-preset.js"],
+  "presets": ["react-static/babel-preset.js", "@emotion/babel-preset-css-prop"],
   "plugins": [
     ["@babel/plugin-proposal-decorators", {"legacy": true}],
     ["@babel/plugin-proposal-class-properties", {"loose": true}],

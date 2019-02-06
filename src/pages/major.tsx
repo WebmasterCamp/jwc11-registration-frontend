@@ -2,8 +2,8 @@ import React from 'react'
 import styled from '@emotion/styled'
 import {connect} from 'react-redux'
 import {compose, branch} from 'recompose'
-import Spin from 'antd/lib/spin'
-import {Redirect} from 'react-static'
+import {Spin} from 'antd'
+import {Redirect} from '@reach/router'
 
 import {Heading, Container, Backdrop, Paper} from '../components/Layout'
 

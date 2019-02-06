@@ -6,7 +6,7 @@ import {captureException} from '@sentry/browser'
 import {css} from '@emotion/core'
 
 import ReactDropzone from 'react-dropzone'
-import message from 'antd/lib/message'
+import {message} from 'antd'
 import * as firebase from 'firebase/app'
 import Ink from 'react-ink'
 
