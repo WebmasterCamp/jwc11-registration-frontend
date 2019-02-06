@@ -29,7 +29,7 @@ const majorQuestionRoutes = majors.map(major => ({
 }))
 
 export default {
-  siteRoot: 'https://registration.jwc.in.th',
+  siteRoot: 'https://join.ycc.in.th',
   plugins: [
     'react-static-plugin-emotion',
     ['react-static-plugin-typescript', {typeCheck: false}],
