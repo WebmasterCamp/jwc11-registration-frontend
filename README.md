@@ -2,10 +2,6 @@
 
 This is the registration frontend that will be used for the upcoming JWC11 camp.
 
-This was modified from the [JWCx Registration Frontend](https://github.com/WebmasterCamp/jwcx-registration-frontend)
-
-For more information regarding the code, feel free to contact [Phoom](https://github.com/phoomparin).
-
 ## Task Checklist
 
 The upgraded code is still a mess of untyped stuff; please feel free to add type annotations and refactor accordingly.
@@ -18,3 +14,7 @@ Also, some bugs may occur from upgrading all dependencies to their latest major 
 - [ ] Update design and form to match JWC11 CI and requirements.
 - [ ] Add the major selection page in this project.
 - [ ] Add some unit and/or integration tests! (I recommend `jest + react-testing-library`)
+
+## Notes
+
+This was modified from the [JWCx Registration Frontend](https://github.com/WebmasterCamp/jwcx-registration-frontend). For more information regarding the code, feel free to contact [Phoom](https://github.com/phoomparin).
