@@ -16,7 +16,7 @@ export function getMajorFromPath(pathname) {
   }
 }
 
-export function getStepFromPath() {
+export function getStepFromPath(): {major: string; step: number} {
   if (isClient) {
     const [_, major, step] = window.location.pathname.match(/\/(\w+)\/step(\d)/)
 
@@ -24,6 +24,8 @@ export function getStepFromPath() {
       return {major, step: parseInt(step)}
     }
   }
+
+  return {major: '', step: -1}
 }
 
 export const withFocus = (Base: any) =>

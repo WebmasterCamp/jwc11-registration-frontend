@@ -6,6 +6,9 @@ import 'firebase/database'
 import 'firebase/firestore'
 import 'firebase/storage'
 
+import 'antd/lib/message/style/css'
+import 'antd/lib/modal/style/css'
+
 import App from './common/App'
 
 // Render your app

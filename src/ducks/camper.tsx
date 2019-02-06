@@ -154,7 +154,7 @@ export function* loadCamperSaga() {
         logger.info(MajorRedirectLog, record.major)
 
         yield call<any>(message.info, MajorRedirectMessage + record.major)
-        yield call<any>(navigate, `/${record.major}/step1`)
+        navigate(`/${record.major}/step1`)
 
         return
       }
@@ -181,7 +181,7 @@ export function* loadCamperSaga() {
         yield call<any>(rsf.firestore.setDocument, docRef, data, {merge: true})
 
         // Redirect the camper to their own major
-        yield call<any>(navigate, '/' + major + '/step1')
+        navigate('/' + major + '/step1')
 
         return
       }
@@ -206,7 +206,7 @@ export function* loadCamperSaga() {
       // E - If user is not at the same major they had chosen at first.
       if (record.major !== major) {
         yield call<any>(message.warn, ChangeDeniedMessage)
-        yield call<any>(navigate, '/change_denied?major=' + major)
+        navigate('/change_denied?major=' + major)
 
         if (window.analytics) {
           window.analytics.track('Change Denied', {
@@ -224,7 +224,7 @@ export function* loadCamperSaga() {
       if (isMajorRoot(major)) {
         logger.info('User is at major root. Redirecting to Step 1.')
 
-        yield call<any>(navigate, `/${major}/step1`)
+        navigate(`/${major}/step1`)
       }
 
       // Submit the Track Event to Segment Analytics
@@ -255,7 +255,7 @@ export function* loadCamperSaga() {
 
       // If user is at /:major, also redirect to /:major/step1
       if (isMajorRoot(major)) {
-        yield call<any>(navigate, `/${major}/step1`)
+        navigate(`/${major}/step1`)
       }
     }
   } catch (err) {

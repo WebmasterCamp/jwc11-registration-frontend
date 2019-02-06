@@ -50,7 +50,7 @@ function* submissionSaga() {
       })
     }
 
-    yield call<any>(navigate, '/thankyou')
+    navigate('/thankyou')
   } catch (err) {
     message.error(err.message)
 
@@ -95,11 +95,11 @@ function* nextPageSaga({payload}) {
 
   // If user is at last step, continue to verification process
   if (step === 4) {
-    yield call<any>(navigate, `/${major}/verify`)
+    navigate(`/${major}/verify`)
     return
   }
 
-  yield call<any>(navigate, `/${major}/step${step + 1}`)
+  yield navigate(`/${major}/step${step + 1}`)
 }
 
 function* previousPageSaga() {
@@ -116,7 +116,7 @@ function* previousPageSaga() {
     window.analytics.track('Backtracked Step', {major, step: step - 1})
   }
 
-  yield call<any>(navigate, `/${major}/step${step - 1}`)
+  navigate(`/${major}/step${step - 1}`)
 }
 
 export function* submissionWatcherSaga() {

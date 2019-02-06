@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import styled from '@emotion/styled'
 import {captureException} from '@sentry/browser'
+import {Icon} from 'antd'
 
 import {css} from '@emotion/core'
 
@@ -15,6 +16,17 @@ import withField from '../components/withField'
 import logger from '../core/log'
 import {UploadProps, UploadState} from './Upload'
 
+const dropIconStyle = css`
+  color: #555;
+  font-size: 1.8em;
+
+  margin-bottom: 1em;
+
+  padding: 0.5em;
+  border: 1px solid #555;
+  border-radius: 50%;
+`
+
 interface DropZoneProps {
   preview: boolean
   meta?: {
@@ -24,7 +36,7 @@ interface DropZoneProps {
 }
 
 // prettier-ignore
-const DropZone = styled(ReactDropzone)<DropZoneProps>`
+const DropZoneContainer = styled.div<DropZoneProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -190,9 +202,7 @@ class Upload extends Component<UploadProps, UploadState> {
 
       const [file] = acceptedFiles
 
-      if (file.preview) {
-        this.setState({preview: file.preview})
-      }
+      this.setState({preview: URL.createObjectURL(file)})
 
       if (onChange) {
         onChange(true)
@@ -222,27 +232,33 @@ class Upload extends Component<UploadProps, UploadState> {
     const {meta} = this.props
 
     return (
-      <DropZone
+      <ReactDropzone
         onDrop={this.onDrop}
-        preview={!!preview}
         meta={meta}
         maxSize={10000000}
         multiple={false}
         accept="image/*"
       >
-        {() => (
-          <Overlay active={!!preview}>
-            <Ink />
-            {/* <DropIcon type="upload" /> */}
+        {({getRootProps, getInputProps, isDragActive}) => (
+          <DropZoneContainer {...getRootProps()} preview={preview}>
+            <input {...getInputProps()} />
 
-            {meta && meta.touched && meta.error ? (
-              <DropWarning>กรุณาอัพโหลดรูปสำหรับคำถามนี้</DropWarning>
-            ) : (
-              <DropTitle>อัพโหลดรูปสำหรับคำถามนี้</DropTitle>
-            )}
-          </Overlay>
+            <Overlay active={!!preview}>
+              <Icon type="upload" css={dropIconStyle} />
+
+              {meta && meta.touched && meta.error ? (
+                <DropWarning>
+                  กรุณาอัพโหลด
+                  <br />
+                  รูปสำหรับคำถามนี้
+                </DropWarning>
+              ) : (
+                <DropTitle>อัพโหลดรูปสำหรับคำถามนี้</DropTitle>
+              )}
+            </Overlay>
+          </DropZoneContainer>
         )}
-      </DropZone>
+      </ReactDropzone>
     )
   }
 }
