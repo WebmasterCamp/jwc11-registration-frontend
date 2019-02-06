@@ -4,6 +4,7 @@ import message from 'antd/lib/message'
 import Modal from 'antd/lib/modal'
 import * as firebase from 'firebase/app'
 import {takeEvery, call, put, fork} from 'redux-saga/effects'
+import {captureException} from '@sentry/browser'
 
 import {createReducer, Creator} from './helper'
 import {loadCamperSaga} from './camper'
@@ -69,7 +70,7 @@ function notifySubmissionClosed() {
 export function* loginSaga() {
   // Notify the user that registration has been closed.
   if (Date.now() > SUBMISSION_CLOSED_TIME) {
-    yield call(notifySubmissionClosed)
+    yield call<any>(notifySubmissionClosed)
 
     return
   }
@@ -83,10 +84,13 @@ export function* loginSaga() {
 
   try {
     // Attempt to Sign In with redirection.
-    const auth = yield call(rsf.auth.signInWithRedirect, provider)
+    const auth = yield call<any>(rsf.auth.signInWithRedirect, provider)
 
     // Retrieve the user credential by using authentication credential.
-    const cred = yield call(rsf.auth.signInAndRetrieveDataWithCredential, auth)
+    const cred = yield call<any>(
+      rsf.auth.signInAndRetrieveDataWithCredential,
+      auth
+    )
 
     if (cred) {
       logger.log('Logged in as', cred.user.displayName, cred.user.uid)
@@ -101,18 +105,16 @@ export function* loginSaga() {
     logger.warn('Authentication Error:', err.code, err.message)
     message.error('พบความผิดพลาดในการยืนยันตัวตน:', err.message)
 
-    if (window.Raven) {
-      window.Raven.captureException(err)
-    }
+    captureException(err)
   } finally {
-    yield call(hide)
+    yield call<any>(hide)
     yield put(setAuthenticating(false))
   }
 }
 
 export function* logoutSaga() {
   try {
-    yield call(rsf.auth.signOut)
+    yield call<any>(rsf.auth.signOut)
     yield put(clearUser())
   } catch (err) {
     message.error(err.message)
@@ -133,12 +135,12 @@ export const getUserStatus = () =>
 // Attempt to re-authenticate when user resumes their session
 export function* reauthSaga() {
   try {
-    const user = yield call(getUserStatus)
+    const user = yield call<any>(getUserStatus)
     const major = getMajorFromPath()
 
     // Notify the user that registration has been closed.
     if (Date.now() > SUBMISSION_CLOSED_TIME) {
-      yield call(notifySubmissionClosed)
+      yield call<any>(notifySubmissionClosed)
 
       return
     }
@@ -168,9 +170,7 @@ export function* reauthSaga() {
     message.warn(err.message)
     logger.warn('Re-authentication Failed!', err)
 
-    if (window.Raven) {
-      window.Raven.captureException(err)
-    }
+    captureException(err)
   } finally {
     yield put(setLoading(false))
   }
@@ -185,9 +185,12 @@ const initial = {
   loading: true
 }
 
-export default createReducer(initial, state => ({
-  [SET_LOADING]: loading => ({...state, loading}),
-  [SET_AUTHENTICATING]: authenticating => ({...state, authenticating}),
-  [STORE_USER]: user => user && userProps(user),
+export default createReducer(initial, (state: object) => ({
+  [SET_LOADING]: (loading: boolean) => ({...state, loading}),
+  [SET_AUTHENTICATING]: (authenticating: boolean) => ({
+    ...state,
+    authenticating
+  }),
+  [STORE_USER]: (user: object) => user && userProps(user),
   [CLEAR_USER]: () => ({})
 }))

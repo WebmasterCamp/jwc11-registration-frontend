@@ -3,6 +3,7 @@ import {call, put, select} from 'redux-saga/effects'
 import message from 'antd/lib/message'
 import Modal from 'antd/lib/modal'
 import {navigate} from '@reach/router'
+import {configureScope, captureException} from '@sentry/browser'
 
 import 'firebase/firestore'
 
@@ -25,13 +26,26 @@ const MajorRedirectLog = `User has chosen a major before. Redirecting to:`
 const MajorRedirectMessage = `กำลังเปลี่ยนหน้าไปที่แบบฟอร์มสมัครเข้าสาขา `
 const ChangeDeniedMessage = `คุณไม่สามารถเปลี่ยนสาขาได้อีก หลังจากที่เลือกสาขานั้นๆ ไปแล้ว`
 
+declare global {
+  interface Window {
+    analytics: SegmentAnalytics.AnalyticsJS
+    FS: any
+    ga: UniversalAnalytics.ga
+  }
+}
+
 // Check if user is at major root, e.g. /:major
-function isMajorRoot(major) {
+function isMajorRoot(major: string) {
   return window.location.pathname.replace('/', '') === major
 }
 
 // Analytics Module
-function Identify(uid, displayName, email, photoURL) {
+function Identify(
+  uid: string,
+  displayName: string,
+  email: string,
+  photoURL: string
+) {
   // Segment
   if (window.analytics) {
     window.analytics.identify(uid, {
@@ -51,14 +65,14 @@ function Identify(uid, displayName, email, photoURL) {
   }
 
   // Sentry
-  if (window.Raven) {
-    window.Raven.setUserContext({
+  configureScope(scope => {
+    scope.setUser({
       id: uid,
       email,
       displayName,
       photoURL
     })
-  }
+  })
 
   // Google Analytics
   if (window.ga) {
@@ -69,7 +83,13 @@ function Identify(uid, displayName, email, photoURL) {
   logger.log(`[Analytics] Identified Camper ${uid}'s identity as ${displayName}`)
 }
 
-function notifySubmitted(camper) {
+interface Camper {
+  firstname: string
+  lastname: string
+  facebookDisplayName: string
+}
+
+function notifySubmitted(camper: Camper) {
   const name = camper.firstname
     ? `${camper.firstname} ${camper.lastname}`
     : camper.facebookDisplayName
@@ -117,7 +137,7 @@ export function* loadCamperSaga() {
 
     // Retrieve the camper information from firestore database
     const docRef = db.collection('campers').doc(uid)
-    const doc = yield call(rsf.firestore.getDocument, docRef)
+    const doc = yield call<any>(rsf.firestore.getDocument, docRef)
 
     // Identify camper's identity in analytics.
     Identify(uid, displayName, email, photoURL)
@@ -134,8 +154,8 @@ export function* loadCamperSaga() {
       if (record.major && window.location.pathname === '/') {
         logger.info(MajorRedirectLog, record.major)
 
-        yield call(message.info, MajorRedirectMessage + record.major)
-        yield call(navigate, `/${record.major}/step1`)
+        yield call<any>(message.info, MajorRedirectMessage + record.major)
+        yield call<any>(navigate, `/${record.major}/step1`)
 
         return
       }
@@ -159,10 +179,10 @@ export function* loadCamperSaga() {
 
         // Merge the major data in record.major
         const data = {major}
-        yield call(rsf.firestore.setDocument, docRef, data, {merge: true})
+        yield call<any>(rsf.firestore.setDocument, docRef, data, {merge: true})
 
         // Redirect the camper to their own major
-        yield call(navigate, '/' + major + '/step1')
+        yield call<any>(navigate, '/' + major + '/step1')
 
         return
       }
@@ -179,15 +199,15 @@ export function* loadCamperSaga() {
           })
         }
 
-        yield call(notifySubmitted, record)
+        yield call<any>(notifySubmitted, record)
 
         return
       }
 
       // E - If user is not at the same major they had chosen at first.
       if (record.major !== major) {
-        yield call(message.warn, ChangeDeniedMessage)
-        yield call(navigate, '/change_denied?major=' + major)
+        yield call<any>(message.warn, ChangeDeniedMessage)
+        yield call<any>(navigate, '/change_denied?major=' + major)
 
         if (window.analytics) {
           window.analytics.track('Change Denied', {
@@ -205,7 +225,7 @@ export function* loadCamperSaga() {
       if (isMajorRoot(major)) {
         logger.info('User is at major root. Redirecting to Step 1.')
 
-        yield call(navigate, `/${major}/step1`)
+        yield call<any>(navigate, `/${major}/step1`)
       }
 
       // Submit the Track Event to Segment Analytics
@@ -226,7 +246,7 @@ export function* loadCamperSaga() {
         createdAt: new Date()
       }
 
-      yield call(rsf.firestore.setDocument, docRef, data)
+      yield call<any>(rsf.firestore.setDocument, docRef, data)
 
       if (window.analytics) {
         window.analytics.track('Arrived', {uid, displayName, major})
@@ -236,15 +256,13 @@ export function* loadCamperSaga() {
 
       // If user is at /:major, also redirect to /:major/step1
       if (isMajorRoot(major)) {
-        yield call(navigate, `/${major}/step1`)
+        yield call<any>(navigate, `/${major}/step1`)
       }
     }
   } catch (err) {
     message.error(err.message)
 
-    if (window.Raven) {
-      window.Raven.captureException(err)
-    }
+    captureException(err)
   } finally {
     hide()
     yield put(setLoading(false))

@@ -3,11 +3,14 @@ import styled from '@emotion/styled'
 
 import {css} from '@emotion/core'
 
+import {Field, BaseFieldProps} from 'redux-form'
 
-import {Field} from 'redux-form'
+interface FieldContainerProps {
+  wordy: boolean
+}
 
 // prettier-ignore
-const Container = styled.div`
+const Container = styled.div<FieldContainerProps>`
   position: relative;
   font-size: 1rem;
 
@@ -19,8 +22,16 @@ const Container = styled.div`
   `};
 `
 
+type LabelProps = {
+  float: boolean
+  meta: {
+    error: boolean
+    touched: boolean
+  }
+} & FieldContainerProps
+
 // prettier-ignore
-const Label = styled.label`
+const Label = styled.label<LabelProps>`
   position: absolute;
   top: 9px;
   left: calc(0.625em + 3px);
@@ -67,13 +78,28 @@ const ErrorMessage = styled.div`
   pointer-events: none;
 `
 
-const wrap = Component => ({label, input, meta, float, wordy, ...props}) => (
+interface FieldWrapperProps {
+  label: string
+  input: any
+  meta: any
+  float: boolean
+  wordy: boolean
+}
+
+const wrap = (Component: React.ComponentType) => ({
+  label,
+  input,
+  meta,
+  float,
+  wordy,
+  ...props
+}: FieldWrapperProps) => (
   <Container wordy={wordy}>
     <Label float={input.value || float} wordy={wordy} meta={meta}>
       {label}
     </Label>
 
-    <Component meta={meta} {...input} {...props} />
+    <Component meta={meta} {...props} {...input} />
 
     {meta.touched && meta.error && <ErrorMessage>{meta.error}</ErrorMessage>}
   </Container>
@@ -82,7 +108,9 @@ const wrap = Component => ({label, input, meta, float, wordy, ...props}) => (
 const withField = Component => {
   const InputField = wrap(Component)
 
-  return props => <Field component={InputField} {...props} />
+  return (props: BaseFieldProps & FieldWrapperProps) => (
+    <Field component={InputField} {...props} />
+  )
 }
 
 export default withField

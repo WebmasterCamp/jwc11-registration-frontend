@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import styled from '@emotion/styled'
+import {captureException} from '@sentry/browser'
 
 import {css} from '@emotion/core'
 
@@ -11,8 +12,16 @@ import {Field} from 'redux-form'
 
 import logger from '../core/log'
 
+interface DropZoneProp {
+  preview: boolean
+  meta?: {
+    error?: boolean
+    touched?: boolean
+  }
+}
+
 // prettier-ignore
-const DropZone = styled(ReactDropzone)`
+const DropZone = styled(ReactDropzone)<DropZoneProp>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,7 +55,7 @@ const DropZone = styled(ReactDropzone)`
     background-position: center;
   `};
 
-  ${props => props.meta.touched && props.meta.error && css`
+  ${props => props.meta && props.meta.touched && props.meta.error && css`
     border: 5px solid #ee5253;
   `};
 `
@@ -82,8 +91,12 @@ const DropWarning = styled.div`
   font-size: 1.2em;
 `
 
+interface OverlayProps {
+  active: boolean
+}
+
 // prettier-ignore
-const Overlay = styled.div`
+const Overlay = styled.div<OverlayProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,22 +116,37 @@ const Overlay = styled.div`
   `};
 `
 
-class Upload extends Component {
-  state = {
-    preview: null
+export interface UploadProps {
+  onChange: Function
+  uid: number
+  input?: {
+    onChange: Function
   }
+  meta?: {
+    touched: boolean
+    error: boolean
+  }
+}
+
+export interface UploadState {
+  preview?: string
+}
+
+class Upload extends Component<UploadProps, UploadState> {
+  state: UploadState = {}
 
   async componentDidMount() {
     await this.loadPreview(this.props.uid)
   }
 
-  async componentWillReceiveProps(props) {
+  // TODO: Refactor to use new lifecycle
+  async UNSAFE_componentWillReceiveProps(props: UploadProps) {
     if (this.props.uid !== props.uid) {
       await this.loadPreview(props.uid)
     }
   }
 
-  loadPreview = async uid => {
+  loadPreview = async (uid: number) => {
     const storage = firebase.storage().ref()
     const avatar = storage.child(`avatar/${uid}.jpg`)
 
@@ -144,13 +172,11 @@ class Upload extends Component {
 
       logger.warn(err.message)
 
-      if (window.Raven) {
-        window.Raven.captureException(err)
-      }
+      captureException(err)
     }
   }
 
-  onDrop = async (acceptedFiles, rejectedFiles) => {
+  onDrop = async (acceptedFiles: File[], rejectedFiles: File[]) => {
     const hide = message.loading('กำลังอัพโหลดรูปประจำตัว กรุณารอสักครู่...', 0)
 
     if (rejectedFiles.length > 0) {
@@ -162,7 +188,7 @@ class Upload extends Component {
     }
 
     try {
-      const {uid, input = {}} = this.props
+      const {uid, input} = this.props
 
       if (!uid) {
         hide()
@@ -179,14 +205,14 @@ class Upload extends Component {
 
       const snapshot = await avatar.put(file)
 
-      if (input.onChange) {
+      if (input && input.onChange) {
         input.onChange(true)
       }
 
       logger.log('Avatar File:', file)
       logger.log('Uploaded Avatar:', snapshot)
 
-      if (input.onChange) {
+      if (input && input.onChange) {
         input.onChange(snapshot.downloadURL)
       }
 
@@ -194,9 +220,7 @@ class Upload extends Component {
     } catch (err) {
       message.error(err.message)
 
-      if (window.Raven) {
-        window.Raven.captureException(err)
-      }
+      captureException(err)
     } finally {
       hide()
     }
@@ -204,44 +228,46 @@ class Upload extends Component {
 
   render() {
     const {preview} = this.state
-    const {meta = {}} = this.props
+    const {meta} = this.props
 
     return (
       <DropZone
         onDrop={this.onDrop}
-        preview={preview}
+        preview={!!preview}
         meta={meta}
         maxSize={10000000}
         multiple={false}
         accept="image/*"
       >
-        <Overlay active={preview}>
-          {/* <DropIcon type="upload" /> */}
+        {() => (
+          <Overlay active={!!preview}>
+            {/* <DropIcon type="upload" /> */}
 
-          {meta.touched && meta.error ? (
-            <DropWarning>
-              กรุณาอัพโหลด
-              <br />
-              รูปประจำตัว
-            </DropWarning>
-          ) : (
-            <DropTitle>อัพโหลดรูปประจำตัว</DropTitle>
-          )}
+            {meta && meta.touched && meta.error ? (
+              <DropWarning>
+                กรุณาอัพโหลด
+                <br />
+                รูปประจำตัว
+              </DropWarning>
+            ) : (
+              <DropTitle>อัพโหลดรูปประจำตัว</DropTitle>
+            )}
 
-          <Small>ขอเป็นรูปที่เห็นหน้าชัดนะจ๊ะ</Small>
-        </Overlay>
+            <Small>ขอเป็นรูปที่เห็นหน้าชัดนะจ๊ะ</Small>
+          </Overlay>
+        )}
       </DropZone>
     )
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
   uid: state.user.uid
 })
 
 const AvatarUpload = connect(mapStateToProps)(Upload)
 
-export const UploadField = props => (
+export const UploadField = (props: any) => (
   <Field component={AvatarUpload} {...props} />
 )
 

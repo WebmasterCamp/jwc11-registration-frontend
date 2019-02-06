@@ -32,7 +32,7 @@ export default {
   siteRoot: 'https://registration.jwc.in.th',
   plugins: [
     'react-static-plugin-emotion',
-    'react-static-plugin-typescript',
+    ['react-static-plugin-typescript', {typeCheck: false}],
     'react-static-plugin-sass'
   ],
   getSiteData: () => ({

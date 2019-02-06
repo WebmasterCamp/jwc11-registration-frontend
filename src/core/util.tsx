@@ -26,13 +26,17 @@ export function getStepFromPath() {
   }
 }
 
-export const withFocus = Base =>
+export const withFocus = (Base: any) =>
   class WrappedInput extends Component {
+    input?: HTMLElement = undefined
+
     focus = () => {
-      this.input.focus()
+      if (this.input) {
+        this.input.focus()
+      }
     }
 
     render() {
-      return <Base innerRef={el => (this.input = el)} {...this.props} />
+      return <Base ref={el => (this.input = el)} {...this.props} />
     }
   }

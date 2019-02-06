@@ -4,8 +4,14 @@ import styled from '@emotion/styled'
 
 import {css} from '@emotion/core'
 
+interface ButtonContainerProps {
+  success?: boolean
+  disabled?: boolean
+  color?: string
+}
+
 // prettier-ignore
-const ButtonContainer = styled.button`
+const ButtonContainer = styled.button<ButtonContainerProps>`
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   height: 3em;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -40,7 +46,7 @@ const ButtonContainer = styled.button`
     transform: translateY(-1px);
   }
 
-  ${props => props.success && css`
+  ${(props) => props.success && css`
     background: #2ecc71;
 
     &:hover {
@@ -48,7 +54,7 @@ const ButtonContainer = styled.button`
     }
   `};
 
-  ${props => props.disabled && css`
+  ${(props) => props.disabled && css`
     background: #95afc0;
 
     &:hover {
@@ -57,7 +63,11 @@ const ButtonContainer = styled.button`
   `};
 `
 
-const Button = ({children, ...props}) => (
+type ButtonProps = {
+  children: React.ReactChildren
+} & ButtonContainerProps
+
+const Button = ({children, ...props}: ButtonProps) => (
   <ButtonContainer {...props}>
     {children}
     <Ink />

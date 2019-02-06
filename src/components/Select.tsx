@@ -1,111 +1,52 @@
-import React from 'react'
-import ReactSelect from 'react-select'
+import React, {ChangeEvent} from 'react'
+import Select from 'react-select'
 import styled from '@emotion/styled'
 
-import {css} from '@emotion/core'
+// import {css} from '@emotion/core'
 
 import {withProps} from 'recompose'
 
 import withField from './withField'
 
-// prettier-ignore
-const Select = styled(ReactSelect)`
-  cursor: pointer;
-
-  input {
-    border: none;
-    background: transparent;
+type SelectProps = {
+  meta: {
+    touched: boolean
+    error: boolean
   }
+}
 
-  .Select-placeholder {
-    position: absolute;
+type Option = {value: string; label: string}
+
+function getValue(value: string, options: Option[]) {
+  if (!value) return null
+
+  const item = options.find(x => x.value === value)
+
+  return {
+    value,
+    label: item ? item.label : value
   }
+}
 
-  .Select-value {
-    position: absolute;
-  }
+const CustomSelect = withField(props => {
+  const {options, value, onChange} = props
 
-  .Select-menu-outer {
-    position: absolute;
-    z-index: 2;
+  const currentValue = options.filter(option => option.value === value)
 
-    width: 100%;
-  }
-
-  .Select-arrow-zone {
-    position: absolute;
-    right: 1em;
-  }
-
-  .Select-arrow {
-    border-color: #575757 transparent transparent;
-    border-style: solid;
-    border-width: 5px 5px 2.5px;
-    display: inline-block;
-    height: 0;
-    width: 0;
-    position: relative;
-  }
-
-  .Select-control {
-    font-weight: 300;
-    text-align: left;
-    font-size: 1.08em;
-    line-height: 1.3em;
-
-    width: 100%;
-    padding: 0.5em 0.8em;
-
-    min-width: 13em;
-    outline: none;
-    transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) all;
-
-    border: none;
-    border-radius: 4px;
-
-    background: white;
-    color: #555;
-    border-bottom: 2px solid #555;
-    box-shadow: 0 1px 1.5px 1px rgba(0, 0, 0, 0.12);
-
-    &::placeholder {
-      color: #999;
-    }
-
-    &:hover {
-      box-shadow: 0 3px 18.5px 2px rgba(0, 0, 0, 0.18);
-    }
-
-    &:focus,
-    &:active {
-      transform: scale(1.045);
-      box-shadow: 0 3px 18.5px 2px rgba(0, 0, 0, 0.18);
-    }
-
-    &:focus + label {
-      transform: translateY(-40px) scale(1);
-    }
-
-    ${props => props.meta.touched && props.meta.error && css`
-      border-bottom: 2px solid #e74c3c;
-    `};
-  }
-`
-
-const enhance = withProps(props => ({
-  float: true,
-  searchable: false,
-  clearable: false,
-  optionClassName: 'select-option-style',
-  placeholder: 'กรุณาเลือก...'
-}))
-
-export default enhance(
-  withField(props => (
-    <Select
+  return (
+    <Select<Option>
       {...props}
-      value={props.value}
-      onChange={e => props.onChange(e.value)}
+      className="custom-select"
+      classNamePrefix="custom-select"
+      value={currentValue}
+      onBlur={() => {}}
+      onChange={v => v && onChange(v.value)}
+      isSearchable
+      isClearable
     />
-  ))
+  )
+})
+
+export default props => (
+  <CustomSelect {...props} float placeholder="กรุณาเลือก..." />
 )

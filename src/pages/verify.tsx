@@ -250,7 +250,7 @@ const Verify = ({data = {}, submit}) => (
   </Backdrop>
 )
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
   data: getFormValues('submission')(state) || state.camper
 })
 
