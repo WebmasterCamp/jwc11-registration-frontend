@@ -5,9 +5,9 @@ import majors from './majors'
 const isClient = typeof window !== 'undefined'
 
 export function getMajorFromPath(pathname?: string) {
-  if (!pathname) {
-    pathname = isClient ? window.location.pathname : '/'
-  }
+  if (!isClient) return ''
+
+  if (!pathname) pathname = window.location.pathname
 
   const path = pathname.split('/')[1]
 

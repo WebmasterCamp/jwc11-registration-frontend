@@ -28,7 +28,11 @@ const Splash = ({children}) => (
 )
 
 function getMajor({match}) {
-  return getMajorFromPath(match.params[0])
+  if (match) {
+    return getMajorFromPath(match.params[0])
+  }
+
+  return ''
 }
 
 const Authenticating = props => (

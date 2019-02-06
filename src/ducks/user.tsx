@@ -164,7 +164,10 @@ export function* reauthSaga() {
       yield put(setLoading(false))
     }
   } catch (err) {
-    message.warn(err.message)
+    if (typeof window !== 'undefined') {
+      message.warn(err.message)
+    }
+
     logger.warn('Re-authentication Failed!', err)
 
     captureException(err)
