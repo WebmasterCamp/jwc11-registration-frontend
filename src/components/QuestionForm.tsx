@@ -7,6 +7,7 @@ import TextArea from './TextArea'
 import {General} from '../core/questions'
 
 import withWizard from '../core/form'
+import {prev, next} from '../core/step'
 
 const QuestionForm = ({save, handleSubmit}) => (
   <FormContainer onSubmit={handleSubmit}>
@@ -17,9 +18,11 @@ const QuestionForm = ({save, handleSubmit}) => (
     </Paper>
 
     <Row>
-      <Button onClick={save}>ขั้นตอนก่อนหน้า</Button>
+      <Button onClick={prev}>ขั้นตอนก่อนหน้า</Button>
 
-      <Button type="submit">ขั้นตอนถัดไป</Button>
+      <Button onClick={next} type="submit">
+        ขั้นตอนถัดไป
+      </Button>
     </Row>
   </FormContainer>
 )

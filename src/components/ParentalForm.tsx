@@ -5,6 +5,7 @@ import Button from './Button'
 import Input from './Input'
 
 import withWizard from '../core/form'
+import {prev, next} from '../core/step'
 
 const ParentalForm = ({save, handleSubmit}) => (
   <FormContainer onSubmit={handleSubmit}>
@@ -23,9 +24,11 @@ const ParentalForm = ({save, handleSubmit}) => (
     </Paper>
 
     <Row>
-      <Button onClick={save}>ขั้นตอนก่อนหน้า</Button>
+      <Button onClick={prev}>ขั้นตอนก่อนหน้า</Button>
 
-      <Button type="submit">ขั้นตอนถัดไป</Button>
+      <Button onClick={next} type="submit">
+        ขั้นตอนถัดไป
+      </Button>
     </Row>
   </FormContainer>
 )

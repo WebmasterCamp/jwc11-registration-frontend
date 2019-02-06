@@ -9,6 +9,7 @@ import DatePicker from './DatePicker'
 import {UploadField} from './Upload'
 
 import withWizard from '../core/form'
+import {next} from '../core/step'
 
 const toOptions = i => ({value: i, label: i})
 
@@ -20,7 +21,7 @@ export const religions = {
   buddhist: 'ศาสนาพุทธ',
   christianity: 'ศาสนาคริสต์',
   islam: 'ศาสนาอิสลาม',
-  other: 'ศาสนาอื่นๆ',
+  other: 'ศาสนาอื่นๆ'
 }
 
 export const grades = {
@@ -28,14 +29,14 @@ export const grades = {
   m4: 'มัธยมศึกษาปีที่ 4',
   m5: 'มัธยมศึกษาปีที่ 5',
   m6: 'มัธยมศึกษาปีที่ 6',
-  other: 'อื่นๆ',
+  other: 'อื่นๆ'
 }
 
 export const genders = {
   male: 'ชาย',
   female: 'หญิง',
   other: 'เพศอื่นๆ',
-  none: 'ไม่ระบุ',
+  none: 'ไม่ระบุ'
 }
 
 const religionOptions = Options(religions)
@@ -111,7 +112,9 @@ const PersonalForm = ({handleSubmit}) => (
     <Row>
       <Button disabled>ขั้นตอนก่อนหน้า</Button>
 
-      <Button type="submit">ขั้นตอนถัดไป</Button>
+      <Button onClick={next} type="submit">
+        ขั้นตอนถัดไป
+      </Button>
     </Row>
   </FormContainer>
 )

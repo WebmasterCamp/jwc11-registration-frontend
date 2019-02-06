@@ -82,8 +82,6 @@ function* updateCamperRecord(payload) {
 }
 
 function* saveSubmissionSaga({payload}) {
-  console.log(NEXT, '> Payload =', payload)
-
   if (payload) {
     yield fork(updateCamperRecord, payload)
   } else {
