@@ -1,5 +1,11 @@
 {
-  "name": "react-static-example-basic",
+  "name": "jwc11-registration-frontend",
+  "description": "Registration Frontend for JWC11",
+  "author": {
+    "email": "work@phoom.in.th",
+    "name": "Phoomparin Mano",
+    "url": "https://phoom.in.th"
+  },
   "private": true,
   "scripts": {
     "start": "react-static start",
