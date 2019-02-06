@@ -5,10 +5,10 @@ import {compose} from 'recompose'
 
 import preventUnsaved from '../components/PreventUnsaved'
 
-import {prev} from '../ducks/submission'
+import {save} from '../ducks/submission'
 
-import {getMajorFromPath} from '../core/util'
-import logger from '../core/log'
+import {getMajorFromPath} from './util'
+import logger from './log'
 
 const personalFields = [
   'firstname',
@@ -120,7 +120,7 @@ const mapStateToProps = state => ({
 const enhance = compose(
   connect(
     mapStateToProps,
-    {prev},
+    {save},
   ),
   reduxForm(formOptions),
   preventUnsaved('submission'),

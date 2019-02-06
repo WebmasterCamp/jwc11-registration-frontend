@@ -8,8 +8,9 @@ import Q3Dev from './Q3Dev'
 
 import withWizard from '../core/form'
 import {getMajorFromPath} from '../core/util'
+import {prev, next} from '../core/step'
 
-const MajorQuestionForm = ({prev, questions = {}, handleSubmit}) => {
+const MajorQuestionForm = ({save, questions = {}, handleSubmit}) => {
   const major = getMajorFromPath()
   const Q3Field = major === 'design' ? DesignUpload : TextArea
   const Q3 = major === 'programming' ? Q3Dev : questions.Q3
@@ -25,7 +26,9 @@ const MajorQuestionForm = ({prev, questions = {}, handleSubmit}) => {
       <Row>
         <Button onClick={prev}>ขั้นตอนก่อนหน้า</Button>
 
-        <Button type="submit">ขั้นตอนถัดไป</Button>
+        <Button onClick={next} type="submit">
+          ขั้นตอนถัดไป
+        </Button>
       </Row>
     </FormContainer>
   )

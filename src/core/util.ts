@@ -4,7 +4,7 @@ import majors from './majors'
 
 const isClient = typeof window !== 'undefined'
 
-export function getMajorFromPath(pathname) {
+export function getMajorFromPath(pathname?: string) {
   if (!pathname) {
     pathname = isClient ? window.location.pathname : '/'
   }
