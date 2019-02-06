@@ -216,7 +216,7 @@ const NavBar = ({submit, style}) => (
     <Button onClick={prev}>ย้อนกลับไปแก้ไข</Button>
 
     <Button onClick={submit} success>
-      ยืนยันการสมัครเข้าค่าย JWC
+      ยืนยันการสมัครเข้าค่าย YCC
     </Button>
   </Row>
 )

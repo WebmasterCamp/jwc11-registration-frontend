@@ -16,7 +16,7 @@ const Landing = () => (
   <Backdrop>
     <Container>
       <Paper>
-        <Title>ไม่พบหน้าดังกล่าว | Junior Webmaster Camp XI</Title>
+        <Title>ไม่พบหน้าดังกล่าว | Young Creator's Camp</Title>
 
         <a href="https://www.jwc.in.th">
           <Button>กลับสู่เว็บไซต์หลัก</Button>

@@ -8,23 +8,20 @@ export default function SiteHead() {
 
       <meta charSet="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title>สมัครเข้าค่าย Junior Webmaster Camp XI</title>
+      <title>สมัครเข้าค่าย Young Creator's Camp</title>
 
       <meta
         name="description"
-        content="พบกันเร็ว ๆ นี้ กับค่าย Junior Webmaster Camp ค่ายทำเว็บของเด็ก ม.ปลาย ปีที่ 10"
+        content="พบกันเร็ว ๆ นี้ กับค่าย Young Creator's Camp ค่ายทำเว็บของเด็ก ม.ปลาย ปีที่ 10"
       />
 
       <meta property="og:url" content="https://registration.jwc.in.th" />
 
-      <meta
-        property="og:title"
-        content="สมัครเข้าค่าย Junior Webmaster Camp XI"
-      />
+      <meta property="og:title" content="สมัครเข้าค่าย Young Creator's Camp" />
 
       <meta
         property="og:description"
-        content="พบกันเร็ว ๆ นี้ กับค่าย Junior Webmaster Camp ค่ายทำเว็บของเด็ก ม.ปลาย ปีที่ 10"
+        content="พบกันเร็ว ๆ นี้ กับค่าย Young Creator's Camp ค่ายทำเว็บของเด็ก ม.ปลาย ปีที่ 10"
       />
 
       <meta
