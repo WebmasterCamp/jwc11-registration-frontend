@@ -10,13 +10,11 @@ import rsf, {app} from '../core/fire'
 import {getStepFromPath} from '../core/util'
 import logger from '../core/log'
 
-export const NEXT = '@CAMP/NEXT'
-export const PREV = '@CAMP/PREV'
+export const SAVE = '@CAMP/SAVE'
 export const SUBMIT = '@CAMP/SUBMIT'
 export const SET_LOADING = '@CAMP/SET_LOADING'
 
-export const next = Creator(NEXT)
-export const prev = Creator(PREV)
+export const save = Creator(SAVE)
 export const submit = Creator(SUBMIT)
 export const setLoading = Creator(SET_LOADING)
 
@@ -83,45 +81,22 @@ function* updateCamperRecord(payload) {
   }
 }
 
-function* nextPageSaga({payload}) {
-  yield fork(updateCamperRecord, payload)
-
-  const {major, step} = getStepFromPath()
-  logger.log('Advanced:', major, step + 1)
-
-  if (window.analytics) {
-    window.analytics.track('Advanced Step', {major, step: step + 1})
-  }
-
-  // If user is at last step, continue to verification process
-  if (step === 4) {
-    navigate(`/${major}/verify`)
-    return
-  }
-
-  yield navigate(`/${major}/step${step + 1}`)
-}
-
-function* previousPageSaga() {
-  const payload = yield select(s => s.form.submission)
+function* saveSubmissionSaga({payload}) {
+  console.log(NEXT, '> Payload =', payload)
 
   if (payload) {
-    yield fork(updateCamperRecord, payload.values)
+    yield fork(updateCamperRecord, payload)
+  } else {
+    const payload = yield select(s => s.form.submission)
+
+    if (payload) {
+      yield fork(updateCamperRecord, payload.values)
+    }
   }
-
-  const {major, step} = getStepFromPath()
-  logger.log('Backtracked: ', major, step - 1)
-
-  if (window.analytics) {
-    window.analytics.track('Backtracked Step', {major, step: step - 1})
-  }
-
-  navigate(`/${major}/step${step - 1}`)
 }
 
 export function* submissionWatcherSaga() {
-  yield takeEvery(NEXT, nextPageSaga)
-  yield takeEvery(PREV, previousPageSaga)
+  yield takeEvery(SAVE, saveSubmissionSaga)
   yield takeEvery(SUBMIT, submissionSaga)
 }
 

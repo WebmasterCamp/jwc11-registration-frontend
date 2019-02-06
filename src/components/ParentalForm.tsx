@@ -6,7 +6,7 @@ import Input from './Input'
 
 import withWizard from '../core/form'
 
-const ParentalForm = ({prev, handleSubmit}) => (
+const ParentalForm = ({save, handleSubmit}) => (
   <FormContainer onSubmit={handleSubmit}>
     <Paper>
       <Row>
@@ -23,7 +23,7 @@ const ParentalForm = ({prev, handleSubmit}) => (
     </Paper>
 
     <Row>
-      <Button onClick={prev}>ขั้นตอนก่อนหน้า</Button>
+      <Button onClick={save}>ขั้นตอนก่อนหน้า</Button>
 
       <Button type="submit">ขั้นตอนถัดไป</Button>
     </Row>

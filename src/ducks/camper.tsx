@@ -16,6 +16,10 @@ import {setLoading} from '../ducks/submission'
 
 const db = app.firestore()
 
+// Disable this flag in order to allow major to be changed.
+// I'm counting on you.
+const MAJOR_CANNOT_BE_CHANGED = false
+
 export const STORE_CAMPER = 'STORE_CAMPER'
 
 export const storeCamper = Creator(STORE_CAMPER)
@@ -116,6 +120,10 @@ function notifySubmitted(camper: Camper) {
   })
 }
 
+if (typeof window !== 'undefined') {
+  window.navigate = navigate
+}
+
 export function* loadCamperSaga() {
   const hide = message.loading(LoadingMessage, 0)
   yield put(setLoading(true))
@@ -204,7 +212,7 @@ export function* loadCamperSaga() {
       }
 
       // E - If user is not at the same major they had chosen at first.
-      if (record.major !== major) {
+      if (MAJOR_CANNOT_BE_CHANGED && record.major !== major) {
         yield call<any>(message.warn, ChangeDeniedMessage)
         navigate('/change_denied?major=' + major)
 

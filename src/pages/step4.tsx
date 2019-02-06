@@ -6,7 +6,7 @@ import {withRouteData} from 'react-static'
 import {Backdrop} from '../components/Layout'
 import MajorForm from '../components/MajorForm'
 
-import {next} from '../ducks/submission'
+import {save} from '../ducks/submission'
 
 const Title = styled.div`
   position: absolute;
@@ -17,16 +17,16 @@ const Title = styled.div`
   font-size: 1.8em;
 `
 
-const StepOne = ({next, questions}) => (
+const StepOne = ({save, questions}) => (
   <Backdrop>
     <Title>STEP 4: คำถามสาขา</Title>
-    <MajorForm questions={questions} onSubmit={next} />
+    <MajorForm questions={questions} onSubmit={save} />
   </Backdrop>
 )
 
 const enhance = connect(
   null,
-  {next}
+  {save}
 )
 
 export default withRouteData(enhance(StepOne))
