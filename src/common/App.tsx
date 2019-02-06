@@ -1,14 +1,15 @@
 import React from 'react'
 import {Root, Routes} from 'react-static'
 import {Router} from '@reach/router'
+import {Provider} from 'react-redux'
 
 import 'normalize.css'
 
 import SiteHead from './SiteHead'
 
-import NotFound from '../not-found'
-import GardenPage from '../garden-page'
-import ChallengePage from '../challenge'
+import createStore from '../ducks'
+
+const store = createStore()
 
 import '../style.sass'
 
@@ -16,17 +17,15 @@ const StaticRoutes = (_: {default: boolean}) => <Routes />
 
 function App() {
   return (
-    <Root>
-      <SiteHead />
+    <Provider store={store}>
+      <Root>
+        <SiteHead />
 
-      <Router>
-        <NotFound path="/not-found" />
-        <ChallengePage path="/challenge" />
-        <ChallengePage path="/challenge/:user" />
-        <GardenPage path="/:user" />
-        <StaticRoutes default />
-      </Router>
-    </Root>
+        <Router>
+          <StaticRoutes default />
+        </Router>
+      </Root>
+    </Provider>
   )
 }
 

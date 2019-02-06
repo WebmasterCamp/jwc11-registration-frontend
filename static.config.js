@@ -1,5 +1,35 @@
+import majors from './src/core/majors'
+import questions from './src/core/questions'
+
+const majorRoutes = majors.map(major => ({
+  path: '/' + major,
+  component: 'src/pages/major'
+}))
+
+const steps = [1, 2, 3]
+
+const formRoutes = majors
+  .map(major =>
+    steps.map(step => ({
+      path: '/' + major + '/step' + step,
+      component: 'src/pages/step' + step
+    }))
+  )
+  .reduce((prev, cur) => [...prev, ...cur])
+
+const verifyRoutes = majors.map(major => ({
+  path: '/' + major + '/verify',
+  component: 'src/pages/verify'
+}))
+
+const majorQuestionRoutes = majors.map(major => ({
+  path: '/' + major + '/step4',
+  component: 'src/pages/step4',
+  getData: () => ({questions: questions[major]})
+}))
+
 export default {
-  siteRoot: 'https://gitgarden.io',
+  siteRoot: 'https://registration.jwc.in.th',
   plugins: [
     'react-static-plugin-emotion',
     'react-static-plugin-typescript',
@@ -10,20 +40,24 @@ export default {
   }),
   getRoutes: () => [
     {
-      path: '404',
-      component: 'src/not-found'
-    },
-    {
       path: '/',
-      component: 'src/landing'
+      component: 'src/pages/index'
+    },
+    ...majorRoutes,
+    ...formRoutes,
+    ...verifyRoutes,
+    ...majorQuestionRoutes,
+    {
+      path: '/thankyou',
+      component: 'src/pages/thankyou'
     },
     {
-      path: '/challenge',
-      component: 'src/challenge'
+      path: '/change_denied',
+      component: 'src/pages/change_denied'
     },
     {
-      path: '/*',
-      component: 'src/garden-page'
+      path: '404',
+      component: 'src/pages/404'
     }
   ]
 }
