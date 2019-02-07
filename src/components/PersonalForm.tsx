@@ -56,7 +56,7 @@ const PersonalForm = ({handleSubmit}) => (
       </Row>
 
       <Row>
-        <Input name="age" label="อายุ" type="number" />
+        <Input name="nickname" label="ชื่อเล่น" />
         <DatePicker name="birthdate" label="วันเกิด" float />
         <Select name="gender" label="เพศ" options={genderOptions} />
       </Row>

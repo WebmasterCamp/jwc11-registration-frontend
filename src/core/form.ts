@@ -23,20 +23,20 @@ const personalFields = [
   'phone',
   'email',
   'shirtSize',
-  'activity',
+  'activity'
 ]
 
 const parentFields = [
   'parentFirstName',
   'parentLastName',
   'parentRelation',
-  'parentPhone',
+  'parentPhone'
 ]
 
 const generalQuestionFields = [
   'generalAnswer1',
   'generalAnswer2',
-  'generalAnswer3',
+  'generalAnswer3'
 ]
 
 const majorQuestionFields = ['majorAnswer1', 'majorAnswer2']
@@ -83,15 +83,15 @@ function validate(values) {
     errors.majorAnswer3 = 'กรุณาตอบคำถามดังกล่าว'
   }
 
-  const age = parseInt(values.age)
+  // const age = parseInt(values.age)
 
-  if (isNaN(age)) {
-    errors.age = 'รูปแบบอายุไม่่ถูกต้อง'
-  }
+  // if (isNaN(age)) {
+  //   errors.age = 'รูปแบบอายุไม่่ถูกต้อง'
+  // }
 
-  if (age < 10 || age > 30) {
-    errors.age = 'อายุไม่ถูกต้อง'
-  }
+  // if (age < 10 || age > 30) {
+  //   errors.age = 'อายุไม่ถูกต้อง'
+  // }
 
   return errors
 }
@@ -109,21 +109,21 @@ export const formOptions = {
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
   validate,
-  onSubmitFail,
+  onSubmitFail
 }
 
 const mapStateToProps = state => ({
   initialValues: state.camper,
-  major: state.camper.major,
+  major: state.camper.major
 })
 
 const enhance = compose(
   connect(
     mapStateToProps,
-    {save},
+    {save}
   ),
   reduxForm(formOptions),
-  preventUnsaved('submission'),
+  preventUnsaved('submission')
 )
 
 export default enhance

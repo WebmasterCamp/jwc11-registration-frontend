@@ -37,7 +37,8 @@ const Title = styled.h1``
 const personalFields = Object.entries({
   firstname: 'ชื่อ',
   lastname: 'นามสกุล',
-  age: 'อายุ',
+  nickname: 'ชื่อเล่น',
+  // age: 'อายุ',
   birthdate: 'วันเกิด',
   gender: 'เพศ',
   religion: 'ศาสนา',
