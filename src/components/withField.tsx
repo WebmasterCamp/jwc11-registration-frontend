@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-import {css} from '@emotion/core'
+import { css } from '@emotion/core'
 
-import {Field, BaseFieldProps} from 'redux-form'
+import { Field, BaseFieldProps } from 'redux-form'
+import { Fields } from '../core/form'
 
 interface FieldContainerProps {
-  wordy: boolean
+  wordy?: boolean
 }
 
 // prettier-ignore
@@ -83,11 +84,11 @@ const ErrorMessage = styled.div`
 `
 
 interface FieldWrapperProps {
-  label: string
-  input: any
-  meta: any
-  float: boolean
-  wordy: boolean
+  label?: string
+  input?: any
+  meta?: any
+  float?: boolean
+  wordy?: boolean
 }
 
 const wrap = (Component: React.ComponentType) => ({
@@ -112,9 +113,9 @@ const wrap = (Component: React.ComponentType) => ({
 const withField = Component => {
   const InputField = wrap(Component)
 
-  return (props: BaseFieldProps & FieldWrapperProps) => (
-    <Field component={InputField} {...props} />
-  )
+  return (
+    props: BaseFieldProps & FieldWrapperProps & { name: keyof Fields }
+  ) => <Field component={InputField} {...props} />
 }
 
 export default withField
