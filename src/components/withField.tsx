@@ -33,23 +33,24 @@ type LabelProps = {
 // prettier-ignore
 const Label = styled.label<LabelProps>`
   position: absolute;
-  top: 9px;
+  top: 3px;
   left: calc(0.625em + 3px);
   z-index: 1;
   line-height: 1.5;
 
-  font-size: 1em;
-  font-weight: 600;
+  font-size: 1.5em;
+  font-weight: 400;
 
   cursor: text;
   pointer-events: none;
-  transition: transform 0.2s ease-out;
+  transition: 0.2s ease-out all;
 
   white-space: pre-line;
   word-break: break-word;
   word-wrap: break-word;
 
   ${props => props.float && css`
+    left: 0;
     transform: translateY(-40px) scale(1);
   `};
 

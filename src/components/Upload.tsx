@@ -75,14 +75,14 @@ const dropIconStyle = css`
 const DropTitle = styled.div`
   color: #555;
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1.75em;
 `
 
 const Small = styled.small`
   color: #777;
   text-align: center;
 
-  font-size: 0.85em;
+  font-size: 1.15em;
   margin-top: 0.5em;
 `
 

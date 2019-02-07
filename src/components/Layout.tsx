@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import {BubbleBackdrop} from './BubbleBackdrop'
 
 import {bubbly} from '../core/bubbly'
+import {ParticleBackdrop} from './ParticleBackdrop'
 
 // background-image: linear-gradient(45deg, #00B7FF, #FFFFC7)
 
@@ -32,17 +33,23 @@ export const BackdropContainer = styled.div`
   padding-bottom: 7em;
 `
 
-bubbly({
-  animate: true,
-  blur: 1,
-  colorStart: '#99ccff',
-  colorStop: '#ffffff'
-  // colorStart: '#4c004c',
-  // colorStop: '#1a001a'
-})
+// bubbly({
+//   animate: true,
+//   blur: 1,
+//   colorStart: '#fff',
+//   colorStop: '#99ccff'
+//   // colorStart: '#4c004c',
+//   // colorStop: '#1a001a'
+// })
 
 export function Backdrop({children}: {children: React.ReactChild}) {
-  return <BackdropContainer>{children}</BackdropContainer>
+  return (
+    <BackdropContainer>
+      <ParticleBackdrop />
+
+      {children}
+    </BackdropContainer>
+  )
 }
 
 export const Container = styled.div`

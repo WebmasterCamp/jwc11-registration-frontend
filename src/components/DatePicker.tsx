@@ -9,6 +9,7 @@ import withField from './withField'
 import {withFocus} from '../core/util'
 import {DayPickerInputProps} from 'react-day-picker/types/props'
 import {DayModifiers} from 'react-day-picker/types/common'
+import moment from 'moment'
 
 const Input = withFocus(TextInput)
 
