@@ -6,7 +6,7 @@ import {Link} from '@reach/router'
 import Button from '../components/Button'
 import {Backdrop, Container, Row, Paper, Heading} from '../components/Layout'
 
-const ChangeDenied = ({camper, match}) => (
+const ChangeDenied = ({camper}) => (
   <Backdrop>
     <Container>
       <Paper>

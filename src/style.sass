@@ -64,6 +64,9 @@ body
     border: none
     background: transparent
 
+  &.custom-select-error .custom-select__control
+    border-bottom: 2px solid #e74c3c !important
+
   &__placeholder 
     margin-left: 6px !important
   
@@ -136,6 +139,9 @@ body
 .custom-date-picker.ant-calendar-picker
   width: 100%
 
+  &.custom-date-picker-error .ant-calendar-picker-input
+    border-bottom: 2px solid #e74c3c
+
   .ant-calendar-picker-input
     height: 40px
     font-weight: 300
@@ -154,3 +160,6 @@ body
     color: #555
     border-bottom: 2px solid #555
     box-shadow: 0 1px 1.5px 1px rgba(0,0,0,0.12)
+
+    &::placeholder 
+      color: #777

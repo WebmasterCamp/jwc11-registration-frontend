@@ -10,6 +10,7 @@ import 'firebase/storage'
 
 import 'antd/lib/message/style/css'
 import 'antd/lib/modal/style/css'
+import 'antd/lib/spin/style/css'
 
 import App from './common/App'
 

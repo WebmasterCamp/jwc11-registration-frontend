@@ -10,6 +10,7 @@ import {Heading, Container, Backdrop, Paper} from '../components/Layout'
 import {getMajorFromPath} from '../core/util'
 
 import {login, logout} from '../ducks/user'
+import {log} from '../core/log'
 
 const Major = styled.span`
   text-transform: capitalize;
@@ -27,31 +28,25 @@ const Splash = ({children}) => (
   </Backdrop>
 )
 
-function getMajor({match}) {
-  if (match) {
-    return getMajorFromPath(match.params[0])
-  }
-
-  return ''
-}
-
 const Authenticating = props => (
   <Splash>
     กรุณาเข้าสู่ระบบด้วย Facebook เพื่อสมัครเข้าสาขา
-    <Major> {getMajor(props)}</Major>
+    <Major> {getMajorFromPath()}</Major>
   </Splash>
 )
 
 const Loading = props => (
   <Splash>
     กำลังยืนยันตัวตนเพื่อสมัครเข้าสาขา
-    <Major> {getMajor(props)} </Major>
+    <Major> {getMajorFromPath()} </Major>
     กรุณารอสักครู่
   </Splash>
 )
 
 const Redirection = props => {
-  const major = getMajor(props)
+  const major = getMajorFromPath()
+
+  log('Your Major is', major)
 
   if (major) {
     return <Redirect to={`/${major}/step1`} />

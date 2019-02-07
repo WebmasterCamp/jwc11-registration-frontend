@@ -1,19 +1,13 @@
 import React, {ChangeEvent} from 'react'
 import Select from 'react-select'
 import styled from '@emotion/styled'
+import c from 'classnames'
 
 // import {css} from '@emotion/core'
 
 import {withProps} from 'recompose'
 
 import withField from './withField'
-
-type SelectProps = {
-  meta: {
-    touched: boolean
-    error: boolean
-  }
-}
 
 type Option = {value: string; label: string}
 
@@ -36,7 +30,13 @@ const CustomSelect = withField(props => {
   return (
     <Select<Option>
       {...props}
-      className="custom-select"
+      className={c(
+        'custom-select',
+        props.meta &&
+          props.meta.touched &&
+          props.meta.error &&
+          'custom-select-error'
+      )}
       classNamePrefix="custom-select"
       value={currentValue}
       onBlur={() => {}}

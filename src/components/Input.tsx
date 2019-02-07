@@ -15,6 +15,8 @@ export const TextInput = styled.input`
   padding: 0.15em 0.6em;
 
   min-width: 10em;
+  min-height: 40px;
+
   outline: none;
   transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) all;
 

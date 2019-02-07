@@ -17,6 +17,7 @@ const personalFields = [
   'age',
   'gender',
   'birthdate',
+  'socialMedia',
   'religion',
   'class',
   'school',
