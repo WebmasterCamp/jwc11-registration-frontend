@@ -2,8 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import styled from '@emotion/styled'
 
-import {css} from '@emotion/core'
-
 import {getFormValues} from 'redux-form'
 import Image from 'react-medium-image-zoom'
 import {navigate} from '@reach/router'
@@ -12,7 +10,6 @@ import Button from '../components/Button'
 import Upload from '../components/Upload'
 import {religions, grades, genders} from '../components/PersonalForm'
 import {Backdrop, Row, Paper} from '../components/Layout'
-import Q3Dev from '../components/Q3Dev'
 
 import questions, {General} from '../core/questions'
 
@@ -65,11 +62,12 @@ const parentFields = Object.entries({
 const Card = styled(Paper)`
   align-items: flex-start;
   justify-content: flex-start;
+  font-size: 1.3em;
 `
 
 const Item = styled.div`
   color: #333;
-  font-size: 1.12em;
+  font-size: 1.32em;
   line-height: 1.8em;
 `
 

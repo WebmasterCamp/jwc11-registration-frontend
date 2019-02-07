@@ -10,8 +10,6 @@ const Heading = styled.h1`
   font-weight: 300;
 
   margin-bottom: 0.3em;
-
-  font-family: 'FC Lamoon', 'Sukhumvit Set', sans-serif, Tahoma;
 `
 
 const SubHeading = styled.h1`
@@ -20,7 +18,6 @@ const SubHeading = styled.h1`
   font-weight: 300;
 
   margin-bottom: 1.8em;
-  font-family: 'FC Lamoon', 'Sukhumvit Set', sans-serif, Tahoma;
 `
 
 const Landing = () => (
