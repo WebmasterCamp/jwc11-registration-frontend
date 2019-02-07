@@ -34,6 +34,7 @@ declare global {
     analytics: SegmentAnalytics.AnalyticsJS
     FS: any
     ga: UniversalAnalytics.ga
+    firebase: firebase.app.App
   }
 }
 
