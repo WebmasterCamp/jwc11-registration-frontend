@@ -2,6 +2,22 @@ import styled from '@emotion/styled'
 
 import {css} from '@emotion/core'
 
+import {bubbly} from '../core/bubbly'
+
+// background-image: linear-gradient(45deg, #00B7FF, #FFFFC7)
+
+bubbly({
+  animate: true,
+  blur: 1,
+  colorStart: '#99ccff',
+  colorStop: '#ffffff',
+  angleFunc: () => Math.random() * Math.PI * 2,
+  velocityFunc: () => 0.1 + Math.random() * 0.5,
+  radiusFunc: () => 4 + Math.random() * 25 // default is 4 + Math.random() * width / 25
+  // colorStart: '#4c004c',
+  // colorStop: '#1a001a'
+})
+
 export const Heading = styled.h1`
   color: #555;
   font-size: 1.85em;
@@ -17,7 +33,8 @@ export const Backdrop = styled.div`
   align-items: center;
   justify-content: space-around;
 
-  background-image: linear-gradient(45deg, #e42466, #fe8383);
+  /* background-image: linear-gradient(to top, #99ccff, #ffffff); */
+  background: transparent;
   background-attachment: fixed;
 
   width: 100%;
