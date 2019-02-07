@@ -2,8 +2,6 @@ import styled from '@emotion/styled'
 
 import {css} from '@emotion/core'
 
-
-
 export const Heading = styled.h1`
   color: #555;
   font-size: 1.85em;
@@ -19,7 +17,7 @@ export const Backdrop = styled.div`
   align-items: center;
   justify-content: space-around;
 
-  background-image: linear-gradient(#6973ad, #6bc9e9);
+  background-image: linear-gradient(45deg, #e42466, #fe8383);
   background-attachment: fixed;
 
   width: 100%;
