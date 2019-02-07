@@ -144,7 +144,7 @@ export function* loadCamperSaga() {
 
     // Retrieve the camper information from firestore database
     const docRef = db.collection('campers').doc(uid)
-    const doc = yield call<any>(rsf.firestore.getDocument, docRef)
+    const doc = yield call(rsf.firestore.getDocument, docRef)
 
     // Identify camper's identity in analytics.
     Identify(uid, displayName, email, photoURL)
@@ -161,7 +161,7 @@ export function* loadCamperSaga() {
       if (record.major && window.location.pathname === '/') {
         logger.info(MajorRedirectLog, record.major)
 
-        yield call<any>(message.info, MajorRedirectMessage + record.major)
+        yield call(message.info, MajorRedirectMessage + record.major)
         navigate(`/${record.major}/step1`)
 
         return
@@ -186,7 +186,7 @@ export function* loadCamperSaga() {
 
         // Merge the major data in record.major
         const data = {major}
-        yield call<any>(rsf.firestore.setDocument, docRef, data, {merge: true})
+        yield call(rsf.firestore.setDocument, docRef, data, {merge: true})
 
         // Redirect the camper to their own major
         navigate('/' + major + '/step1')
@@ -206,14 +206,14 @@ export function* loadCamperSaga() {
           })
         }
 
-        yield call<any>(notifySubmitted, record)
+        yield call(notifySubmitted, record)
 
         return
       }
 
       // E - If user is not at the same major they had chosen at first.
       if (MAJOR_CANNOT_BE_CHANGED && record.major !== major) {
-        yield call<any>(message.warn, ChangeDeniedMessage)
+        yield call(message.warn, ChangeDeniedMessage)
         navigate('/change_denied?major=' + major)
 
         if (window.analytics) {
@@ -253,7 +253,7 @@ export function* loadCamperSaga() {
         createdAt: new Date()
       }
 
-      yield call<any>(rsf.firestore.setDocument, docRef, data)
+      yield call(rsf.firestore.setDocument, docRef, data)
 
       if (window.analytics) {
         window.analytics.track('Arrived', {uid, displayName, major})

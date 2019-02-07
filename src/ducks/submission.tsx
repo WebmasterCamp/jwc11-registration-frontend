@@ -7,8 +7,8 @@ import {captureException} from '@sentry/browser'
 import {createReducer, Creator} from './helper'
 
 import rsf, {app} from '../core/fire'
-import {getStepFromPath} from '../core/util'
 import logger from '../core/log'
+import {next} from '../core/step'
 
 export const SAVE = '@CAMP/SAVE'
 export const SUBMIT = '@CAMP/SUBMIT'
@@ -31,17 +31,17 @@ function* submissionSaga() {
     const docRef = db.collection('campers').doc(uid)
 
     const data = {submitted: true, updatedAt: new Date()}
-    yield call<any>(rsf.firestore.setDocument, docRef, data, {merge: true})
+    yield call(rsf.firestore.setDocument, docRef, data, {merge: true})
 
     logger.log('Updated and Submitted Camper Record', data)
-    yield call<any>(message.success, 'การสมัครเข้าค่ายเสร็จสิ้น')
+    yield call(message.success, 'การสมัครเข้าค่ายเสร็จสิ้น')
 
     if (window.analytics) {
       const major = yield select(s => s.camper.major)
 
       window.analytics.track('Completed', {uid})
 
-      yield call<any>(window.analytics.track, 'Completed', {
+      yield call(window.analytics.track, 'Completed', {
         uid,
         displayName,
         major
@@ -66,11 +66,11 @@ function* updateCamperRecord(payload) {
       const docRef = db.collection('campers').doc(uid)
 
       const data = {...payload, updatedAt: new Date()}
-      yield call<any>(rsf.firestore.setDocument, docRef, data, {merge: true})
+      yield call(rsf.firestore.setDocument, docRef, data, {merge: true})
 
       logger.log('Updated Camper Record:', data)
 
-      yield call<any>(message.info, 'บันทึกข้อมูลเรียบร้อยแล้ว', 0.5)
+      yield call(message.info, 'บันทึกข้อมูลเรียบร้อยแล้ว', 0.5)
     }
   } catch (err) {
     message.error(err.message)
@@ -84,6 +84,8 @@ function* updateCamperRecord(payload) {
 function* saveSubmissionSaga({payload}) {
   if (payload) {
     yield fork(updateCamperRecord, payload)
+
+    yield call(next)
   } else {
     const payload = yield select(s => s.form.submission)
 

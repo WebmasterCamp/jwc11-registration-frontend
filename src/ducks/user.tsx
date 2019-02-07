@@ -67,7 +67,7 @@ function notifySubmissionClosed() {
 export function* loginSaga() {
   // Notify the user that registration has been closed.
   if (Date.now() > SUBMISSION_CLOSED_TIME) {
-    yield call<any>(notifySubmissionClosed)
+    yield call(notifySubmissionClosed)
 
     return
   }
@@ -81,13 +81,10 @@ export function* loginSaga() {
 
   try {
     // Attempt to Sign In with redirection.
-    const auth = yield call<any>(rsf.auth.signInWithRedirect, provider)
+    const auth = yield call(rsf.auth.signInWithRedirect, provider)
 
     // Retrieve the user credential by using authentication credential.
-    const cred = yield call<any>(
-      rsf.auth.signInAndRetrieveDataWithCredential,
-      auth
-    )
+    const cred = yield call(rsf.auth.signInAndRetrieveDataWithCredential, auth)
 
     if (cred) {
       logger.log('Logged in as', cred.user.displayName, cred.user.uid)
@@ -104,14 +101,14 @@ export function* loginSaga() {
 
     captureException(err)
   } finally {
-    yield call<any>(hide)
+    yield call(hide)
     yield put(setAuthenticating(false))
   }
 }
 
 export function* logoutSaga() {
   try {
-    yield call<any>(rsf.auth.signOut)
+    yield call(rsf.auth.signOut)
     yield put(clearUser())
   } catch (err) {
     message.error(err.message)
@@ -132,12 +129,12 @@ export const getUserStatus = () =>
 // Attempt to re-authenticate when user resumes their session
 export function* reauthSaga() {
   try {
-    const user = yield call<any>(getUserStatus)
+    const user = yield call(getUserStatus)
     const major = getMajorFromPath()
 
     // Notify the user that registration has been closed.
     if (Date.now() > SUBMISSION_CLOSED_TIME) {
-      yield call<any>(notifySubmissionClosed)
+      yield call(notifySubmissionClosed)
 
       return
     }

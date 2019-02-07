@@ -20,9 +20,7 @@ const QuestionForm = ({save, handleSubmit}) => (
     <Row>
       <Button onClick={prev}>ขั้นตอนก่อนหน้า</Button>
 
-      <Button onClick={next} type="submit">
-        ขั้นตอนถัดไป
-      </Button>
+      <Button type="submit">ขั้นตอนถัดไป</Button>
     </Row>
   </FormContainer>
 )
