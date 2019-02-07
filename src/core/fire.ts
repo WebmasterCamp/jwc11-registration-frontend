@@ -15,4 +15,8 @@ const config = {
 
 export const app = firebase.initializeApp(config)
 
+if (typeof window !== 'undefined') {
+  window.firebase = app
+}
+
 export default new SagaFirebase(app)
