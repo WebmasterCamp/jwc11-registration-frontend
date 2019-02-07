@@ -68,7 +68,7 @@ export function bubbly(config: BubblyConfig = {}) {
   context.shadowColor = shadowColor
   context.shadowBlur = blur
 
-  const gradient = context.createLinearGradient(0, 0, width, height)
+  const gradient = context.createLinearGradient(0, height, width, 0)
   gradient.addColorStop(0, colorStart)
   gradient.addColorStop(1, colorStop)
 

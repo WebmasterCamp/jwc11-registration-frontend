@@ -1,22 +1,10 @@
 import styled from '@emotion/styled'
 
-import {css} from '@emotion/core'
+import {BubbleBackdrop} from './BubbleBackdrop'
 
 import {bubbly} from '../core/bubbly'
 
 // background-image: linear-gradient(45deg, #00B7FF, #FFFFC7)
-
-bubbly({
-  animate: true,
-  blur: 1,
-  colorStart: '#99ccff',
-  colorStop: '#ffffff',
-  angleFunc: () => Math.random() * Math.PI * 2,
-  velocityFunc: () => 0.1 + Math.random() * 0.5,
-  radiusFunc: () => 4 + Math.random() * 25 // default is 4 + Math.random() * width / 25
-  // colorStart: '#4c004c',
-  // colorStop: '#1a001a'
-})
 
 export const Heading = styled.h1`
   color: #555;
@@ -27,7 +15,7 @@ export const Heading = styled.h1`
   margin-bottom: 1.2em;
 `
 
-export const Backdrop = styled.div`
+export const BackdropContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,6 +31,19 @@ export const Backdrop = styled.div`
   padding-top: 7em;
   padding-bottom: 7em;
 `
+
+bubbly({
+  animate: true,
+  blur: 1,
+  colorStart: '#99ccff',
+  colorStop: '#ffffff'
+  // colorStart: '#4c004c',
+  // colorStop: '#1a001a'
+})
+
+export function Backdrop({children}: {children: React.ReactChild}) {
+  return <BackdropContainer>{children}</BackdropContainer>
+}
 
 export const Container = styled.div`
   display: flex;

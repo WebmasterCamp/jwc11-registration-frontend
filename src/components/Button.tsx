@@ -64,7 +64,7 @@ const ButtonContainer = styled.button<ButtonContainerProps>`
 `
 
 type ButtonProps = {
-  children: React.ReactChildren
+  children: React.ReactChildren | string
 } & ButtonContainerProps
 
 const Button = ({children, ...props}: ButtonProps) => (
