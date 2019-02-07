@@ -3,10 +3,6 @@ import Select from 'react-select'
 import styled from '@emotion/styled'
 import c from 'classnames'
 
-// import {css} from '@emotion/core'
-
-import {withProps} from 'recompose'
-
 import withField from './withField'
 
 type Option = {value: string; label: string}
