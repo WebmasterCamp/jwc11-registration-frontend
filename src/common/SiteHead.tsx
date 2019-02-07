@@ -15,7 +15,7 @@ export default function SiteHead() {
         content="พบกันเร็ว ๆ นี้ กับค่าย Young Creator's Camp"
       />
 
-      <meta property="og:url" content="https://registration.jwc.in.th" />
+      <meta property="og:url" content="https://join.ycc.in.th" />
 
       <meta property="og:title" content="สมัครเข้าค่าย Young Creator's Camp" />
 

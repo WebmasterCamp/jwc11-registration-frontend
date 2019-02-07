@@ -106,7 +106,7 @@ function notifySubmitted(camper: Camper) {
         </p>
         <p>
           ค่ายจะประกาศผลการคัดเลือกในวันที่ 16 เมษายน ผ่านทางเว็บไซต์{' '}
-          <a href="https://www.jwc.in.th">www.jwc.in.th</a> ค่ะ
+          <a href="https://www.ycc.in.th">www.ycc.in.th</a> ค่ะ
         </p>
         <p>ขอให้โชคดีนะคะ ให้คุกกี้ทำนายกัน! 🥠</p>
       </div>
@@ -114,7 +114,7 @@ function notifySubmitted(camper: Camper) {
     okText: `กลับสู่เว็บไซต์หลัก`,
     onOk: () => {
       if (typeof window !== 'undefined') {
-        window.location.href = 'https://www.jwc.in.th'
+        window.location.href = 'https://www.ycc.in.th'
       }
     }
   })

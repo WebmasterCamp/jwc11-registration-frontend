@@ -18,7 +18,7 @@ const Landing = () => (
       <Paper>
         <Title>ไม่พบหน้าดังกล่าว | Young Creator's Camp</Title>
 
-        <a href="https://www.jwc.in.th">
+        <a href="https://www.ycc.in.th">
           <Button>กลับสู่เว็บไซต์หลัก</Button>
         </a>
       </Paper>
