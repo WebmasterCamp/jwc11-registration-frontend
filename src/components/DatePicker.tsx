@@ -1,19 +1,21 @@
-import React, {ComponentType} from 'react'
+import React from 'react'
 import {DatePicker} from 'antd'
+import moment from 'moment'
+import 'moment/locale/th'
 
 import 'antd/lib/date-picker/style/css'
 
-import {TextInput} from './Input'
 import withField from './withField'
-
-import {withFocus} from '../core/util'
-import moment from 'moment'
 
 const CustomDatePicker = (props: any) => (
   <DatePicker
     className="custom-date-picker"
-    onChange={m => props.onChange(m.format('YYYY-MM-DD'))}
+    onChange={m =>
+      props.onChange(m ? m.format('YYYY-MM-DD') : moment().format('YYYY-MM-DD'))
+    }
     value={moment(props.value)}
+    format="LL"
+    locale="th"
   />
 )
 
