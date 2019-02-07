@@ -42,7 +42,6 @@ const CustomSelect = withField(props => {
       onBlur={() => {}}
       onChange={v => v && onChange(v.value)}
       isSearchable
-      isClearable
     />
   )
 })
