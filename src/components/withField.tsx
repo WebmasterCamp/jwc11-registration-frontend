@@ -41,6 +41,7 @@ const Label = styled.label<LabelProps>`
   font-size: 1.5em;
   font-weight: 400;
 
+  color: #777;
   cursor: text;
   pointer-events: none;
   transition: 0.2s ease-out all;
@@ -51,6 +52,7 @@ const Label = styled.label<LabelProps>`
 
   ${props => props.float && css`
     left: 0;
+    color: inherit;
     transform: translateY(-40px) scale(1);
   `};
 

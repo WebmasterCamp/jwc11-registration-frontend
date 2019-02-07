@@ -6,18 +6,21 @@ import {Backdrop, Container, Paper} from '../components/Layout'
 
 const Heading = styled.h1`
   color: #777;
-  font-size: 1.95em;
+  font-size: 2.95em;
   font-weight: 300;
 
-  margin-bottom: 1.2em;
+  margin-bottom: 0.3em;
+
+  font-family: 'FC Lamoon', 'Sukhumvit Set', sans-serif, Tahoma;
 `
 
 const SubHeading = styled.h1`
   color: #555;
-  font-size: 1.85em;
+  font-size: 2.4em;
   font-weight: 300;
 
   margin-bottom: 1.8em;
+  font-family: 'FC Lamoon', 'Sukhumvit Set', sans-serif, Tahoma;
 `
 
 const Landing = () => (

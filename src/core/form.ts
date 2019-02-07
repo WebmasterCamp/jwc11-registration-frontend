@@ -13,6 +13,7 @@ import logger from './log'
 const personalFields = [
   'firstname',
   'lastname',
+  'nickname',
   'age',
   'gender',
   'birthdate',

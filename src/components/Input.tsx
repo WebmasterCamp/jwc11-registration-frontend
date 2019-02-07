@@ -9,7 +9,7 @@ export const TextInput = styled.input`
   font-weight: 300;
   text-align: left;
   font-size: 1.5em;
-  line-height: 1.3em;
+  line-height: 1.2em;
 
   width: 100%;
   padding: 0.15em 0.6em;

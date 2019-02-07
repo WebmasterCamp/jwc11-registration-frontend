@@ -76,6 +76,8 @@ const DropTitle = styled.div`
   color: #555;
   text-align: center;
   font-size: 1.75em;
+
+  font-family: 'FC Lamoon';
 `
 
 const Small = styled.small`
@@ -84,6 +86,8 @@ const Small = styled.small`
 
   font-size: 1.15em;
   margin-top: 0.5em;
+
+  font-family: 'FC Lamoon';
 `
 
 const DropWarning = styled.div`

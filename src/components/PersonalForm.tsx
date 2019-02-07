@@ -74,7 +74,7 @@ const PersonalForm = ({handleSubmit}) => (
       </Row>
       <Row>
         <Input name="email" label="อีเมล" type="email" />
-        <Input name="socialMedia" label="Twitter ID" />
+        <Input name="socialMedia" label="Social Media" />
       </Row>
 
       <Row>
