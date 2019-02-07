@@ -1,6 +1,6 @@
 import {message} from 'antd'
 import {connect} from 'react-redux'
-import {reduxForm} from 'redux-form'
+import {reduxForm, ConfigProps} from 'redux-form'
 import {compose} from 'recompose'
 
 import preventUnsaved from '../components/PreventUnsaved'
@@ -34,9 +34,9 @@ const parentFields = [
 ]
 
 const generalQuestionFields = [
-  'generalAnswer1',
-  'generalAnswer2',
-  'generalAnswer3'
+  'generalAnswer1'
+  // 'generalAnswer2',
+  // 'generalAnswer3'
 ]
 
 const majorQuestionFields = ['majorAnswer1', 'majorAnswer2']
@@ -102,7 +102,7 @@ function onSubmitFail(error) {
   logger.warn('Encountered Validation Error:', error)
 }
 
-export const formOptions = {
+export const formOptions: ConfigProps = {
   form: 'submission',
   enableReinitialize: true,
   keepDirtyOnReinitialize: true,

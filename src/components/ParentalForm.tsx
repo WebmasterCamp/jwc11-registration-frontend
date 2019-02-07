@@ -7,8 +7,16 @@ import Input from './Input'
 import withWizard from '../core/form'
 import {prev, next} from '../core/step'
 
-const ParentalForm = ({save, handleSubmit}) => (
-  <FormContainer onSubmit={handleSubmit}>
+const ParentalForm = ({handleSubmit}) => (
+  <FormContainer
+    onSubmit={e => {
+      e.persist()
+
+      console.log('Parental Form Submit', e)
+
+      handleSubmit(e)
+    }}
+  >
     <Paper>
       <Row>
         <Input name="parentFirstName" label="ชื่อผู้ปกครอง" />

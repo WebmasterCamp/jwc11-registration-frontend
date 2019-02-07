@@ -12,7 +12,7 @@ export default function SiteHead() {
 
       <meta
         name="description"
-        content="พบกันเร็ว ๆ นี้ กับค่าย Young Creator's Camp ค่ายทำเว็บของเด็ก ม.ปลาย ปีที่ 10"
+        content="พบกันเร็ว ๆ นี้ กับค่าย Young Creator's Camp"
       />
 
       <meta property="og:url" content="https://registration.jwc.in.th" />
@@ -21,22 +21,17 @@ export default function SiteHead() {
 
       <meta
         property="og:description"
-        content="พบกันเร็ว ๆ นี้ กับค่าย Young Creator's Camp ค่ายทำเว็บของเด็ก ม.ปลาย ปีที่ 10"
+        content="พบกันเร็ว ๆ นี้ กับค่าย Young Creator's Camp"
       />
 
       <meta
         property="og:image"
-        content="http://www.jwc.in.th/assets/img/og.jpg"
+        content="https://join.ycc.in.th/assets/img/og.jpg"
       />
 
       <meta
         property="article:author"
-        content="https://www.facebook.com/jwcth"
-      />
-
-      <link
-        href="https://fonts.googleapis.com/css?family=Kanit:300,400"
-        rel="stylesheet"
+        content="https://www.facebook.com/ycccamp"
       />
     </Head>
   )

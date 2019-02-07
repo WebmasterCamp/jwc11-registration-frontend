@@ -12,20 +12,23 @@ import createStore from '../ducks'
 const store = createStore()
 
 import '../style.sass'
+import {ErrorBoundary} from '../components/ErrorBoundary'
 
 const StaticRoutes = (_: {default: boolean}) => <Routes />
 
 function App() {
   return (
-    <Provider store={store}>
-      <Root>
-        <SiteHead />
+    <ErrorBoundary>
+      <Provider store={store}>
+        <Root>
+          <SiteHead />
 
-        <Router>
-          <StaticRoutes default />
-        </Router>
-      </Root>
-    </Provider>
+          <Router>
+            <StaticRoutes default />
+          </Router>
+        </Root>
+      </Provider>
+    </ErrorBoundary>
   )
 }
 

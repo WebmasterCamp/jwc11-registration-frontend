@@ -1,3 +1,3 @@
-const majors = ['programming', 'design', 'content', 'marketing']
+const majors = ['programming', 'design']
 
 export default majors

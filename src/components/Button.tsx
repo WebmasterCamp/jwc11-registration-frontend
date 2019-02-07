@@ -11,26 +11,30 @@ interface ButtonContainerProps {
 }
 
 // prettier-ignore
-const ButtonContainer = styled.button<ButtonContainerProps>`
+const ButtonContainer = styled.button`
+  font-size: 1.8em;
+  line-height: 1.5em;
+  height: 2.3em;
+
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  height: 3em;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+
+  border: 0;
+  color: #efefef;
+  cursor: pointer;
+  appearance: none;
+  margin-left: 1em;
   align-self: center;
   border-radius: 3px;
+
   background: ${props => props.color || '#2c3e50'};
-  appearance: none;
-  border: 0;
-  margin-left: 1em;
-  cursor: pointer;
-  color: #efefef;
-  font-size: 1.3em;
-  letter-spacing: 0.1em;
-  line-height: 2em;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  
   outline: none;
   padding: 0.5em 1.4em;
   position: relative;
   text-align: center;
   text-decoration: none;
+  letter-spacing: 0.1em;
   text-transform: capitalize;
 
   @media screen and (max-width: 840px) {

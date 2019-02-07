@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import segment from './core/analytics'
+
 import 'firebase/auth'
 import 'firebase/database'
 import 'firebase/firestore'
@@ -13,6 +15,9 @@ import App from './common/App'
 
 // Render your app
 if (typeof document !== 'undefined') {
+  // Initialize Segment Analytics
+  segment()
+
   const renderMethod = module.hot
     ? ReactDOM.render
     : ReactDOM.hydrate || ReactDOM.render

@@ -46,7 +46,7 @@ const personalFields = Object.entries({
   school: 'โรงเรียน',
   phone: 'เบอร์โทรศัพท์',
   email: 'อีเมล',
-  socialMedia: 'Twitter ID',
+  socialMedia: 'Social Media',
   address: 'ที่อยู่',
   disease: 'โรคประจำตัว',
   foodAllergy: 'อาหารที่แพ้',
@@ -159,18 +159,29 @@ const MajorSection = ({data}) => {
     )
   }
 
-  let {Q1, Q2, Q3} = questions[major]
+  let {Q1, Q2} = questions[major]
 
-  if (major === 'programming') {
-    Q3 = Q3Dev
-  }
+  // if (major === 'programming') {
+  //   Q3 = Q3Dev
+  // }
 
   return (
     <Card>
       <Title>คำถามสาขา</Title>
       <Item>
         <Label>{Q1}</Label>
-        <Paragraph>{data.majorAnswer1}</Paragraph>
+
+        {major === 'design' ? (
+          <Image
+            image={{
+              src: data.majorAnswer1,
+              className: 'question-3-image'
+            }}
+            imageZoom={{src: data.majorAnswer1}}
+          />
+        ) : (
+          <Paragraph>{data.majorAnswer1}</Paragraph>
+        )}
       </Item>
 
       <Item>
@@ -178,21 +189,9 @@ const MajorSection = ({data}) => {
         <Paragraph>{data.majorAnswer2}</Paragraph>
       </Item>
 
-      <Item>
+      {/* <Item>
         <Label>{Q3}</Label>
-
-        {major === 'design' ? (
-          <Image
-            image={{
-              src: data.majorAnswer3,
-              className: 'question-3-image'
-            }}
-            imageZoom={{src: data.majorAnswer3}}
-          />
-        ) : (
-          <Paragraph>{data.majorAnswer3}</Paragraph>
-        )}
-      </Item>
+      </Item> */}
     </Card>
   )
 }
