@@ -1,20 +1,26 @@
-import {message} from 'antd'
-import {connect} from 'react-redux'
-import {reduxForm, ConfigProps} from 'redux-form'
-import {compose} from 'recompose'
+import { message } from 'antd'
+import { connect } from 'react-redux'
+import { reduxForm, ConfigProps } from 'redux-form'
+import { compose } from 'recompose'
 
 import preventUnsaved from '../components/PreventUnsaved'
 
-import {save} from '../ducks/submission'
+import { save } from '../ducks/submission'
 
-import {getMajorFromPath} from './util'
+import { getMajorFromPath } from './util'
 import logger from './log'
+import { SubmissionFormData } from './types'
 
-const personalFields = [
+export interface Fields extends SubmissionFormData {
+  photo: string
+}
+
+type ErrorMessages<T> = { [K in keyof T]?: string }
+
+const personalFields: (keyof Fields)[] = [
   'firstname',
   'lastname',
   'nickname',
-  'age',
   'gender',
   'birthdate',
   'socialMedia',
@@ -28,20 +34,17 @@ const personalFields = [
   'activity'
 ]
 
-const parentFields = [
+const parentFields: (keyof Fields)[] = [
   'parentFirstName',
   'parentLastName',
   'parentRelation',
   'parentPhone'
 ]
 
-const generalQuestionFields = [
-  'generalAnswer1'
-  // 'generalAnswer2',
-  // 'generalAnswer3'
-]
+const generalQuestionFields: (keyof Fields)[] = ['generalAnswer1']
 
-const majorQuestionFields = ['majorAnswer1', 'majorAnswer2']
+// 'generalAnswer3'
+const majorQuestionFields: (keyof Fields)[] = ['majorAnswer1', 'majorAnswer2']
 
 const requiredFields = [...personalFields, ...parentFields]
 const questionFields = [...generalQuestionFields, ...majorQuestionFields]
@@ -49,9 +52,9 @@ const questionFields = [...generalQuestionFields, ...majorQuestionFields]
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
 const phoneRegex = /^\d{10}$/
 
-function validate(values) {
+function validate(values: Partial<Fields>) {
   const major = getMajorFromPath()
-  const errors = {}
+  const errors: ErrorMessages<Fields> = {}
 
   if (!values.photo) {
     errors.photo = 'กรุณาอัพโหลดรูปภาพ'
@@ -69,36 +72,22 @@ function validate(values) {
     }
   })
 
-  if (!emailRegex.test(values.email)) {
+  if (!emailRegex.test(values.email || '')) {
     errors.email = 'ที่อยู่อีเมลไม่ถูกต้อง'
   }
 
-  if (!phoneRegex.test(values.phone)) {
+  if (!phoneRegex.test(values.phone || '')) {
     errors.phone = 'เบอร์โทรศัพท์ไม่ถูกต้อง'
   }
 
-  if (!phoneRegex.test(values.parentPhone)) {
+  if (!phoneRegex.test(values.parentPhone || '')) {
     errors.parentPhone = 'เบอร์โทรศัพท์ไม่ถูกต้อง'
   }
-
-  if (major !== 'content' && !values.majorAnswer3) {
-    errors.majorAnswer3 = 'กรุณาตอบคำถามดังกล่าว'
-  }
-
-  // const age = parseInt(values.age)
-
-  // if (isNaN(age)) {
-  //   errors.age = 'รูปแบบอายุไม่่ถูกต้อง'
-  // }
-
-  // if (age < 10 || age > 30) {
-  //   errors.age = 'อายุไม่ถูกต้อง'
-  // }
 
   return errors
 }
 
-function onSubmitFail(error) {
+function onSubmitFail(error: ErrorMessages<Fields>) {
   message.error('กรุณากรอกข้อมูลให้ครบถ้วน')
 
   logger.warn('Encountered Validation Error:', error)
@@ -122,7 +111,7 @@ const mapStateToProps = state => ({
 const enhance = compose(
   connect(
     mapStateToProps,
-    {save}
+    { save }
   ),
   reduxForm(formOptions),
   preventUnsaved('submission')
