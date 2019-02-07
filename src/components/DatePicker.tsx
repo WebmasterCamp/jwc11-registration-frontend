@@ -22,7 +22,7 @@ const CustomDatePicker = (props: any) => (
     onChange={m =>
       props.onChange(m ? m.format('YYYY-MM-DD') : moment().format('YYYY-MM-DD'))
     }
-    value={props.value && moment(props.value)}
+    value={props.value ? moment(props.value) : undefined}
     format="LL"
     locale="th"
   />
