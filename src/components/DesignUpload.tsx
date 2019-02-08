@@ -97,7 +97,7 @@ const DropZoneContainer = styled.div<DropZoneProps>`
 const DropTitle = styled.div`
   color: #555;
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1.5em;
 `
 
 interface OverlayProps {
