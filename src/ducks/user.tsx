@@ -5,6 +5,8 @@ import * as firebase from 'firebase/app'
 import {takeEvery, call, put, fork} from 'redux-saga/effects'
 import {captureException} from '@sentry/browser'
 
+import 'firebase/auth'
+
 import {createReducer, Creator} from './helper'
 import {loadCamperSaga} from './camper'
 

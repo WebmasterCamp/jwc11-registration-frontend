@@ -110,7 +110,7 @@ export function* submissionWatcherSaga() {
   yield takeEvery(SUBMIT, submissionSaga)
 }
 
-interface SubmissionState {
+export interface SubmissionState {
   loading: boolean
   shouldProceed: boolean
 }

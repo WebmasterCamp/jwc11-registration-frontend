@@ -29,15 +29,6 @@ const MajorRedirectLog = `User has chosen a major before. Redirecting to:`
 const MajorRedirectMessage = `กำลังเปลี่ยนหน้าไปที่แบบฟอร์มสมัครเข้าสาขา `
 const ChangeDeniedMessage = `คุณไม่สามารถเปลี่ยนสาขาได้อีก หลังจากที่เลือกสาขานั้นๆ ไปแล้ว`
 
-declare global {
-  interface Window {
-    analytics: SegmentAnalytics.AnalyticsJS
-    FS: any
-    ga: UniversalAnalytics.ga
-    firebase: firebase.app.App
-  }
-}
-
 // Check if user is at major root, e.g. /:major
 function isMajorRoot(major: string) {
   return window.location.pathname.replace('/', '') === major

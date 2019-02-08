@@ -1,21 +1,23 @@
-import { message } from 'antd'
-import { connect } from 'react-redux'
-import { reduxForm, ConfigProps } from 'redux-form'
-import { compose } from 'recompose'
+import {message} from 'antd'
+import {connect} from 'react-redux'
+import {reduxForm, ConfigProps} from 'redux-form'
+import {compose} from 'recompose'
 
 import preventUnsaved from '../components/PreventUnsaved'
 
-import { save } from '../ducks/submission'
+import {save, SubmissionState} from '../ducks/submission'
 
-import { getMajorFromPath } from './util'
+import {getMajorFromPath} from './util'
 import logger from './log'
-import { SubmissionFormData } from './types'
+import {SubmissionFormData} from './types'
+
+import {store} from '../common/App'
 
 export interface Fields extends SubmissionFormData {
   photo: string
 }
 
-type ErrorMessages<T> = { [K in keyof T]?: string }
+type ErrorMessages<T> = {[K in keyof T]?: string}
 
 const personalFields: (keyof Fields)[] = [
   'firstname',
@@ -88,7 +90,11 @@ function validate(values: Partial<Fields>) {
 }
 
 function onSubmitFail(error: ErrorMessages<Fields>) {
-  message.error('กรุณากรอกข้อมูลให้ครบถ้วน')
+  const submission: SubmissionState = store.getState().submission
+
+  if (submission.shouldProceed) {
+    message.error('กรุณากรอกข้อมูลให้ครบถ้วน')
+  }
 
   logger.warn('Encountered Validation Error:', error)
 }
@@ -111,7 +117,7 @@ const mapStateToProps = state => ({
 const enhance = compose(
   connect(
     mapStateToProps,
-    { save }
+    {save}
   ),
   reduxForm(formOptions),
   preventUnsaved('submission')

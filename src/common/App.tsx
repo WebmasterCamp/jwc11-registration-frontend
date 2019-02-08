@@ -5,14 +5,30 @@ import {Provider} from 'react-redux'
 
 import 'normalize.css'
 
+import '../style.sass'
+
 import SiteHead from './SiteHead'
 
 import createStore from '../ducks'
-
-const store = createStore()
-
-import '../style.sass'
 import {ErrorBoundary} from '../components/ErrorBoundary'
+import {Store, AnyAction} from 'redux'
+import {PersistedState} from 'redux-persist'
+
+declare global {
+  interface Window {
+    analytics: SegmentAnalytics.AnalyticsJS
+    FS: any
+    ga: UniversalAnalytics.ga
+    firebase: firebase.app.App
+    store: Store<PersistedState, AnyAction> & {dispatch: {}}
+  }
+}
+
+export const store = createStore()
+
+if (typeof window !== 'undefined') {
+  window.store = store
+}
 
 const StaticRoutes = (_: {default: boolean}) => <Routes />
 
