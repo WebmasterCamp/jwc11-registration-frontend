@@ -7,8 +7,6 @@ import 'normalize.css'
 
 import '../style.sass'
 
-import SiteHead from './SiteHead'
-
 import createStore from '../ducks'
 import {ErrorBoundary} from '../components/ErrorBoundary'
 import {Store, AnyAction} from 'redux'
@@ -37,8 +35,6 @@ function App() {
     <ErrorBoundary>
       <Provider store={store}>
         <Root>
-          <SiteHead />
-
           <Router>
             <StaticRoutes default />
           </Router>

@@ -91,7 +91,7 @@ function notifySubmitted(camper: Camper) {
 
   Modal.success({
     content: (
-      <div style={{fontSize: '1.15em'}}>
+      <div style={{fontSize: '1.65em'}}>
         <p>
           คุณ {name} ได้ยืนยันการสมัครเข้าร่วมค่าย Young Creator's Camp ในสาขา{' '}
           {camper.major} ไปเรียบร้อยแล้วค่ะ 🎉

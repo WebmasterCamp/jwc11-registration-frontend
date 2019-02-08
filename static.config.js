@@ -1,3 +1,5 @@
+import {Document} from './src/components/Document'
+
 import majors from './src/core/majors'
 import questions from './src/core/questions'
 
@@ -30,6 +32,7 @@ const majorQuestionRoutes = majors.map(major => ({
 
 export default {
   siteRoot: 'https://join.ycc.in.th',
+  Document,
   plugins: [
     'react-static-plugin-emotion',
     ['react-static-plugin-typescript', {typeCheck: false}],
