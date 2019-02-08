@@ -22,6 +22,7 @@ export const CLEAR_USER = 'CLEAR_USER'
 
 export const SET_LOADING = 'SET_LOADING'
 export const SET_AUTHENTICATING = 'SET_AUTHENTICATING'
+export const RE_AUTH = 'RE_AUTH'
 
 export const login = Creator(LOGIN)
 export const logout = Creator(LOGOUT)
@@ -31,6 +32,7 @@ export const clearUser = Creator(CLEAR_USER)
 
 export const setLoading = Creator(SET_LOADING)
 export const setAuthenticating = Creator(SET_AUTHENTICATING)
+export const reAuth = Creator(RE_AUTH)
 
 // The epoch timestamp in which the registration system will be closed
 const SUBMISSION_CLOSED_TIME = new Date('Mar 16 2019 01:00:00').getTime()
@@ -178,6 +180,7 @@ export function* reauthSaga() {
 export function* userWatcherSaga() {
   yield takeEvery(LOGIN, loginSaga)
   yield takeEvery(LOGOUT, logoutSaga)
+  yield takeEvery(RE_AUTH, reauthSaga)
 }
 
 const initial = {

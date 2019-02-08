@@ -69,25 +69,25 @@ const Landing = () => (
 
         <Row>
           <MajorCard style={{marginRight: '1.5em'}}>
-            <Link to="/programming">
+            <a href="/programming">
               <Character src="/images/character-dev.png" />
-            </Link>
+            </a>
           </MajorCard>
 
           <MajorCard>
-            <Link to="/design">
+            <a href="/design">
               <Character src="/images/character-design.png" />
-            </Link>
+            </a>
           </MajorCard>
         </Row>
 
         <Row style={{marginTop: '1.5em', marginBottom: '0.8em'}}>
-          <Link to="/programming">
+          <a href="/programming">
             <Button fancy>สมัครเป็น Programmer</Button>
-          </Link>
-          <Link to="/design">
+          </a>
+          <a href="/design">
             <Button fancy>สมัครเป็น Designer</Button>
-          </Link>
+          </a>
         </Row>
       </Paper>
     </Container>
