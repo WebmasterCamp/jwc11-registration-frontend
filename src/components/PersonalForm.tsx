@@ -40,18 +40,22 @@ export const genders = {
   none: 'ไม่ระบุ'
 }
 
-const religionOptions = Options(religions)
-const gradeOptions = Options(grades)
-const genderOptions = Options(genders)
-
-const shirtSizes = Options({
+export const shirtSizes = {
   XS: 'XS (รอบอก 31 นิ้ว ความยาว 25 นิ้ว)',
   S: 'S (รอบอก 36 นิ้ว ความยาว 28 นิ้ว)',
   M: 'M (รอบอก 38 นิ้ว ความยาว 28.5 นิ้ว)',
   L: 'L (รอบอก 42 นิ้ว ความยาว 30 นิ้ว)',
   XL: 'XL (รอบอก 44 นิ้ว ความยาว 30.5 นิ้ว)',
   XXL: 'XXL (รอบอก 48 นิ้ว ความยาว 32 นิ้ว)'
-})
+}
+
+const religionOptions = Options(religions)
+const gradeOptions = Options(grades)
+const genderOptions = Options(genders)
+const shirtSizeOptions = Options(shirtSizes)
+
+// prettier-ignore
+const bloodGroups = ['O+', 'O−', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-'].map(toOptions)
 
 const PersonalForm = ({next, handleSubmit}) => (
   <FormContainer onSubmit={handleSubmit}>
@@ -84,6 +88,13 @@ const PersonalForm = ({next, handleSubmit}) => (
         <Input name="email" label="อีเมล" type="email" />
         <Input name="socialMedia" label="Social Media" />
       </Row>
+    </Paper>
+
+    <Paper>
+      <Row>
+        <Select name="shirtSize" label="ไซส์เสื้อ" options={shirtSizeOptions} />
+        <Select name="bloodGroup" label="กรุ๊ปเลือด" options={bloodGroups} />
+      </Row>
 
       <Row>
         <Input name="address" label="ที่อยู่" />
@@ -106,14 +117,12 @@ const PersonalForm = ({next, handleSubmit}) => (
 
     <Paper>
       <Row>
-        <Select name="shirtSize" label="ไซส์เสื้อ" options={shirtSizes} />
-      </Row>
-
-      <Row>
         <TextArea
           name="activity"
           label="กิจกรรมหรือผลงานที่น้องๆ เคยทำหรือเข้าร่วม"
         />
+
+        <TextArea name="expectation" label="คาดหวังอะไรจากค่ายนี้บ้าง" />
       </Row>
     </Paper>
 

@@ -17,6 +17,8 @@ export interface SubmissionFormData {
   email: string
   shirtSize: string
   activity: string
+  expectation: string
+  bloodGroup: string
 
   parentFirstName: string
   parentLastName: string

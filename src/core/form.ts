@@ -33,7 +33,9 @@ const personalFields: (keyof Fields)[] = [
   'phone',
   'email',
   'shirtSize',
-  'activity'
+  'activity',
+  'expectation',
+  'bloodGroup'
 ]
 
 const parentFields: (keyof Fields)[] = [

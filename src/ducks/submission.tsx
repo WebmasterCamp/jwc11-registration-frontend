@@ -38,6 +38,9 @@ function* submissionSaga() {
     yield call(rsf.firestore.setDocument, docRef, data, {merge: true})
 
     logger.log('Updated and Submitted Camper Record', data)
+
+    navigate('/thankyou')
+
     yield call(message.success, 'การสมัครเข้าค่ายเสร็จสิ้น')
 
     if (window.analytics) {
@@ -51,8 +54,6 @@ function* submissionSaga() {
         major
       })
     }
-
-    navigate('/thankyou')
   } catch (err) {
     message.error(err.message)
 

@@ -8,7 +8,12 @@ import {navigate} from '@reach/router'
 
 import Button from '../components/Button'
 import Upload from '../components/Upload'
-import {religions, grades, genders} from '../components/PersonalForm'
+import {
+  religions,
+  grades,
+  genders,
+  shirtSizes
+} from '../components/PersonalForm'
 import {Backdrop, Row, Paper} from '../components/Layout'
 
 import questions, {General} from '../core/questions'
@@ -49,7 +54,9 @@ const personalFields = Object.entries({
   foodAllergy: 'อาหารที่แพ้',
   drugAllergy: 'ยาที่แพ้',
   shirtSize: 'ขนาดเสื้อ',
-  activity: 'กิจกรรมหรือผลงานที่น้องๆ เคยทำหรือเข้าร่วม'
+  activity: 'กิจกรรมหรือผลงานที่น้องๆ เคยทำหรือเข้าร่วม',
+  expectation: 'คาดหวังอะไรจากค่ายนี้บ้าง',
+  bloodGroup: 'กรุ๊ปเลือด'
 })
 
 const parentFields = Object.entries({
@@ -100,6 +107,10 @@ function format(name, data) {
 
   if (name === 'gender') {
     return genders[answer]
+  }
+
+  if (name === 'shirtSize') {
+    return shirtSizes[answer]
   }
 
   if (answer) {
