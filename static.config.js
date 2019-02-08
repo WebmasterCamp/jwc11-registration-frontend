@@ -36,7 +36,7 @@ export default {
     'react-static-plugin-sass'
   ],
   getSiteData: () => ({
-    title: 'Git Garden'
+    title: "Young Creator's Camp"
   }),
   getRoutes: () => [
     {
