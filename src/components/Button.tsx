@@ -7,6 +7,7 @@ import {css} from '@emotion/core'
 interface ButtonContainerProps {
   success?: boolean
   disabled?: boolean
+  fancy?: boolean
   color?: string
 }
 
@@ -65,6 +66,12 @@ const ButtonContainer = styled.button`
       background: #95afc0;
     }
   `};
+
+  ${props => props.fancy && css`
+    &:hover {
+      background: linear-gradient(45deg, #8FBFFF, #C97FD7);
+    }
+  `}
 `
 
 type ButtonProps = {
