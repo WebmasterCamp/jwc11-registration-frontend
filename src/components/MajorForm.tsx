@@ -24,7 +24,9 @@ const MajorQuestionForm = ({questions = {}, handleSubmit}) => {
       <Row>
         <Button onClick={prev}>ขั้นตอนก่อนหน้า</Button>
 
-        <Button type="submit">ขั้นตอนถัดไป</Button>
+        <Button onClick={next} type="submit">
+          ขั้นตอนถัดไป
+        </Button>
       </Row>
     </FormContainer>
   )

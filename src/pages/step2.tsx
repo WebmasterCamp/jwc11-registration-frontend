@@ -5,7 +5,7 @@ import styled from '@emotion/styled'
 import {Backdrop} from '../components/Layout'
 import ParentalForm from '../components/ParentalForm'
 
-import {save} from '../ducks/submission'
+import {save, markNext} from '../ducks/submission'
 
 const Title = styled.div`
   position: absolute;
@@ -16,16 +16,16 @@ const Title = styled.div`
   font-size: 1.8em;
 `
 
-const StepOne = ({save}) => (
+const StepOne = ({save, markNext}) => (
   <Backdrop>
     <Title>STEP 2: ข้อมูลผู้ปกครอง</Title>
-    <ParentalForm onSubmit={save} />
+    <ParentalForm onSubmit={save} next={markNext} />
   </Backdrop>
 )
 
 const enhance = connect(
   null,
-  {save}
+  {save, markNext}
 )
 
 export default enhance(StepOne)

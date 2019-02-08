@@ -53,7 +53,7 @@ const shirtSizes = Options({
   XXL: 'XXL (รอบอก 48 นิ้ว ความยาว 32 นิ้ว)'
 })
 
-const PersonalForm = ({handleSubmit}) => (
+const PersonalForm = ({next, handleSubmit}) => (
   <FormContainer onSubmit={handleSubmit}>
     <UploadField name="photo" />
 
@@ -120,7 +120,9 @@ const PersonalForm = ({handleSubmit}) => (
     <Row>
       <Button disabled>ขั้นตอนก่อนหน้า</Button>
 
-      <Button type="submit">ขั้นตอนถัดไป</Button>
+      <Button onClick={next} type="submit">
+        ขั้นตอนถัดไป
+      </Button>
     </Row>
   </FormContainer>
 )

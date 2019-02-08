@@ -13,10 +13,14 @@ import {next} from '../core/step'
 export const SAVE = '@CAMP/SAVE'
 export const SUBMIT = '@CAMP/SUBMIT'
 export const SET_LOADING = '@CAMP/SET_LOADING'
+export const MARK_NEXT = '@CAMP/MARK_NEXT'
+export const UNMARK_NEXT = '@CAMP/UNMARK_NEXT'
 
 export const save = Creator(SAVE)
 export const submit = Creator(SUBMIT)
 export const setLoading = Creator(SET_LOADING)
+export const markNext = Creator(MARK_NEXT)
+export const unmarkNext = Creator(UNMARK_NEXT)
 
 const db = app.firestore()
 
@@ -85,7 +89,13 @@ function* saveSubmissionSaga({payload}) {
   if (payload) {
     yield fork(updateCamperRecord, payload)
 
-    yield call(next)
+    const shouldProceed = yield select(s => s.submission.shouldProceed)
+
+    if (shouldProceed) {
+      yield put(unmarkNext(true))
+
+      yield call(next)
+    }
   } else {
     const payload = yield select(s => s.form.submission)
 
@@ -100,10 +110,18 @@ export function* submissionWatcherSaga() {
   yield takeEvery(SUBMIT, submissionSaga)
 }
 
-const initial = {
-  loading: false
+interface SubmissionState {
+  loading: boolean
+  shouldProceed: boolean
+}
+
+const initial: SubmissionState = {
+  loading: false,
+  shouldProceed: false
 }
 
 export default createReducer(initial, state => ({
-  [SET_LOADING]: loading => ({...state, loading})
+  [SET_LOADING]: loading => ({...state, loading}),
+  [MARK_NEXT]: () => ({...state, shouldProceed: true}),
+  [UNMARK_NEXT]: () => ({...state, shouldProceed: false})
 }))
