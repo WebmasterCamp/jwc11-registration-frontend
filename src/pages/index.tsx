@@ -11,6 +11,7 @@ const Heading = styled.h1`
   font-weight: 300;
 
   margin-bottom: 0.3em;
+  text-align: center;
 `
 
 const SubHeading = styled.h1`
@@ -19,6 +20,7 @@ const SubHeading = styled.h1`
   font-weight: 300;
 
   margin-bottom: 1.8em;
+  text-align: center;
 `
 
 const Row = styled.div`
@@ -27,7 +29,7 @@ const Row = styled.div`
   justify-content: space-around;
   width: 100%;
 
-  @media screen and (max-width: 600) {
+  @media screen and (max-width: 780px) {
     flex-direction: column;
   }
 `
@@ -40,11 +42,6 @@ const MajorCard = styled.div`
 
   padding: 1em;
   width: 100%;
-`
-
-const MajorTitle = styled.div`
-  color: #555;
-  font-size: 2.8em;
 `
 
 const Character = styled.img`
