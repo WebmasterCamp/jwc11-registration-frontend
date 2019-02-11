@@ -76,27 +76,22 @@ export function Document(props) {
         />
 
         <meta
-          name="og:title"
+          property="og:title"
           content="สมัครเข้าค่าย Young Creator's Camp #ค่ายเด็กกล้าสร้าง"
         />
 
         <meta
-          name="og:description"
+          property="og:description"
           content="พบกันเร็วๆ นี้ กับค่าย Young Creator's Camp ที่ท้าให้น้องๆ มาสร้าง Web หรือ App ภายในเวลาสามวัน"
         />
 
-        <meta name="og:image" content="https://join.ycc.in.th/images/og.png" />
-        <meta name="og:url" content="https://join.ycc.in.th" />
-        <meta name="og:site_name" content="Young Creator's Camp" />
-        <meta name="og:locale" content="th_TH" />
-        <meta name="fb:admins" content="100013664474455" />
-        <meta name="fb:app_id" content="2314627122104275" />
-        <meta name="og:type" content="website" />
-
-        <meta
-          property="article:author"
-          content="https://www.facebook.com/ycccamp"
-        />
+        <meta property="og:image" content="https://join.ycc.in.th/images/og.png" />
+        <meta property="og:url" content="https://join.ycc.in.th" />
+        <meta property="og:site_name" content="Young Creator's Camp" />
+        <meta property="og:locale" content="th_TH" />
+        <meta property="fb:admins" content="100013664474455" />
+        <meta property="fb:app_id" content="2314627122104275" />
+        <meta property="og:type" content="website" />
       </Head>
       <Body>{children}</Body>
     </Html>
