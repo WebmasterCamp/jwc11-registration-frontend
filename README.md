@@ -1,6 +1,6 @@
-# join.ycc.in.th - Young Creator's Camp Registration Frontend
+# join.jwc.in.th - Junior Webmaster Camp 11 Registration Frontend
 
-This is the registration frontend that will be used for the upcoming Young Creator's Camp.
+This is the registration frontend that will be used for the upcoming Junior Webmaster Camp 11.
 
 ## Task Checklist
 
@@ -10,8 +10,8 @@ Also, some bugs may occur from upgrading all dependencies to their latest major 
 
 - [ ] Add more TypeScript type annotations.
 - [ ] Re-enable type checking service once all type annotations are properly added.
-- [x] Change Firebase, Segment, Sentry and FullStory API Key and Account.
-- [x] Update design and form to match YCC CI and requirements.
+- [ ] Change Firebase, Segment, Sentry and FullStory API Key and Account.
+- [ ] Update design and form to match JWC CI and requirements.
 - [ ] Add some unit and/or integration tests! (I recommend `jest + react-testing-library`)
 
 ## Notes
