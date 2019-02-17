@@ -31,7 +31,8 @@ const majorQuestionRoutes = majors.map(major => ({
 }))
 
 export default {
-  siteRoot: 'https://join.ycc.in.th',
+  siteRoot: '/',
+  // siteRoot: 'https://join.ycc.in.th',
   Document,
   plugins: [
     'react-static-plugin-emotion',

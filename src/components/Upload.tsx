@@ -120,7 +120,7 @@ const Overlay = styled.div<OverlayProps>`
 `
 
 export interface UploadProps {
-  onChange: Function
+  onChange?: Function
   uid: number
   input?: {
     onChange: Function

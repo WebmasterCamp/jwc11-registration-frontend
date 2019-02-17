@@ -8,12 +8,15 @@ import {navigate} from '@reach/router'
 
 import Button from '../components/Button'
 import Upload from '../components/Upload'
+import {DesignUpload} from '../components/DesignUpload'
+
 import {
   religions,
   grades,
   genders,
   shirtSizes
 } from '../components/PersonalForm'
+
 import {Backdrop, Row, Paper} from '../components/Layout'
 
 import questions, {General} from '../core/questions'
@@ -181,13 +184,7 @@ const MajorSection = ({data}) => {
         <Label>{Q1}</Label>
 
         {major === 'design' ? (
-          <Image
-            image={{
-              src: data.majorAnswer1,
-              className: 'question-3-image'
-            }}
-            imageZoom={{src: data.majorAnswer1}}
-          />
+          <DesignUpload />
         ) : (
           <Paragraph>{data.majorAnswer1}</Paragraph>
         )}
