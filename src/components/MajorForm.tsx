@@ -9,7 +9,12 @@ import withWizard from '../core/form'
 import {getMajorFromPath} from '../core/util'
 import {prev, next} from '../core/step'
 
-const MajorQuestionForm = ({questions = {}, handleSubmit}) => {
+interface Question {
+  Q1?: string;
+  Q2?: string;
+}
+
+const MajorQuestionForm = ({questions = {} as Question, handleSubmit}) => {
   const major = getMajorFromPath()
   const Q1Field = major === 'design' ? DesignUpload : TextArea
   // const Q3 = major === 'programming' ? Q3Dev : questions.Q3

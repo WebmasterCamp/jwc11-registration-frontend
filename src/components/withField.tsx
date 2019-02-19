@@ -16,10 +16,10 @@ const Container = styled.div<FieldContainerProps>`
   font-size: 1rem;
 
   width: 100%;
-  margin: 1.4em 0.8em;
+  margin: 1.4em 0em;
 
   ${props => props.wordy && css`
-    margin: 0.4em 0.8em;
+    margin: 0.4em 0em;
   `};
 `
 

@@ -14,8 +14,7 @@ export default () => {
   if (typeof window !== 'undefined') {
     if (process.env.NODE_ENV === 'development') {
       console.log(':: Enabled Redux DevTools in Development Environment ::')
-
-      composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+      composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     }
   }
 

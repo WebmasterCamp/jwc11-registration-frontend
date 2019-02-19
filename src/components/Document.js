@@ -45,7 +45,7 @@ export function Document(props) {
 
         <meta
           itemProp="name"
-          content="สมัครเข้าค่าย Young Creator's Camp #ค่ายเด็กกล้าสร้าง"
+          content="สมัครเข้าค่าย Junior Webmaster Camp"
         />
 
         <meta
@@ -59,7 +59,7 @@ export function Document(props) {
 
         <meta
           name="twitter:title"
-          content="สมัครเข้าค่าย Young Creator's Camp #ค่ายเด็กกล้าสร้าง"
+          content="สมัครเข้าค่าย Junior Webmaster Camp"
         />
 
         <meta
@@ -77,7 +77,7 @@ export function Document(props) {
 
         <meta
           property="og:title"
-          content="สมัครเข้าค่าย Young Creator's Camp #ค่ายเด็กกล้าสร้าง"
+          content="สมัครเข้าค่าย Junior Webmaster Camp"
         />
 
         <meta
@@ -85,10 +85,10 @@ export function Document(props) {
           content="พบกันเร็วๆ นี้ กับค่าย Young Creator's Camp ที่ท้าให้น้องๆ มาสร้าง Web หรือ App ภายในเวลาสามวัน"
         />
 
-        <meta
+        {/* <meta
           property="og:image"
           content="https://join.ycc.in.th/images/og.png"
-        />
+        /> */}
         <meta property="og:url" content="https://join.ycc.in.th" />
         <meta property="og:site_name" content="Young Creator's Camp" />
         <meta property="og:locale" content="th_TH" />
