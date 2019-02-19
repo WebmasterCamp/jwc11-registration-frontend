@@ -6,7 +6,7 @@ export function Document(props) {
       <Head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+        <link href="https://fonts.googleapis.com/css?family=Pridi" rel="stylesheet" />
         <link rel="apple-touch-icon" href="/logo/apple-touch-icon.png" />
         <link
           rel="icon"
@@ -34,14 +34,14 @@ export function Document(props) {
         />
         <link rel="manifest" href="/manifest.json" />
 
-        <title>สมัครเข้าค่าย Young Creator's Camp #ค่ายเด็กกล้าสร้าง</title>
+        <title>สมัครเข้าค่าย Junior Webmaster Camp</title>
 
         <meta
           name="description"
           content="พบกันเร็วๆ นี้ กับค่าย Young Creator's Camp ที่ท้าให้น้องๆ มาสร้าง Web หรือ App ภายในเวลาสามวัน"
         />
 
-        <meta name="image" content="https://join.ycc.in.th/images/og.png" />
+        {/* <meta name="image" content="https://join.ycc.in.th/images/og.png" /> */}
 
         <meta
           itemProp="name"
@@ -53,7 +53,7 @@ export function Document(props) {
           content="พบกันเร็วๆ นี้ กับค่าย Young Creator's Camp ที่ท้าให้น้องๆ มาสร้าง Web หรือ App ภายในเวลาสามวัน"
         />
 
-        <meta itemProp="image" content="https://join.ycc.in.th/images/og.png" />
+        {/* <meta itemProp="image" content="https://join.ycc.in.th/images/og.png" /> */}
 
         <meta name="twitter:card" content="summary" />
 

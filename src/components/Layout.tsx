@@ -11,21 +11,37 @@ export const Heading = styled.h1`
   margin-bottom: 1.2em;
 `
 
+export const HeadingFrame = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/images/paper_board_edit.png");
+  background-size: 100% auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-width: 300px;
+  min-height: 200px;
+  padding: 0em 6em;
+  color: white;
+`
+
+
 export const BackdropContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-
-  /* background-image: linear-gradient(to top, #99ccff, #ffffff); */
-  background: transparent;
+  justify-content: flex-start;
+  background: linear-gradient(170.48deg, #326BAB -13.52%, #473276 43.7%, #98682E 128.36%);
   background-attachment: fixed;
 
   width: 100%;
   min-height: 100vh;
+  padding: 4em 0;
 
-  padding-top: 7em;
-  padding-bottom: 7em;
+  @media screen and (max-width: 480px) {
+    padding: 0 2em;
+  }
 `
 
 export function Backdrop({children}: {children: React.ReactChild}) {
@@ -41,7 +57,6 @@ export function Backdrop({children}: {children: React.ReactChild}) {
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 
   width: 100%;
