@@ -14,7 +14,7 @@ import { Field } from "redux-form";
 import logger from "../core/log";
 
 interface DropZoneProp {
-  preview: boolean;
+  preview?: string;
   meta?: {
     error?: boolean;
     touched?: boolean;
@@ -241,7 +241,7 @@ class Upload extends Component<UploadProps, UploadState> {
         accept="image/*"
       >
         {({ getRootProps, getInputProps, isDragActive }) => (
-          <DropZoneContainer {...getRootProps()} preview={Boolean(preview)}>
+          <DropZoneContainer {...getRootProps()} preview={preview}>
             <input {...getInputProps()} />
 
             <Overlay active={!!preview}>
