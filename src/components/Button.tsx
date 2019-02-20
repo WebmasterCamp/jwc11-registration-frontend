@@ -75,7 +75,7 @@ const ButtonContainer = styled.button`
 `
 
 type ButtonProps = {
-  children: React.ReactChildren | string;
+  children: any;
   type?: string;
   onClick?: () => any;
 } & ButtonContainerProps;

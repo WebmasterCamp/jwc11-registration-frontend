@@ -1,29 +1,29 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import styled from '@emotion/styled'
+import React from "react";
+import { connect } from "react-redux";
+import styled from "@emotion/styled";
 
-import {getFormValues} from 'redux-form'
-import Image from 'react-medium-image-zoom'
-import {navigate} from '@reach/router'
+import { getFormValues } from "redux-form";
+import Image from "react-medium-image-zoom";
+import { navigate } from "@reach/router";
 
-import Button from '../components/Button'
-import Upload from '../components/Upload'
-import {DesignUpload} from '../components/DesignUpload'
+import Button from "../components/Button";
+import Upload from "../components/Upload";
+import { DesignUpload } from "../components/DesignUpload";
 
 import {
   religions,
   grades,
   genders,
   shirtSizes
-} from '../components/PersonalForm'
+} from "../components/PersonalForm";
 
-import {Backdrop, Row, Paper} from '../components/Layout'
+import { Backdrop, Row, Paper } from "../components/Layout";
 
-import questions, {General} from '../core/questions'
+import questions, { General } from "../core/questions";
 
-import {submit} from '../ducks/submission'
+import { submit } from "../ducks/submission";
 
-import {getMajorFromPath} from '../core/util'
+import { getMajorFromPath } from "../core/util";
 
 export const Container = styled.div`
   width: 100%;
@@ -35,51 +35,51 @@ export const Container = styled.div`
   @media screen and (max-width: 480px) {
     padding: 0 1.2em;
   }
-`
+`;
 
-const Title = styled.h1``
+const Title = styled.h1``;
 
 const personalFields = Object.entries({
-  firstname: 'ชื่อ',
-  lastname: 'นามสกุล',
-  nickname: 'ชื่อเล่น',
+  firstname: "ชื่อ",
+  lastname: "นามสกุล",
+  nickname: "ชื่อเล่น",
   // age: 'อายุ',
-  birthdate: 'วันเกิด',
-  gender: 'เพศ',
-  religion: 'ศาสนา',
-  class: 'ระดับชั้น',
-  school: 'โรงเรียน',
-  phone: 'เบอร์โทรศัพท์',
-  email: 'อีเมล',
-  socialMedia: 'Social Media',
-  address: 'ที่อยู่',
-  disease: 'โรคประจำตัว',
-  foodAllergy: 'อาหารที่แพ้',
-  drugAllergy: 'ยาที่แพ้',
-  shirtSize: 'ขนาดเสื้อ',
-  activity: 'กิจกรรมหรือผลงานที่น้องๆ เคยทำหรือเข้าร่วม',
-  expectation: 'คาดหวังอะไรจากค่ายนี้บ้าง',
-  bloodGroup: 'กรุ๊ปเลือด'
-})
+  birthdate: "วันเกิด",
+  gender: "เพศ",
+  religion: "ศาสนา",
+  class: "ระดับชั้น",
+  school: "โรงเรียน",
+  phone: "เบอร์โทรศัพท์",
+  email: "อีเมล",
+  socialMedia: "Social Media",
+  address: "ที่อยู่",
+  disease: "โรคประจำตัว",
+  foodAllergy: "อาหารที่แพ้",
+  drugAllergy: "ยาที่แพ้",
+  shirtSize: "ขนาดเสื้อ",
+  activity: "กิจกรรมหรือผลงานที่น้องๆ เคยทำหรือเข้าร่วม",
+  expectation: "คาดหวังอะไรจากค่ายนี้บ้าง",
+  bloodGroup: "กรุ๊ปเลือด"
+});
 
 const parentFields = Object.entries({
-  parentFirstName: 'ชื่อผู้ปกครอง',
-  parentLastName: 'นามสกุลผู้ปกครอง',
-  parentRelation: 'ความสัมพันธ์',
-  parentPhone: 'เบอร์โทรศัพท์'
-})
+  parentFirstName: "ชื่อผู้ปกครอง",
+  parentLastName: "นามสกุลผู้ปกครอง",
+  parentRelation: "ความสัมพันธ์",
+  parentPhone: "เบอร์โทรศัพท์"
+});
 
 const Card = styled(Paper)`
   align-items: flex-start;
   justify-content: flex-start;
   font-size: 1.3em;
-`
+`;
 
 const Item = styled.div`
   color: #333;
   font-size: 1.32em;
   line-height: 1.8em;
-`
+`;
 
 const Label = styled.strong`
   font-weight: bold;
@@ -87,7 +87,7 @@ const Label = styled.strong`
   white-space: pre-line;
   word-break: break-word;
   word-wrap: break-word;
-`
+`;
 
 const Paragraph = styled.p`
   margin-top: 0.6em;
@@ -95,35 +95,35 @@ const Paragraph = styled.p`
   white-space: pre-wrap;
   word-wrap: break-word;
   word-break: break-word;
-`
+`;
 
 function format(name, data) {
-  const answer = data[name]
+  const answer = data[name];
 
-  if (name === 'religion') {
-    return religions[answer]
+  if (name === "religion") {
+    return religions[answer];
   }
 
-  if (name === 'class') {
-    return grades[answer]
+  if (name === "class") {
+    return grades[answer];
   }
 
-  if (name === 'gender') {
-    return genders[answer]
+  if (name === "gender") {
+    return genders[answer];
   }
 
-  if (name === 'shirtSize') {
-    return shirtSizes[answer]
+  if (name === "shirtSize") {
+    return shirtSizes[answer];
   }
 
   if (answer) {
-    return answer
+    return answer;
   }
 
-  return '-'
+  return "-";
 }
 
-const Section = ({data, title, fields}) => (
+const Section = ({ data, title, fields }) => (
   <Card>
     <Title>{title}</Title>
 
@@ -133,9 +133,9 @@ const Section = ({data, title, fields}) => (
       </Item>
     ))}
   </Card>
-)
+);
 
-const GeneralSection = ({data}) => (
+const GeneralSection = ({ data }) => (
   <Card>
     <Title>คำถามทั่วไป</Title>
     <Item>
@@ -156,10 +156,10 @@ const GeneralSection = ({data}) => (
       <Paragraph>{data.generalAnswer3}</Paragraph>
     </Item>
   </Card>
-)
+);
 
-const MajorSection = ({data}) => {
-  const major = getMajorFromPath()
+const MajorSection = ({ data }) => {
+  const major = getMajorFromPath();
 
   if (!major) {
     return (
@@ -168,10 +168,10 @@ const MajorSection = ({data}) => {
 
         <Item>กรุณารอสักครู่</Item>
       </Card>
-    )
+    );
   }
 
-  let {Q1, Q2} = questions[major]
+  let { Q1, Q2 } = questions[major];
 
   // if (major === 'programming') {
   //   Q3 = Q3Dev
@@ -183,7 +183,7 @@ const MajorSection = ({data}) => {
       <Item>
         <Label>{Q1}</Label>
 
-        {major === 'design' ? (
+        {major === "design" ? (
           <DesignUpload />
         ) : (
           <Paragraph>{data.majorAnswer1}</Paragraph>
@@ -199,14 +199,14 @@ const MajorSection = ({data}) => {
         <Label>{Q3}</Label>
       </Item> */}
     </Card>
-  )
-}
+  );
+};
 
 const prev = () => {
-  const major = getMajorFromPath()
+  const major = getMajorFromPath();
 
-  navigate(`/${major}/step4`)
-}
+  navigate(`/${major}/step4`);
+};
 
 const PageTitle = styled.div`
   position: absolute;
@@ -215,9 +215,9 @@ const PageTitle = styled.div`
 
   color: white;
   font-size: 1.6em;
-`
+`;
 
-const NavBar = ({submit, style}) => (
+const NavBar = ({ submit, style }) => (
   <Row style={style}>
     <Button onClick={prev}>ย้อนกลับไปแก้ไข</Button>
 
@@ -225,32 +225,35 @@ const NavBar = ({submit, style}) => (
       ยืนยันการสมัครเข้าค่าย YCC
     </Button>
   </Row>
-)
+);
 
-const Verify = ({data = {}, submit}) => (
+const Verify = ({ data = {} as any, submit }) => (
   <Backdrop>
     <PageTitle>ตรวจสอบข้อมูล และยืนยันการสมัคร</PageTitle>
     <Container>
       <Upload value={data.photo} />
-      <NavBar submit={submit} style={{marginBottom: '2.8em'}} />
+      <NavBar submit={submit} style={{ marginBottom: "2.8em" }} />
 
       <Section title="ข้อมูลส่วนตัว" fields={personalFields} data={data} />
       <Section title="ข้อมูลผู้ปกครอง" fields={parentFields} data={data} />
-      <GeneralSection fields={personalFields} data={data} />
+      <GeneralSection
+        // fields={personalFields}
+        data={data}
+      />
       <MajorSection data={data} />
 
-      <NavBar submit={submit} />
+      <NavBar submit={submit} style={{}} />
     </Container>
   </Backdrop>
-)
+);
 
 const mapStateToProps = (state: any) => ({
-  data: getFormValues('submission')(state) || state.camper
-})
+  data: getFormValues("submission")(state) || state.camper
+});
 
 const enhance = connect(
   mapStateToProps,
-  {submit}
-)
+  { submit }
+);
 
-export default enhance(Verify)
+export default enhance(Verify);

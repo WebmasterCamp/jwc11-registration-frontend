@@ -126,7 +126,7 @@ export function* authRoutineSaga(user) {
 
 export const getUserStatus = () =>
   new Promise((resolve, reject) => {
-    app.auth().onAuthStateChanged(resolve, reject);
+    app.auth().onAuthStateChanged(resolve as any, reject);
   });
 
 // Attempt to re-authenticate when user resumes their session

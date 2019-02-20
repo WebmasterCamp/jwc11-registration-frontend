@@ -46,7 +46,7 @@ export const BackdropContainer = styled.div`
 export function Backdrop({
   children
 }: {
-  children: React.ReactChild | React.ReactChildren;
+  children: any;
 }) {
   return (
     <BackdropContainer>

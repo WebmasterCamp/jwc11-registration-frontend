@@ -15,6 +15,9 @@ import { store } from "../common/App";
 
 export interface Fields extends SubmissionFormData {
   photo: string;
+  disease: string;
+  foodAllergy: string;
+  drugAllergy: string;
 }
 
 type ErrorMessages<T> = { [K in keyof T]?: string };

@@ -110,11 +110,16 @@ const wrap = (Component: React.ComponentType) => ({
   </Container>
 );
 
-const withField = (Component) => {
+const withField = Component => {
   const InputField = wrap(Component);
 
   return (
-    props: BaseFieldProps & FieldWrapperProps & { name: keyof Fields }
+    props: BaseFieldProps &
+      FieldWrapperProps & {
+        name: keyof Fields;
+        type?: "email" | "text" | "number";
+        placeholder?: string;
+      }
   ) => {
     return <Field<{}> component={InputField as any} {...props} />;
   };

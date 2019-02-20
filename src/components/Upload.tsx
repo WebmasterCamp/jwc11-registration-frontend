@@ -124,6 +124,7 @@ export interface UploadProps {
     touched: boolean;
     error: boolean;
   };
+  value?: any;
 }
 
 export interface UploadState {
