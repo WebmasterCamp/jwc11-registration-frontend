@@ -1,12 +1,13 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import {connect} from 'react-redux'
-import {Link} from '@reach/router'
+import React from "react";
+import styled from "@emotion/styled";
+import { connect } from "react-redux";
+import { Link } from "@reach/router";
 
-import Button from '../components/Button'
-import {Backdrop, Container, Row, Paper, Heading} from '../components/Layout'
+import Button from "../components/Button";
+import { Backdrop, Container, Row, Paper, Heading } from "../components/Layout";
+import { MAIN_PAGE } from "../common/App";
 
-const ChangeDenied = ({camper}) => (
+const ChangeDenied = ({ camper }) => (
   <Backdrop>
     <Container>
       <Paper>
@@ -15,23 +16,23 @@ const ChangeDenied = ({camper}) => (
         </Heading>
 
         <Row>
-          <Link to={'/' + camper.major + '/step1'}>
+          <Link to={"/" + camper.major + "/step1"}>
             <Button>สมัครสมาชิกต่อในสาขา {camper.major}</Button>
           </Link>
 
-          <a href="https://www.ycc.in.th">
+          <a href={MAIN_PAGE}>
             <Button>กลับสู่เว็บไซต์หลัก</Button>
           </a>
         </Row>
       </Paper>
     </Container>
   </Backdrop>
-)
+);
 
 const mapStateToProps = state => ({
   camper: state.camper
-})
+});
 
-const enhance = connect(mapStateToProps)
+const enhance = connect(mapStateToProps);
 
-export default enhance(ChangeDenied)
+export default enhance(ChangeDenied);

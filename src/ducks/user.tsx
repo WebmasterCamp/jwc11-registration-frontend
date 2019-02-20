@@ -13,6 +13,7 @@ import { loadCamperSaga } from "./camper";
 import rsf, { app } from "../core/fire";
 import { getMajorFromPath } from "../core/util";
 import logger from "../core/log";
+import { MAIN_PAGE } from "../common/App";
 
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
@@ -54,7 +55,7 @@ function notifySubmissionClosed() {
         <p>ช่วงเวลารับสมัครของค่าย Young Creator's Camp ได้จบลงแล้วค่ะ 🙌</p>
         <p>
           ค่ายจะประกาศผลการคัดเลือกในวันที่ 18 มีนาคม ผ่านทางเว็บไซต์{" "}
-          <a href="https://www.ycc.in.th">www.ycc.in.th</a> ค่ะ
+          <a href={MAIN_PAGE}>{MAIN_PAGE}</a> ค่ะ
         </p>
         <p>ขอให้โชคดีนะคะ ให้คุกกี้ทำนายกัน! 🥠</p>
       </div>
@@ -62,7 +63,7 @@ function notifySubmissionClosed() {
     okText: `กลับสู่เว็บไซต์หลัก`,
     onOk: () => {
       if (typeof window !== "undefined") {
-        window.location.href = "https://www.ycc.in.th";
+        window.location.href = MAIN_PAGE;
       }
     }
   });

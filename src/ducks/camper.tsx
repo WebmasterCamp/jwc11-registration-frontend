@@ -13,6 +13,7 @@ import { getMajorFromPath } from "../core/util";
 import logger from "../core/log";
 
 import { setLoading } from "../ducks/submission";
+import { MAIN_PAGE } from "../common/App";
 
 const db = app.firestore();
 
@@ -94,20 +95,19 @@ function notifySubmitted(camper: Camper) {
     content: (
       <div style={{ fontSize: "1.65em" }}>
         <p>
-          คุณ {name} ได้ยืนยันการสมัครเข้าร่วมค่าย Young Creator's Camp ในสาขา{" "}
-          {camper.major} ไปเรียบร้อยแล้วค่ะ 🎉
+          คุณ {name} ได้ยืนยันการสมัครค่าย Junior Webmaster Camp ในสาขา{" "}
+          {camper.major} ไปเรียบร้อยแล้ว
         </p>
         <p>
-          ค่ายจะประกาศผลการคัดเลือกในวันที่ 18 มีนาคม ผ่านทางเว็บไซต์{" "}
-          <a href="https://www.ycc.in.th">www.ycc.in.th</a> ค่ะ
+          ค่ายจะประกาศผลการคัดเลือกในวันที่ X มีนาคม ผ่านทางเว็บไซต์{" "}
+          <a href={MAIN_PAGE}>{MAIN_PAGE}</a>
         </p>
-        <p>ขอให้โชคดีนะคะ ให้คุกกี้ทำนายกัน! 🥠</p>
       </div>
     ),
     okText: `กลับสู่เว็บไซต์หลัก`,
     onOk: () => {
       if (typeof window !== "undefined") {
-        window.location.href = "https://www.ycc.in.th";
+        window.location.href = MAIN_PAGE;
       }
     }
   });
@@ -150,6 +150,23 @@ export function* loadCamperSaga() {
       // Store the camper's submission record into the redux store
       yield put(storeCamper(record));
 
+      // D - If user had already submitted, redirect them to the submission status
+      if (record.submitted) {
+        logger.info("User had already submitted before. Redirecting...");
+
+        if (window.analytics) {
+          window.analytics.track("Returned after Submitted", {
+            uid,
+            displayName,
+            major
+          });
+        }
+
+        yield call(notifySubmitted, record);
+
+        return;
+      }
+
       // A - If user is at root path and had chosen a major, redirect them.
       if (record.major && window.location.pathname === "/") {
         logger.info(MajorRedirectLog, record.major);
@@ -183,23 +200,6 @@ export function* loadCamperSaga() {
 
         // Redirect the camper to their own major
         navigate("/" + major + "/step1");
-
-        return;
-      }
-
-      // D - If user had already submitted, redirect them to the submission status
-      if (record.submitted) {
-        logger.info("User had already submitted before. Redirecting...");
-
-        if (window.analytics) {
-          window.analytics.track("Returned after Submitted", {
-            uid,
-            displayName,
-            major
-          });
-        }
-
-        yield call(notifySubmitted, record);
 
         return;
       }
