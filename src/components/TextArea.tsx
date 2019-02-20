@@ -5,6 +5,6 @@ import withField from './withField'
 
 const TextArea = TextInput.withComponent('textarea')
 
-const TextAreaInput = props => <TextArea rows={5} {...props} />
+const TextAreaInput = props => <TextArea rows={9} {...props} />
 
 export default withField(TextAreaInput)

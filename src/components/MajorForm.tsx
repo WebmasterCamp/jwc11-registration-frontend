@@ -22,11 +22,11 @@ const MajorQuestionForm = ({questions = {} as Question, handleSubmit}) => {
   return (
     <FormContainer onSubmit={handleSubmit}>
       <Paper>
-        <Q1Field name="majorAnswer1" label={questions.Q1} wordy />
-        <TextArea name="majorAnswer2" label={questions.Q2} wordy />
+        <Q1Field placeholder="ว่ามา ฉันอ่านทั้งหมด เริ่ม!" name="majorAnswer1" label={questions.Q1} wordy />
+        <TextArea placeholder="ว่ามา ฉันอ่านทั้งหมด เริ่ม!" name="majorAnswer2" label={questions.Q2} wordy />
       </Paper>
 
-      <Row>
+      <Row style={{ marginBottom: "2.8em" }}>
         <Button onClick={prev}>ขั้นตอนก่อนหน้า</Button>
 
         <Button onClick={next} type="submit">

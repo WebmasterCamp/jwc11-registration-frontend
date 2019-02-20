@@ -16,7 +16,16 @@ const Col = styled.div`
   width: 100%;
 `;
 
-
+const Underline = styled.div`
+  content: "";
+  width: 100%;
+  height: 1px;
+  margin-top: 1em;
+  margin-bottom: 3em;
+  bottom: 0;
+  left: 0;
+  background-color: #E0E0E0;
+`;
 const toOptions = i => ({ value: i, label: i });
 
 const Options = options =>
@@ -37,29 +46,30 @@ const ParentalForm = ({next, handleSubmit}) => (
     <Paper>
 
       <Row>
-        <Col><Input float name="disease" label="โรคประจำตัว" /></Col>
-        <Col><Input float name="foodAllergy" label="สิ่งที่แพ้ / อาหารที่แพ้" /></Col>
+        <Col><Input float placeholder="ลิลลี่" name="disease" label="โรคประจำตัว (ถ้าไม่มีใส่ -)" /></Col>
+        <Col><Input float placeholder="แป้ง ถั่ว กระเทียม ฯลฯ" name="foodAllergy" label="สิ่งที่แพ้ / อาหารที่แพ้ (ถ้าไม่มีใส่ -)" /></Col>
       </Row>
       <Row>
-        <Col><Input float name="drugAllergy" label="ยาที่แพ้" /></Col>
+        <Col><Input float name="drugAllergy" label="ยาที่แพ้ (ถ้าไม่มีใส่ -)" /></Col>
         <Col><Select name="shirtSize" label="ไซส์เสื้อ" options={shirtSizeOptions} /></Col>
       </Row>
       <Row>
       <Col>
-          <TextArea float name="activity" label="กิจกรรมที่เข้าร่วมหรือผลงานที่เคยทำ เช่น ค่าย เวทีประกวด การแสดง ฯลฯ" />
+          <TextArea float placeholder="เล่าเกี่ยวกับสิ่งที่เคยทำเหล่านั้น ..." name="activity" label="กิจกรรมที่เข้าร่วมหรือผลงานที่เคยทำ เช่น ค่าย เวทีประกวด การแสดง ฯลฯ" />
         </Col>
       </Row>
+      <Underline />
       <Row>
-        <Col><Input float name="parentFirstName" label="ชื่อผู้ปกครอง" /></Col>
-        <Col><Input float name="parentLastName" label="นามสกุล" /></Col>
+        <Col><Input float placeholder="ลิลลี่" name="parentFirstName" label="ชื่อผู้ปกครอง" /></Col>
+        <Col><Input float placeholder="พอตเตอร์" name="parentLastName" label="นามสกุล" /></Col>
       </Row>
       <Row>
-        <Col><Input float name="parentRelation" label="ความเกี่ยวข้อง" /></Col>
-        <Col><Input float name="parentPhone" label="เบอร์โทรศัพท์" /></Col>
+        <Col><Input float placeholder="บิดา มารดา ฯลฯ" name="parentRelation" label="ความเกี่ยวข้อง" /></Col>
+        <Col><Input float placeholder="0898765432" name="parentPhone" label="เบอร์โทรศัพท์" /></Col>
       </Row>
     </Paper>
 
-    <Row>
+    <Row style={{ marginBottom: "2.8em" }}>
       <Button onClick={prev}>ขั้นตอนก่อนหน้า</Button>
 
       <Button onClick={next} type="submit">

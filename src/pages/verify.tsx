@@ -76,6 +76,16 @@ const parent = {
 const parentFields = Object.entries(parent);
 
 
+const Underline = styled.div`
+  content: "";
+  width: 100%;
+  height: 1px;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  bottom: 0;
+  left: 0;
+  background-color: #E0E0E0;
+`;
 
 const Item = styled.div`
   color: #333;
@@ -163,6 +173,7 @@ const PersonalSection = ({ data }) => (
       <PersonalItem title={"school"} data={data} />
       <PersonalItem title={"class"} data={data} />
     </Row3>
+    <Underline />
     <Row2>
       <Row1>
         <PersonalItem title={"address"} data={data} />
@@ -172,6 +183,7 @@ const PersonalSection = ({ data }) => (
         <PersonalItem title={"email"} data={data} />
       </Row1>
     </Row2>
+    <Underline />
     <Row2>
       <PersonalItem title={"disease"} data={data} />
       <PersonalItem title={"foodAllergy"} data={data} />
@@ -181,12 +193,14 @@ const PersonalSection = ({ data }) => (
     <Row1>
       <PersonalItem title={"activity"} data={data} />
     </Row1>
+    <Underline />
     <Row2>
       <ParentalItem title={"parentFirstName"} data={data} />
       <ParentalItem title={"parentLastName"} data={data} />
       <ParentalItem title={"parentRelation"} data={data} />
       <ParentalItem title={"parentPhone"} data={data} />
     </Row2>
+    <Underline />
   </Section>
 );
 
@@ -304,6 +318,7 @@ const Verify = ({ data = {} as any, submit }) => (
       <Upload value={data.photo} />
       <PersonalSection data={data} />
       <GeneralSection data={data} />
+      <Underline />
       <MajorSection data={data} />
     </Paper>
     <NavBar submit={submit} style={{ marginBottom: "2.8em" }} />

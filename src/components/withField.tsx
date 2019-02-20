@@ -34,19 +34,19 @@ type LabelProps = {
 // prettier-ignore
 const Label = styled.label<LabelProps>`
   position: absolute;
-  top: 3px;
+  top: 0.5em;
   left: calc(0.625em + 3px);
   z-index: 1;
-  line-height: 1.5;
-
-  font-size: 1.5em;
-  font-weight: 400;
-
-  color: #777;
+  font-family: Pridi;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 18px;
+  letter-spacing: 0.01em;
+  color: #223442;
   cursor: text;
   pointer-events: none;
   transition: 0.2s ease-out all;
-
   white-space: pre-line;
   word-break: break-word;
   word-wrap: break-word;

@@ -12,7 +12,7 @@ import {prev, next} from '../core/step'
 const QuestionForm = ({next, save, handleSubmit}) => (
   <FormContainer onSubmit={handleSubmit}>
     <Paper>
-      <TextArea name="generalAnswer1" label={General.Q1} wordy />
+      <TextArea placeholder="ว่ามา ฉันอ่านทั้งหมด เริ่ม!" name="generalAnswer1" label={General.Q1} wordy />
       {/* <TextArea name="generalAnswer2" label={General.Q2} wordy />
       <TextArea name="generalAnswer3" label={General.Q3} wordy /> */}
     </Paper>
