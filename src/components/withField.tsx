@@ -75,7 +75,7 @@ const ErrorMessage = styled.div`
   position: absolute;
   font-size: 0.9em;
   bottom: 15%;
-  right: 3%;
+  right: 5%;
 
   color: #ee5253;
   font-weight: 600;

@@ -17,31 +17,34 @@ import {
   shirtSizes
 } from "../components/PersonalForm";
 
-import { Backdrop, Row, Paper, HeadingFrame } from "../components/Layout";
+import { Backdrop, Row, Paper, FormContainer } from "../components/Layout";
 
 import questions, { General } from "../core/questions";
 
 import { submit } from "../ducks/submission";
 
 import { getMajorFromPath } from "../core/util";
-// import NavBar from "../components/NavBar";
-import TransparentButton from "../components/TransparentButton";
+// import { formatGroupQuestion } from "react-select/lib/builtins";
 
-export const Container = styled.div`
+// export const Container = styled.div`
+//   width: 100%;
+//   margin: 0 auto;
+//   max-width: 980px;
+
+//   padding: 0 2.2em;
+
+//   @media screen and (max-width: 480px) {
+//     padding: 0 1.2em;
+//   }
+// `;
+
+const Col = styled.div`
+  padding: 0px 0.5em;
   width: 100%;
-  margin: 0 auto;
-  max-width: 980px;
-
-  padding: 0 2.2em;
-
-  @media screen and (max-width: 480px) {
-    padding: 0 1.2em;
-  }
 `;
-
 const Title = styled.h1``;
 
-const personalFields = Object.entries({
+const person = {
   firstname: "ชื่อ",
   lastname: "นามสกุล",
   nickname: "ชื่อเล่น",
@@ -49,8 +52,8 @@ const personalFields = Object.entries({
   birthdate: "วันเกิด",
   gender: "เพศ",
   religion: "ศาสนา",
-  class: "ระดับชั้น",
   school: "โรงเรียน",
+  class: "ระดับชั้น",
   phone: "เบอร์โทรศัพท์",
   email: "อีเมล",
   socialMedia: "Social Media",
@@ -62,20 +65,17 @@ const personalFields = Object.entries({
   activity: "กิจกรรมหรือผลงานที่น้องๆ เคยทำหรือเข้าร่วม",
   expectation: "คาดหวังอะไรจากค่ายนี้บ้าง",
   bloodGroup: "กรุ๊ปเลือด"
-});
-
-const parentFields = Object.entries({
+};
+const personalFields = Object.entries(person);
+const parent = {
   parentFirstName: "ชื่อผู้ปกครอง",
   parentLastName: "นามสกุลผู้ปกครอง",
   parentRelation: "ความสัมพันธ์",
   parentPhone: "เบอร์โทรศัพท์"
-});
+};
+const parentFields = Object.entries(parent);
 
-const Card = styled(Paper)`
-  align-items: flex-start;
-  justify-content: flex-start;
-  font-size: 1.3em;
-`;
+
 
 const Item = styled.div`
   color: #333;
@@ -83,21 +83,13 @@ const Item = styled.div`
   line-height: 1.8em;
 `;
 
-const Label = styled.strong`
-  font-weight: bold;
+// const Answer = styled.p`
+//   margin-top: 0.6em;
 
-  white-space: pre-line;
-  word-break: break-word;
-  word-wrap: break-word;
-`;
-
-const Paragraph = styled.p`
-  margin-top: 0.6em;
-
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  word-break: break-word;
-`;
+//   white-space: pre-wrap;
+//   word-wrap: break-word;
+//   word-break: break-word;
+// `;
 
 function format(name, data) {
   const answer = data[name];
@@ -125,39 +117,115 @@ function format(name, data) {
   return "-";
 }
 
-const Section = ({ data, title, fields }) => (
-  <Card>
-    <Title>{title}</Title>
-
-    {fields.map(([name, label]) => (
-      <Item key={name}>
-        <Label>{label}:</Label> {format(name, data)}
-      </Item>
-    ))}
-  </Card>
+const PersonalItem = ({ title, data }) => (
+  <Col>
+    <Question>{person[title]}</Question>
+    <Answer>{format(title, data)}</Answer>
+  </Col>
 );
 
-const GeneralSection = ({ data }) => (
-  <Card>
+const ParentalItem = ({ title, data }) => (
+  <Col>
+    <Question>{parent[title]}</Question>
+    <Answer>{format(title, data)}</Answer>
+  </Col>
+);
+
+const Row3 = styled.div`
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
+`;
+const Row2 = styled.div`
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+`;
+const Row1 = styled.div`
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
+`;
+const Section = styled.div`
+  width: 100%;
+`;
+
+const PersonalSection = ({ data }) => (
+  <Section>
     <Title>คำถามทั่วไป</Title>
-    <Item>
-      <Label>{General.Q1}</Label>
+    <Row3>
+      <PersonalItem title={"firstname"} data={data} />
+      <PersonalItem title={"lastname"} data={data} />
+      <PersonalItem title={"nickname"} data={data} />
+      <PersonalItem title={"birthdate"} data={data} />
+      <PersonalItem title={"gender"} data={data} />
+      <PersonalItem title={"religion"} data={data} />
+      <PersonalItem title={"school"} data={data} />
+      <PersonalItem title={"class"} data={data} />
+    </Row3>
+    <Row2>
+      <Row1>
+        <PersonalItem title={"address"} data={data} />
+      </Row1>
+      <Row1>
+        <PersonalItem title={"phone"} data={data} />
+        <PersonalItem title={"email"} data={data} />
+      </Row1>
+    </Row2>
+    <Row2>
+      <PersonalItem title={"disease"} data={data} />
+      <PersonalItem title={"foodAllergy"} data={data} />
+      <PersonalItem title={"drugAllergy"} data={data} />
+      <PersonalItem title={"shirtSize"} data={data} />
+    </Row2>
+    <Row1>
+      <PersonalItem title={"activity"} data={data} />
+    </Row1>
+    <Row2>
+      <ParentalItem title={"parentFirstName"} data={data} />
+      <ParentalItem title={"parentLastName"} data={data} />
+      <ParentalItem title={"parentRelation"} data={data} />
+      <ParentalItem title={"parentPhone"} data={data} />
+    </Row2>
+  </Section>
+);
 
-      <Paragraph>{data.generalAnswer1}</Paragraph>
-    </Item>
+const Question = styled.div`
+  font-size: 18px;
+  letter-spacing: 0.01em;
+  color: #7e8991;
+  margin: 0.2em 0em;
+`;
+const Answer = styled.div`
+  line-height: 30px;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  margin: 0em 0em 1em 0em;
+  color: #223442;
+`;
 
-    <Item>
-      <Label>{General.Q2}</Label>
-
-      <Paragraph>{data.generalAnswer2}</Paragraph>
-    </Item>
-
-    <Item>
-      <Label>{General.Q3}</Label>
-
-      <Paragraph>{data.generalAnswer3}</Paragraph>
-    </Item>
-  </Card>
+const GeneralSection = ({ data }) => (
+  <Section>
+    <Title>คำถามกลาง</Title>
+    <Row1>
+      <Col>
+        <Question>{General.Q1}</Question>
+        <Answer>{data.generalAnswer1}</Answer>
+      </Col>
+    </Row1>
+    <Row1>
+      <Col>
+        <Question>{General.Q2}</Question>
+        <Answer>{data.generalAnswer2}</Answer>
+      </Col>
+    </Row1>
+    <Row1>
+      <Col>
+        <Question>{General.Q3}</Question>
+        <Answer>{data.generalAnswer3}</Answer>
+      </Col>
+    </Row1>
+  </Section>
 );
 
 const MajorSection = ({ data }) => {
@@ -165,11 +233,11 @@ const MajorSection = ({ data }) => {
 
   if (!major) {
     return (
-      <Card>
+      <Section>
         <Title>คำถามสาขา</Title>
 
         <Item>กรุณารอสักครู่</Item>
-      </Card>
+      </Section>
     );
   }
 
@@ -180,27 +248,27 @@ const MajorSection = ({ data }) => {
   // }
 
   return (
-    <Card>
+    <Section>
       <Title>คำถามสาขา</Title>
       <Item>
-        <Label>{Q1}</Label>
+        <Question>{Q1}</Question>
 
         {major === "design" ? (
           <DesignUpload />
         ) : (
-          <Paragraph>{data.majorAnswer1}</Paragraph>
+          <Answer>{data.majorAnswer1}</Answer>
         )}
       </Item>
 
       <Item>
-        <Label>{Q2}</Label>
-        <Paragraph>{data.majorAnswer2}</Paragraph>
+        <Question>{Q2}</Question>
+        <Answer>{data.majorAnswer2}</Answer>
       </Item>
 
       {/* <Item>
-        <Label>{Q3}</Label>
+        <Question>{Q3}</Question>
       </Item> */}
-    </Card>
+    </Section>
   );
 };
 
@@ -229,61 +297,17 @@ const NavBar = ({ submit, style }) => (
   </Row>
 );
 
-const Heading = styled.h1`
-  font-size: 2.8em;
-  font-weight: 300;
-  margin-bottom: 0.3em;
-  text-align: center;
-  color: white;
-`;
-
-// const Verify = ({ data = {} as any, submit }) => (
-//   <Backdrop>
-//     <NavBar />
-//     <HeadingFrame>
-//       <Heading>ตรวจคำตอบ</Heading>
-//     </HeadingFrame>
-//     <Container>
-//       <Upload value={data.photo} disabled />
-//       {/* <NavBar submit={submit} style={{ marginBottom: "2.8em" }} /> */}
-//       <TransparentButton arrow="left">ย้อนกลับ</TransparentButton>
-//       <Section title="ข้อมูลส่วนตัว" fields={personalFields} data={data} />
-//       <Section title="ข้อมูลผู้ปกครอง" fields={parentFields} data={data} />
-//       <GeneralSection
-//         // fields={personalFields}
-//         data={data}
-//       />
-//       <MajorSection data={data} />
-
-//       {/* <NavBar submit={submit} style={{}} /> */}
-//     </Container>
-//   </Backdrop>
-// );
-
 const Verify = ({ data = {} as any, submit }) => (
-  <Backdrop>
-    {/* <NavBar /> */}
-    <HeadingFrame>
-      <Heading>ตรวจคำตอบ</Heading>
-    </HeadingFrame>
-    <Container>
-      <Paper>
-        <Row>รูปประจำตัว</Row>
-        <Upload value={data.photo} disabled />
-      </Paper>
-      <NavBar submit={submit} style={{ marginBottom: "2.8em" }} />
-      <TransparentButton arrow="left">ย้อนกลับ</TransparentButton>
-      <Section title="ข้อมูลส่วนตัว" fields={personalFields} data={data} />
-      <Section title="ข้อมูลผู้ปกครอง" fields={parentFields} data={data} />
-      <GeneralSection
-        // fields={personalFields}
-        data={data}
-      />
+  <FormContainer>
+    <PageTitle>ตรวจสอบข้อมูล และยืนยันการสมัคร</PageTitle>
+    <Paper style={{marginTop:'100px'}}>
+      <Upload value={data.photo} />
+      <PersonalSection data={data} />
+      <GeneralSection data={data} />
       <MajorSection data={data} />
-
-      <NavBar submit={submit} style={{}} />
-    </Container>
-  </Backdrop>
+    </Paper>
+    <NavBar submit={submit} style={{ marginBottom: "2.8em" }} />
+  </FormContainer>
 );
 
 const mapStateToProps = (state: any) => {

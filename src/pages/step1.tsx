@@ -13,11 +13,11 @@ import Title from "../components/Title";
 const StepOne = ({ save, markNext }) => (
   <Backdrop>
     <NavBar />
-    <Title>ข้อมูลส่วนตัว</Title>
     <Stepper
       currentStep={"ข้อมูลส่วนตัว"}
-      steps={["ข้อมูลส่วนตัว", "ข้อมูลเพิ่มเติม", "คำถามกลาง", "คำถามสาขา"]}
+      steps={["ข้อมูลนักเวทย์", "ข้อมูลเพิ่มเติม", "คำถามกลาง", "คำถามสาขา"]}
     />
+    <Title>ข้อมูลนักเวทย์</Title>
     <PersonalForm onSubmit={save} next={markNext} />
   </Backdrop>
 );

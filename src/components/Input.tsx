@@ -18,6 +18,7 @@ export const TextInput = styled.input<{meta: IMeta}>`
   width: 100%;
   padding: 0.15em 0.6em;
 
+
   min-width: 10em;
   min-height: 40px;
 
@@ -30,6 +31,10 @@ export const TextInput = styled.input<{meta: IMeta}>`
   background: white;
   color: #555;
 
+  @media screen and (max-width: 840px) {
+    width: 100%;
+  }
+
   &::placeholder {
     color: #E0E0E0;
     font-style: normal;
@@ -37,18 +42,23 @@ export const TextInput = styled.input<{meta: IMeta}>`
     line-height: normal;
   }
 
-  &:hover {
+  &:hover:enabled {
     box-shadow: 0 3px 18.5px 2px rgba(0, 0, 0, 0.18);
   }
 
   &:focus,
-  &:active {
+  &:active:enabled {
     transform: scale(1.005);
     box-shadow: 0 3px 18.5px 2px rgba(0, 0, 0, 0.18);
   }
 
   &:focus + label {
     transform: translateY(-40px) scale(1);
+  }
+
+  &:disabled {
+    border: none;
+    background: #f5f5f5; 
   }
 
   ${props => props.meta.touched && props.meta.error && css`

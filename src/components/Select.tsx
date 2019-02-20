@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import c from "classnames";
 
 import withField from "./withField";
+import { isOptionDisabled } from "react-select/lib/builtins";
 
 type Option = { value: string; label: string };
 
@@ -19,7 +20,7 @@ function getValue(value: string, options: Option[]) {
 }
 
 const CustomSelect = withField(props => {
-  const { options, value, onChange } = props;
+  const { options, value, onChange , isDisabled} = props;
 
   const currentValue = options.filter(option => option.value === value);
 
@@ -36,8 +37,9 @@ const CustomSelect = withField(props => {
       classNamePrefix="custom-select"
       value={currentValue}
       onBlur={() => {}}
-      onChange={v => v && onChange(v instanceof Option && v.value)}
+      onChange={v => v && onChange(v['value'])}
       isSearchable
+      isDisabled={isDisabled}
     />
   );
 });
