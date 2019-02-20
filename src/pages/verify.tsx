@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import styled from "@emotion/styled";
 
@@ -17,13 +17,20 @@ import {
   shirtSizes
 } from "../components/PersonalForm";
 
-import { Backdrop, Row, Paper, FormContainer } from "../components/Layout";
+import {
+  Backdrop,
+  Row,
+  Paper,
+  FormContainer,
+  HeadingFrame
+} from "../components/Layout";
 
 import questions, { General } from "../core/questions";
 
 import { submit } from "../ducks/submission";
 
 import { getMajorFromPath } from "../core/util";
+import NavBar from "../components/NavBar";
 // import { formatGroupQuestion } from "react-select/lib/builtins";
 
 // export const Container = styled.div`
@@ -74,8 +81,6 @@ const parent = {
   parentPhone: "เบอร์โทรศัพท์"
 };
 const parentFields = Object.entries(parent);
-
-
 
 const Item = styled.div`
   color: #333;
@@ -254,7 +259,7 @@ const MajorSection = ({ data }) => {
         <Question>{Q1}</Question>
 
         {major === "design" ? (
-          <DesignUpload />
+          <DesignUpload disabled />
         ) : (
           <Answer>{data.majorAnswer1}</Answer>
         )}
@@ -287,7 +292,21 @@ const PageTitle = styled.div`
   font-size: 1.6em;
 `;
 
-const NavBar = ({ submit, style }) => (
+const Heading = styled.h1`
+  font-size: 2.8em;
+  font-weight: 300;
+  margin-bottom: 0.3em;
+  text-align: center;
+  color: white;
+`;
+
+const Label = styled.label`
+  color: #7E8991;
+  font-size: 1.4em;
+  margin: 0.6em 0;
+`;
+
+const SubmitBar = ({ submit, style }) => (
   <Row style={style}>
     <Button onClick={prev}>ย้อนกลับไปแก้ไข</Button>
 
@@ -298,16 +317,23 @@ const NavBar = ({ submit, style }) => (
 );
 
 const Verify = ({ data = {} as any, submit }) => (
-  <FormContainer>
-    <PageTitle>ตรวจสอบข้อมูล และยืนยันการสมัคร</PageTitle>
-    <Paper style={{marginTop:'100px'}}>
-      <Upload value={data.photo} />
-      <PersonalSection data={data} />
-      <GeneralSection data={data} />
-      <MajorSection data={data} />
-    </Paper>
-    <NavBar submit={submit} style={{ marginBottom: "2.8em" }} />
-  </FormContainer>
+  <Backdrop>
+    <NavBar />
+    <HeadingFrame>
+      <Heading>ตรวจคำตอบ</Heading>
+    </HeadingFrame>
+    <FormContainer>
+      {/* <PageTitle>ตรวจสอบข้อมูล และยืนยันการสมัคร</PageTitle> */}
+      <Paper>
+        <Label>รูปประจำตัว</Label>
+        <Upload value={data.photo} disabled />
+        <PersonalSection data={data} />
+        <GeneralSection data={data} />
+        <MajorSection data={data} />
+      </Paper>
+      <SubmitBar submit={submit} style={{ marginBottom: "2.8em" }} />
+    </FormContainer>
+  </Backdrop>
 );
 
 const mapStateToProps = (state: any) => {
