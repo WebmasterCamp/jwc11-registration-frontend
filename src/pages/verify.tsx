@@ -17,23 +17,14 @@ import {
   shirtSizes
 } from "../components/PersonalForm";
 
-<<<<<<< HEAD
 import { Backdrop, Row, Paper, FormContainer } from "../components/Layout";
-=======
-import { Backdrop, Row, Paper, HeadingFrame } from "../components/Layout";
->>>>>>> f5a7a1cedd33dcc890f1399f97b628bb5b367ec9
 
 import questions, { General } from "../core/questions";
 
 import { submit } from "../ducks/submission";
 
 import { getMajorFromPath } from "../core/util";
-<<<<<<< HEAD
-import { formatGroupQuestion } from "react-select/lib/builtins";
-=======
-// import NavBar from "../components/NavBar";
-import TransparentButton from "../components/TransparentButton";
->>>>>>> f5a7a1cedd33dcc890f1399f97b628bb5b367ec9
+// import { formatGroupQuestion } from "react-select/lib/builtins";
 
 // export const Container = styled.div`
 //   width: 100%;
