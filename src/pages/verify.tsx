@@ -17,14 +17,23 @@ import {
   shirtSizes
 } from "../components/PersonalForm";
 
+<<<<<<< HEAD
 import { Backdrop, Row, Paper, FormContainer } from "../components/Layout";
+=======
+import { Backdrop, Row, Paper, HeadingFrame } from "../components/Layout";
+>>>>>>> f5a7a1cedd33dcc890f1399f97b628bb5b367ec9
 
 import questions, { General } from "../core/questions";
 
 import { submit } from "../ducks/submission";
 
 import { getMajorFromPath } from "../core/util";
+<<<<<<< HEAD
 import { formatGroupQuestion } from "react-select/lib/builtins";
+=======
+// import NavBar from "../components/NavBar";
+import TransparentButton from "../components/TransparentButton";
+>>>>>>> f5a7a1cedd33dcc890f1399f97b628bb5b367ec9
 
 // export const Container = styled.div`
 //   width: 100%;
@@ -292,33 +301,11 @@ const NavBar = ({ submit, style }) => (
     <Button onClick={prev}>ย้อนกลับไปแก้ไข</Button>
 
     <Button onClick={submit} success>
-      ยืนยันการสมัครเข้าค่าย YCC
+      ยืนยันการสมัครเข้าค่าย JWC
     </Button>
   </Row>
 );
 
-// const Verify = ({ data = {} as any, submit }) => (
-//   <Backdrop>
-//     <Container>
-
-//     <Paper>
-//       <PageTitle>ตรวจสอบข้อมูล และยืนยันการสมัคร</PageTitle>
-//       <Container>
-//         <Upload value={data.photo} />
-//         <PersonalSection title="ข้อมูลส่วนตัว" fields={personalFields} data={data} />
-//         <Section title="ข้อมูลส่วนตัว" fields={personalFields} data={data} />
-//         <Section title="ข้อมูลผู้ปกครอง" fields={parentFields} data={data} />
-//         <GeneralSection
-//           // fields={personalFields}
-//           data={data}
-//         />
-//         
-//         <NavBar submit={submit} style={{ marginBottom: "2.8em" }} />
-//       </Container>
-//     </Paper>
-//     </Container>
-//   </Backdrop>
-// );
 const Verify = ({ data = {} as any, submit }) => (
   <FormContainer>
     <PageTitle>ตรวจสอบข้อมูล และยืนยันการสมัคร</PageTitle>
@@ -332,9 +319,15 @@ const Verify = ({ data = {} as any, submit }) => (
   </FormContainer>
 );
 
-const mapStateToProps = (state: any) => ({
-  data: getFormValues("submission")(state) || state.camper
-});
+const mapStateToProps = (state: any) => {
+  console.log(state);
+  console.log({
+    data: getFormValues("submission")(state)
+  });
+  return {
+    data: getFormValues("submission")(state) || state.camper
+  };
+};
 
 const enhance = connect(
   mapStateToProps,

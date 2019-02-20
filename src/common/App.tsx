@@ -24,6 +24,8 @@ declare global {
   }
 }
 
+export const MAIN_PAGE = "https://www.jwc.in.th";
+
 export const store = createStore();
 
 if (typeof window !== "undefined") {

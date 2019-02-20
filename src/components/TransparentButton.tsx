@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-interface ButtonContainerProps {
+interface TransparentButtonContainerProps {
   success?: boolean;
   disabled?: boolean;
   fancy?: boolean;
@@ -13,11 +13,12 @@ interface ButtonContainerProps {
 }
 
 // prettier-ignore
-const ButtonContainer = styled.button`
+const TransparentButtonContainer = styled.button`
   font-size: 1.5em;
   line-height: 1.5em;
   height: 2.3em;
-  position: relative;
+    text-align: center;
+
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
   border: 0;
@@ -28,9 +29,10 @@ const ButtonContainer = styled.button`
   align-self: center;
   border-radius: 9999px;
 
-  background: ${props => props.color || '#E1A34E'};
+  background: ${props => props.color || 'transparent'};
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  
+  color: #E1A34E;
+
   outline: none;
   padding: 0.5em 2em;
   position: relative;
@@ -46,7 +48,6 @@ const ButtonContainer = styled.button`
   // }
 
   &:hover {
-    background: #efa540;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
       0 2px 10px 0 rgba(0, 0, 0, 0.12);
     transform: translateY(-1px);
@@ -61,11 +62,11 @@ const ButtonContainer = styled.button`
   `};
 
   ${(props) => props.disabled && css`
-    background: #95afc0;
+    color: #eeeeee;
 
-    &:hover {
-      background: #95afc0;
-    }
+    // &:hover {
+    //   background: #95afc0;
+    // }
   `};
 
   ${props => (props as any).fancy && css`
@@ -75,19 +76,24 @@ const ButtonContainer = styled.button`
   `}
 `
 
-type ButtonProps = {
+type TransparentButtonProps = {
   children: any;
   type?: string;
   onClick?: () => any;
   arrow?: "left" | "right";
-} & ButtonContainerProps;
+} & TransparentButtonContainerProps;
 
-const Button = ({ children, onClick, arrow, ...props }: ButtonProps) => {
+const TransparentButton = ({
+  children,
+  onClick,
+  arrow,
+  ...props
+}: TransparentButtonProps) => {
   const arrowIcon = arrow ? (
     <FontAwesomeIcon
       icon={arrow === "left" ? "angle-left" : "angle-right"}
       style={{
-        color: "white",
+        color: "#E1A34E",
         top: "50%",
         transform: "translateY(-50%)",
         right: arrow === "right" ? "16px" : undefined,
@@ -97,12 +103,12 @@ const Button = ({ children, onClick, arrow, ...props }: ButtonProps) => {
     />
   ) : null;
   return (
-    <ButtonContainer {...props} onClick={onClick}>
+    <TransparentButtonContainer {...props} onClick={onClick}>
       {children}
       <Ink />
       {arrowIcon}
-    </ButtonContainer>
+    </TransparentButtonContainer>
   );
 };
 
-export default Button;
+export default TransparentButton;

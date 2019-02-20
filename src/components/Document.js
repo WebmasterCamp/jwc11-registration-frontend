@@ -7,41 +7,30 @@ export function Document(props) {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="https://fonts.googleapis.com/css?family=Pridi" rel="stylesheet" />
-        <link rel="apple-touch-icon" href="/logo/apple-touch-icon.png" />
-        <link
-          rel="icon"
-          type="image/png"
-          href="/logo/favicon-16x16.png"
-          sizes="16x16"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          href="/logo/favicon-32x32.png"
-          sizes="32x32"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          href="/logo/favicon-128x128.png"
-          sizes="128x128"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          href="/logo/favicon-196x196.png"
-          sizes="196x196"
-        />
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/logo/apple-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="/logo/apple-icon-60x60.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/logo/apple-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="/logo/apple-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/logo/apple-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="/logo/apple-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="/logo/apple-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/logo/apple-icon-152x152.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/logo/apple-icon-180x180.png" />
+        <link rel="icon" type="image/png" sizes="192x192"  href="/logo/android-icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/logo/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/logo/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/logo/favicon-16x16.png" />
+        <link rel="manifest" href="/logo/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+        <meta name="theme-color" content="#ffffff" />
 
         <title>สมัครเข้าค่าย Junior Webmaster Camp</title>
 
         <meta
           name="description"
-          content="พบกันเร็วๆ นี้ กับค่าย Young Creator's Camp ที่ท้าให้น้องๆ มาสร้าง Web หรือ App ภายในเวลาสามวัน"
+          content="พบกันเร็วๆ นี้ กับค่าย Junior Webmaster Camp"
         />
-
-        {/* <meta name="image" content="https://join.ycc.in.th/images/og.png" /> */}
 
         <meta
           itemProp="name"
@@ -50,7 +39,7 @@ export function Document(props) {
 
         <meta
           itemProp="description"
-          content="พบกันเร็วๆ นี้ กับค่าย Young Creator's Camp ที่ท้าให้น้องๆ มาสร้าง Web หรือ App ภายในเวลาสามวัน"
+          content="พบกันเร็วๆ นี้ กับค่าย Junior Webmaster Camp"
         />
 
         {/* <meta itemProp="image" content="https://join.ycc.in.th/images/og.png" /> */}
@@ -64,7 +53,7 @@ export function Document(props) {
 
         <meta
           name="twitter:description"
-          content="พบกันเร็วๆ นี้ กับค่าย Young Creator's Camp ที่ท้าให้น้องๆ มาสร้าง Web หรือ App ภายในเวลาสามวัน"
+          content="พบกันเร็วๆ นี้ กับค่าย Junior Webmaster Camp"
         />
 
         <meta name="twitter:site" content="@ycc_th" />
@@ -82,7 +71,7 @@ export function Document(props) {
 
         <meta
           property="og:description"
-          content="พบกันเร็วๆ นี้ กับค่าย Young Creator's Camp ที่ท้าให้น้องๆ มาสร้าง Web หรือ App ภายในเวลาสามวัน"
+          content="พบกันเร็วๆ นี้ กับค่าย Junior Webmaster Camp"
         />
 
         {/* <meta
@@ -90,7 +79,7 @@ export function Document(props) {
           content="https://join.ycc.in.th/images/og.png"
         /> */}
         <meta property="og:url" content="https://join.ycc.in.th" />
-        <meta property="og:site_name" content="Young Creator's Camp" />
+        <meta property="og:site_name" content="Junior Webmaster Camp" />
         <meta property="og:locale" content="th_TH" />
         <meta property="fb:admins" content="100013664474455" />
         <meta property="fb:app_id" content="2314627122104275" />
