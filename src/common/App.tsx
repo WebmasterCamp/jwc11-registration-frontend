@@ -21,6 +21,7 @@ declare global {
     firebase: firebase.app.App;
     store: Store<PersistedState, AnyAction> & { dispatch: {} };
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
+    navigate: any;
   }
 }
 
