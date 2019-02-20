@@ -1,31 +1,30 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import styled from '@emotion/styled'
+import React from "react";
+import { connect } from "react-redux";
+import styled from "@emotion/styled";
 
-import {Backdrop} from '../components/Layout'
-import PersonalForm from '../components/PersonalForm'
+import { Backdrop } from "../components/Layout";
+import PersonalForm from "../components/PersonalForm";
 
-import {save, markNext} from '../ducks/submission'
+import { save, markNext } from "../ducks/submission";
+import Stepper from "../components/Stepper";
+import NavBar from "../components/NavBar";
+import Title from "../components/Title";
 
-const Title = styled.div`
-  position: absolute;
-  top: 1em;
-  left: 2em;
-
-  color: white;
-  font-size: 1.8em;
-`
-
-const StepOne = ({save, markNext}) => (
+const StepOne = ({ save, markNext }) => (
   <Backdrop>
-    <Title>STEP 1: ข้อมูลส่วนตัว</Title>
+    <NavBar />
+    <Stepper
+      currentStep={"ข้อมูลส่วนตัว"}
+      steps={["ข้อมูลนักเวทย์", "ข้อมูลเพิ่มเติม", "คำถามกลาง", "คำถามสาขา"]}
+    />
+    <Title>ข้อมูลนักเวทย์</Title>
     <PersonalForm onSubmit={save} next={markNext} />
   </Backdrop>
-)
+);
 
 const enhance = connect(
   null,
-  {save, markNext}
-)
+  { save, markNext }
+);
 
-export default enhance(StepOne)
+export default enhance(StepOne);

@@ -32,7 +32,6 @@ const majorQuestionRoutes = majors.map(major => ({
 
 export default {
   siteRoot: '/',
-  // siteRoot: 'https://join.ycc.in.th',
   Document,
   plugins: [
     'react-static-plugin-emotion',
@@ -40,7 +39,7 @@ export default {
     'react-static-plugin-sass'
   ],
   getSiteData: () => ({
-    title: "Young Creator's Camp"
+    title: "Junior Webmaster Camp"
   }),
   getRoutes: () => [
     {

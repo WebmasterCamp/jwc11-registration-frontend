@@ -1,13 +1,13 @@
-import React from 'react'
-import styled from '@emotion/styled'
+import React from "react";
+import styled from "@emotion/styled";
 
-import { css } from '@emotion/core'
+import { css } from "@emotion/core";
 
-import { Field, BaseFieldProps } from 'redux-form'
-import { Fields } from '../core/form'
+import { Field, BaseFieldProps } from "redux-form";
+import { Fields } from "../core/form";
 
 interface FieldContainerProps {
-  wordy?: boolean
+  wordy?: boolean;
 }
 
 // prettier-ignore
@@ -16,20 +16,20 @@ const Container = styled.div<FieldContainerProps>`
   font-size: 1rem;
 
   width: 100%;
-  margin: 1.4em 0.8em;
+  margin: 1.4em 0em;
 
   ${props => props.wordy && css`
-    margin: 0.4em 0.8em;
+    margin: 0.4em 0em;
   `};
 `
 
 type LabelProps = {
-  float: boolean
+  float: boolean;
   meta: {
-    error: boolean
-    touched: boolean
-  }
-} & FieldContainerProps
+    error: boolean;
+    touched: boolean;
+  };
+} & FieldContainerProps;
 
 // prettier-ignore
 const Label = styled.label<LabelProps>`
@@ -75,20 +75,20 @@ const ErrorMessage = styled.div`
   position: absolute;
   font-size: 0.9em;
   bottom: 15%;
-  right: 3%;
+  right: 5%;
 
   color: #ee5253;
   font-weight: 600;
 
   pointer-events: none;
-`
+`;
 
 interface FieldWrapperProps {
-  label?: string
-  input?: any
-  meta?: any
-  float?: boolean
-  wordy?: boolean
+  label?: string;
+  input?: any;
+  meta?: any;
+  float?: boolean;
+  wordy?: boolean;
 }
 
 const wrap = (Component: React.ComponentType) => ({
@@ -108,14 +108,21 @@ const wrap = (Component: React.ComponentType) => ({
 
     {meta.touched && meta.error && <ErrorMessage>{meta.error}</ErrorMessage>}
   </Container>
-)
+);
 
 const withField = Component => {
-  const InputField = wrap(Component)
+  const InputField = wrap(Component);
 
   return (
-    props: BaseFieldProps & FieldWrapperProps & { name: keyof Fields }
-  ) => <Field component={InputField} {...props} />
-}
+    props: BaseFieldProps &
+      FieldWrapperProps & {
+        name: keyof Fields;
+        type?: "email" | "text" | "number";
+        placeholder?: string;
+      }
+  ) => {
+    return <Field<{}> component={InputField as any} {...props} />;
+  };
+};
 
-export default withField
+export default withField;

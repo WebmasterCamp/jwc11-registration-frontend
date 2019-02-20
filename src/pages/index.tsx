@@ -1,97 +1,40 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import {Link} from '@reach/router'
-
-import Button from '../components/Button'
-import {Backdrop, Container, Paper} from '../components/Layout'
+import React from "react";
+import styled from "@emotion/styled";
+import { Backdrop, HeadingFrame } from "../components/Layout";
+import CharacterSelector from "../components/CharacterSelector";
 
 const Heading = styled.h1`
-  color: #777;
-  font-size: 2.95em;
+  font-size: 2.8em;
   font-weight: 300;
-
   margin-bottom: 0.3em;
   text-align: center;
-`
-
-const SubHeading = styled.h1`
-  color: #555;
-  font-size: 2.4em;
-  font-weight: 300;
-
-  margin-bottom: 1.8em;
-  text-align: center;
-`
-
-const Row = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-
-  @media screen and (max-width: 780px) {
-    flex-direction: column;
-  }
-`
-
-const MajorCard = styled.div`
+  color: white;
+  
+`;
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 
-  padding: 1em;
   width: 100%;
-`
+  margin: 0 auto;
+  max-width: 1440px;
 
-const Character = styled.img`
-  width: 15em;
-  transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) all;
+  padding: 2em 2.2em;
 
-  &:hover {
-    transform: scale(1.08);
-
-    filter: drop-shadow(0 0px 18px rgba(255, 205, 0, 0.18));
-    -webkit-filter: drop-shadow(0 0px 18px rgba(255, 205, 0, 0.18));
+  @media screen and (max-width: 480px) {
+    padding: 0 1.2em;
   }
 `
-
 const Landing = () => (
   <Backdrop>
     <Container>
-      <Paper>
-        <Heading>
-          ลงทะเบียนเข้าค่าย |{' '}
-          <a href="https://ycc.in.th" target="_blank">
-            Young Creator's Camp
-          </a>
-        </Heading>
-
-        <Row>
-          <MajorCard style={{marginRight: '1.5em'}}>
-            <a href="/programming">
-              <Character src="/images/character-dev.png" />
-            </a>
-          </MajorCard>
-
-          <MajorCard>
-            <a href="/design">
-              <Character src="/images/character-design.png" />
-            </a>
-          </MajorCard>
-        </Row>
-
-        <Row style={{marginTop: '1.5em', marginBottom: '0.8em'}}>
-          <a href="/programming">
-            <Button fancy>สมัครเป็น Programmer</Button>
-          </a>
-          <a href="/design">
-            <Button fancy>สมัครเป็น Designer</Button>
-          </a>
-        </Row>
-      </Paper>
+      <HeadingFrame>
+        <Heading>เลือกสาขา</Heading>
+      </HeadingFrame>
+      <CharacterSelector />
     </Container>
   </Backdrop>
-)
+);
 
-export default Landing
+export default Landing;

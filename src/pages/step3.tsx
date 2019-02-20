@@ -6,19 +6,18 @@ import {Backdrop} from '../components/Layout'
 import QuestionForm from '../components/QuestionForm'
 
 import {save, markNext} from '../ducks/submission'
-
-const Title = styled.div`
-  position: absolute;
-  top: 1em;
-  left: 2em;
-
-  color: white;
-  font-size: 1.8em;
-`
+import Title from '../components/Title';
+import Stepper from '../components/Stepper';
+import NavBar from '../components/NavBar';
 
 const StepOne = ({save, markNext}) => (
   <Backdrop>
-    <Title>STEP 3: คำถามกลาง</Title>
+    <NavBar />
+    <Title>คำถามกลาง</Title>
+    <Stepper
+      currentStep={"คำถามกลาง"}
+      steps={["ข้อมูลส่วนตัว", "ข้อมูลเพิ่มเติม", "คำถามกลาง", "คำถามสาขา"]}
+    />
     <QuestionForm onSubmit={save} next={markNext} />
   </Backdrop>
 )

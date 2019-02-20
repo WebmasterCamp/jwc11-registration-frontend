@@ -1,11 +1,15 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 
-import {css} from '@emotion/core'
+import { css } from "@emotion/core";
 
-import withField from './withField'
+import withField from "./withField";
 
+interface IMeta {
+  touched: boolean;
+  error: boolean;
+}
 // prettier-ignore
-export const TextInput = styled.input`
+export const TextInput = styled.input<{meta: IMeta}>`
   font-weight: 300;
   text-align: left;
   font-size: 1.5em;
@@ -14,30 +18,36 @@ export const TextInput = styled.input`
   width: 100%;
   padding: 0.15em 0.6em;
 
+
   min-width: 10em;
   min-height: 40px;
 
   outline: none;
   transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) all;
 
-  border: none;
+  border: 1px solid #E0E0E0;
   border-radius: 4px;
 
   background: white;
   color: #555;
-  border-bottom: 2px solid #555;
-  box-shadow: 0 1px 1.5px 1px rgba(0, 0, 0, 0.12);
 
-  &::placeholder {
-    color: #999;
+  @media screen and (max-width: 840px) {
+    width: 100%;
   }
 
-  &:hover {
+  &::placeholder {
+    color: #E0E0E0;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+
+  &:hover:enabled {
     box-shadow: 0 3px 18.5px 2px rgba(0, 0, 0, 0.18);
   }
 
   &:focus,
-  &:active {
+  &:active:enabled {
     transform: scale(1.005);
     box-shadow: 0 3px 18.5px 2px rgba(0, 0, 0, 0.18);
   }
@@ -46,9 +56,14 @@ export const TextInput = styled.input`
     transform: translateY(-40px) scale(1);
   }
 
+  &:disabled {
+    border: none;
+    background: #f5f5f5; 
+  }
+
   ${props => props.meta.touched && props.meta.error && css`
     border-bottom: 2px solid #e74c3c;
   `};
 `
 
-export default withField(TextInput)
+export default withField(TextInput);

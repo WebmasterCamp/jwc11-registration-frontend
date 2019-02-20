@@ -1,37 +1,38 @@
-import React from 'react'
-import {call, put, select} from 'redux-saga/effects'
-import {message, Modal} from 'antd'
-import {navigate} from '@reach/router'
-import {configureScope, captureException} from '@sentry/browser'
+import React from "react";
+import { call, put, select } from "redux-saga/effects";
+import { message, Modal } from "antd";
+import { navigate } from "@reach/router";
+import { configureScope, captureException } from "@sentry/browser";
 
-import 'firebase/firestore'
+import "firebase/firestore";
 
-import {createReducer, Creator} from './helper'
+import { createReducer, Creator } from "./helper";
 
-import rsf, {app} from '../core/fire'
-import {getMajorFromPath} from '../core/util'
-import logger from '../core/log'
+import rsf, { app } from "../core/fire";
+import { getMajorFromPath } from "../core/util";
+import logger from "../core/log";
 
-import {setLoading} from '../ducks/submission'
+import { setLoading } from "../ducks/submission";
+import { MAIN_PAGE } from "../common/App";
 
-const db = app.firestore()
+const db = app.firestore();
 
 // Disable this flag in order to allow major to be changed.
 // I'm counting on you.
-const MAJOR_CANNOT_BE_CHANGED = false
+const MAJOR_CANNOT_BE_CHANGED = false;
 
-export const STORE_CAMPER = 'STORE_CAMPER'
+export const STORE_CAMPER = "STORE_CAMPER";
 
-export const storeCamper = Creator(STORE_CAMPER)
+export const storeCamper = Creator(STORE_CAMPER);
 
-const LoadingMessage = `กำลังดึงข้อมูลการสมัครเข้าค่าย กรุณารอสักครู่...`
-const MajorRedirectLog = `User has chosen a major before. Redirecting to:`
-const MajorRedirectMessage = `กำลังเปลี่ยนหน้าไปที่แบบฟอร์มสมัครเข้าสาขา `
-const ChangeDeniedMessage = `คุณไม่สามารถเปลี่ยนสาขาได้อีก หลังจากที่เลือกสาขานั้นๆ ไปแล้ว`
+const LoadingMessage = `กำลังดึงข้อมูลการสมัครเข้าค่าย กรุณารอสักครู่...`;
+const MajorRedirectLog = `User has chosen a major before. Redirecting to:`;
+const MajorRedirectMessage = `กำลังเปลี่ยนหน้าไปที่แบบฟอร์มสมัครเข้าสาขา `;
+const ChangeDeniedMessage = `คุณไม่สามารถเปลี่ยนสาขาได้อีก หลังจากที่เลือกสาขานั้นๆ ไปแล้ว`;
 
 // Check if user is at major root, e.g. /:major
 function isMajorRoot(major: string) {
-  return window.location.pathname.replace('/', '') === major
+  return window.location.pathname.replace("/", "") === major;
 }
 
 // Analytics Module
@@ -47,7 +48,7 @@ function Identify(
       name: displayName,
       email,
       photoURL
-    })
+    });
   }
 
   // Fullstory
@@ -56,7 +57,7 @@ function Identify(
       email,
       displayName,
       photoURL
-    })
+    });
   }
 
   // Sentry
@@ -66,12 +67,12 @@ function Identify(
       email,
       displayName,
       photoURL
-    })
-  })
+    });
+  });
 
   // Google Analytics
   if (window.ga) {
-    window.ga('set', 'userId', uid)
+    window.ga("set", "userId", uid);
   }
 
   // prettier-ignore
@@ -79,160 +80,160 @@ function Identify(
 }
 
 interface Camper {
-  firstname: string
-  lastname: string
-  facebookDisplayName: string
+  firstname: string;
+  lastname: string;
+  facebookDisplayName: string;
+  major?: string;
 }
 
 function notifySubmitted(camper: Camper) {
   const name = camper.firstname
     ? `${camper.firstname} ${camper.lastname}`
-    : camper.facebookDisplayName
+    : camper.facebookDisplayName;
 
   Modal.success({
     content: (
-      <div style={{fontSize: '1.65em'}}>
+      <div style={{ fontSize: "1.65em" }}>
         <p>
-          คุณ {name} ได้ยืนยันการสมัครเข้าร่วมค่าย Young Creator's Camp ในสาขา{' '}
-          {camper.major} ไปเรียบร้อยแล้วค่ะ 🎉
+          คุณ {name} ได้ยืนยันการสมัครค่าย Junior Webmaster Camp ในสาขา{" "}
+          {camper.major} ไปเรียบร้อยแล้ว
         </p>
         <p>
-          ค่ายจะประกาศผลการคัดเลือกในวันที่ 18 มีนาคม ผ่านทางเว็บไซต์{' '}
-          <a href="https://www.ycc.in.th">www.ycc.in.th</a> ค่ะ
+          ค่ายจะประกาศผลการคัดเลือกในวันที่ X มีนาคม ผ่านทางเว็บไซต์{" "}
+          <a href={MAIN_PAGE}>{MAIN_PAGE}</a>
         </p>
-        <p>ขอให้โชคดีนะคะ ให้คุกกี้ทำนายกัน! 🥠</p>
       </div>
     ),
     okText: `กลับสู่เว็บไซต์หลัก`,
     onOk: () => {
-      if (typeof window !== 'undefined') {
-        window.location.href = 'https://www.ycc.in.th'
+      if (typeof window !== "undefined") {
+        window.location.href = MAIN_PAGE;
       }
     }
-  })
+  });
 }
 
-if (typeof window !== 'undefined') {
-  window.navigate = navigate
+if (typeof window !== "undefined") {
+  window.navigate = navigate;
 }
 
 export function* loadCamperSaga() {
-  const hide = message.loading(LoadingMessage, 0)
-  yield put(setLoading(true))
+  const hide = message.loading(LoadingMessage, 0);
+  yield put(setLoading(true));
 
   try {
     // Retrieve the user information from the store, and the major from path
-    const major = getMajorFromPath()
-    const user = yield select(s => s.user)
-    const {uid, displayName, email, photoURL} = user
+    const major = getMajorFromPath();
+    const user = yield select(s => s.user);
+    const { uid, displayName, email, photoURL } = user;
 
-    logger.log('Camper UID', uid, '| Major', major, '| Facebook', displayName)
+    logger.log("Camper UID", uid, "| Major", major, "| Facebook", displayName);
 
     // UID should always be there, since it's triggered upon auth success
     if (!uid) {
-      logger.error("Camper hasn't authenticated yet. This should not happen.")
-      return
+      logger.error("Camper hasn't authenticated yet. This should not happen.");
+      return;
     }
 
     // Retrieve the camper information from firestore database
-    const docRef = db.collection('campers').doc(uid)
-    const doc = yield call(rsf.firestore.getDocument, docRef)
+    const docRef = db.collection("campers").doc(uid);
+    const doc = yield call(rsf.firestore.getDocument, docRef);
 
     // Identify camper's identity in analytics.
-    Identify(uid, displayName, email, photoURL)
+    Identify(uid, displayName, email, photoURL);
 
     if (doc.exists) {
       // If the camper's record does exist:
-      const record = doc.data()
-      logger.log('Retrieved Camper Record:', record)
+      const record = doc.data();
+      logger.log("Retrieved Camper Record:", record);
 
       // Store the camper's submission record into the redux store
-      yield put(storeCamper(record))
+      yield put(storeCamper(record));
+
+      // D - If user had already submitted, redirect them to the submission status
+      if (record.submitted) {
+        logger.info("User had already submitted before. Redirecting...");
+
+        if (window.analytics) {
+          window.analytics.track("Returned after Submitted", {
+            uid,
+            displayName,
+            major
+          });
+        }
+
+        yield call(notifySubmitted, record);
+
+        return;
+      }
 
       // A - If user is at root path and had chosen a major, redirect them.
-      if (record.major && window.location.pathname === '/') {
-        logger.info(MajorRedirectLog, record.major)
+      if (record.major && window.location.pathname === "/") {
+        logger.info(MajorRedirectLog, record.major);
 
-        yield call(message.info, MajorRedirectMessage + record.major)
-        navigate(`/${record.major}/step1`)
+        yield call(message.info, MajorRedirectMessage + record.major);
+        navigate(`/${record.major}/step1`);
 
-        return
+        return;
       }
 
       // B - If user does not have major in record, and is not at major path
       if (!major) {
-        return
+        return;
       }
 
       // C - Edge Case: Major was not found in Camper Record
       if (!record.major) {
-        logger.error('CRITICAL: Major was not found in camper record!')
+        logger.error("CRITICAL: Major was not found in camper record!");
 
         if (window.analytics) {
-          window.analytics.track('Major Missing In Record', {
+          window.analytics.track("Major Missing In Record", {
             uid,
             displayName,
             majorPath: major
-          })
+          });
         }
 
         // Merge the major data in record.major
-        const data = {major}
-        yield call(rsf.firestore.setDocument, docRef, data, {merge: true})
+        const data = { major };
+        yield call(rsf.firestore.setDocument, docRef, data, { merge: true });
 
         // Redirect the camper to their own major
-        navigate('/' + major + '/step1')
+        navigate("/" + major + "/step1");
 
-        return
-      }
-
-      // D - If user had already submitted, redirect them to the submission status
-      if (record.submitted) {
-        logger.info('User had already submitted before. Redirecting...')
-
-        if (window.analytics) {
-          window.analytics.track('Returned after Submitted', {
-            uid,
-            displayName,
-            major
-          })
-        }
-
-        yield call(notifySubmitted, record)
-
-        return
+        return;
       }
 
       // E - If user is not at the same major they had chosen at first.
       if (MAJOR_CANNOT_BE_CHANGED && record.major !== major) {
-        yield call(message.warn, ChangeDeniedMessage)
-        navigate('/change_denied?major=' + major)
+        yield call(message.warn, ChangeDeniedMessage);
+        navigate("/change_denied?major=" + major);
 
         if (window.analytics) {
-          window.analytics.track('Change Denied', {
+          window.analytics.track("Change Denied", {
             uid,
             displayName,
             newMajor: major,
             oldMajor: record.major
-          })
+          });
         }
 
-        return
+        return;
       }
 
       // F - If user is at /:major, redirect to /:major/step1
       if (isMajorRoot(major)) {
-        logger.info('User is at major root. Redirecting to Step 1.')
+        logger.info("User is at major root. Redirecting to Step 1.");
 
-        navigate(`/${major}/step1`)
+        navigate(`/${major}/step1`);
       }
 
       // Submit the Track Event to Segment Analytics
       if (window.analytics) {
-        window.analytics.track('Returned', {uid, displayName, major})
+        window.analytics.track("Returned", { uid, displayName, major });
       }
 
-      return
+      return;
     }
 
     // G - If user arrives at major paths for the first time, create a Camper Record for them.
@@ -243,33 +244,33 @@ export function* loadCamperSaga() {
         facebookEmail: email,
         facebookPhotoURL: photoURL,
         createdAt: new Date()
-      }
+      };
 
-      yield call(rsf.firestore.setDocument, docRef, data)
+      yield call(rsf.firestore.setDocument as any, docRef, data);
 
       if (window.analytics) {
-        window.analytics.track('Arrived', {uid, displayName, major})
+        window.analytics.track("Arrived", { uid, displayName, major });
       }
 
-      logger.log('Created Record for New Camper:', displayName, '->', data)
+      logger.log("Created Record for New Camper:", displayName, "->", data);
 
       // If user is at /:major, also redirect to /:major/step1
       if (isMajorRoot(major)) {
-        navigate(`/${major}/step1`)
+        navigate(`/${major}/step1`);
       }
     }
   } catch (err) {
-    message.error(err.message)
+    message.error(err.message);
 
-    captureException(err)
+    captureException(err);
   } finally {
-    hide()
-    yield put(setLoading(false))
+    hide();
+    yield put(setLoading(false));
   }
 }
 
-const initial = {}
+const initial = {};
 
 export default createReducer(initial, state => ({
   [STORE_CAMPER]: camper => camper
-}))
+}));

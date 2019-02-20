@@ -6,6 +6,7 @@ import {reducer as form} from 'redux-form'
 import user, {reauthSaga, userWatcherSaga} from './user'
 import camper from './camper'
 import submission, {submissionWatcherSaga} from './submission'
+import { IReducer } from '../core/types';
 
 const config = {
   key: 'root',
@@ -13,7 +14,7 @@ const config = {
   throttle: 2000,
 }
 
-export const reducers = persistCombineReducers(config, {
+export const reducers = persistCombineReducers<IReducer>(config, {
   user,
   camper,
   form,
