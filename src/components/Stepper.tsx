@@ -30,7 +30,7 @@ const Node = styled.div`
   &.active {
     background: #e1a34e;
   }
-  &::after {
+  &.current::after {
     content: "";
     position: absolute;
     width: 1.2em;
@@ -72,7 +72,12 @@ export default (props: StepperProps) => {
             {i === 0 ? null : (
               <Connector className={i <= stepIndex ? "active" : ""} />
             )}
-            <Node className={i <= stepIndex ? "active" : ""}>
+            <Node
+              className={[
+                i <= stepIndex ? "active" : "",
+                i == stepIndex ? "current" : ""
+              ].join(" ")}
+            >
               <Label className={i <= stepIndex ? "active" : ""}>{step}</Label>
             </Node>
           </Fragment>
