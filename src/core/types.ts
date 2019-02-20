@@ -39,12 +39,6 @@ export interface CamperData extends SubmissionFormData {
   facebookPhotoURL: string;
 }
 
-declare global {
-  interface Window {
-    navigate: any;
-  }
-}
-
 export interface IReducer {
   user;
   camper;
