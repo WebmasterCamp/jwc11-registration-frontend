@@ -53,7 +53,6 @@ export const shirtSizes = {
 const religionOptions = Options(religions);
 const gradeOptions = Options(grades);
 const genderOptions = Options(genders);
-const shirtSizeOptions = Options(shirtSizes);
 
 // prettier-ignore
 const bloodGroups = ['O+', 'O−', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-'].map(toOptions)
@@ -63,17 +62,18 @@ const Col = styled.div`
   width: 100%;
 `;
 
-const PersonalForm = ({ next, handleSubmit }) => (
+const PersonalForm = ({ next, handleSubmit ,isDisabled = false }) => (
   <FormContainer onSubmit={handleSubmit}>
     <Paper>
       <UploadField name="photo" />
 
       <Row>
         <Col>
-          <Input float name="firstname" label="ชื่อ" placeholder="แฮรี่" />
+          <Input float name="firstname" disabled={isDisabled} label="ชื่อ" placeholder="แฮรี่" />
         </Col>
         <Col>
           <Input
+            disabled={isDisabled}
             float
             name="lastname"
             label="นามสกุล"
@@ -81,16 +81,16 @@ const PersonalForm = ({ next, handleSubmit }) => (
           />
         </Col>
         <Col>
-          <Input float name="nickname" label="ชื่อเล่น" placeholder="เจมส์" />
+          <Input  disabled={isDisabled} float name="nickname" label="ชื่อเล่น" placeholder="เจมส์" />
         </Col>
       </Row>
 
       <Row>
         <Col>
-          <DatePicker name="birthdate" label="วันเกิด" float />
+          <DatePicker isDisabled={isDisabled} name="birthdate" label="วันเกิด" float />
         </Col>
         <Col>
-          <Select name="gender" label="เพศ" options={genderOptions} />
+          <Select isDisabled={isDisabled} name="gender" label="เพศ" options={genderOptions} />
         </Col>
       </Row>
 
@@ -98,6 +98,7 @@ const PersonalForm = ({ next, handleSubmit }) => (
         <Col>
           <Row>
             <Select
+              isDisabled={isDisabled}
               float
               name="religion"
               label="ศาสนา"
@@ -107,6 +108,7 @@ const PersonalForm = ({ next, handleSubmit }) => (
           </Row>
           <Row>
             <Input
+            disabled={isDisabled}
               float
               name="school"
               label="โรงเรียน"
@@ -115,17 +117,18 @@ const PersonalForm = ({ next, handleSubmit }) => (
           </Row>
         </Col>
         <Col>
-          <Select name="class" label="ระดับชั้น" options={gradeOptions} />
+          <Select isDisabled={isDisabled} name="class" label="ระดับชั้น" options={gradeOptions} />
         </Col>
       </Row>
 
       <Row>
         <Col>
-          <TextArea float name="address" label="ถิ่นที่อยู่" />
+          <TextArea  disabled={isDisabled} float name="address" label="ถิ่นที่อยู่" />
         </Col>
         <Col>
           <Row>
             <Input
+            disabled={isDisabled}
               float
               name="phone"
               label="เบอโทรศัพท์มือถือ"
@@ -134,6 +137,7 @@ const PersonalForm = ({ next, handleSubmit }) => (
           </Row>
           <Row>
             <Input
+             disabled={isDisabled}
               float
               name="email"
               label="อีเมล"
@@ -144,13 +148,13 @@ const PersonalForm = ({ next, handleSubmit }) => (
       </Row>
     </Paper>
 
-    <Row>
+    { !isDisabled ? <Row>
       <Button disabled>ขั้นตอนก่อนหน้า</Button>
 
       <Button onClick={next} type="submit">
         ขั้นตอนถัดไป
       </Button>
-    </Row>
+    </Row> : ''}
   </FormContainer>
 );
 

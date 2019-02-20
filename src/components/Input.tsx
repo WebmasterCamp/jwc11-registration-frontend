@@ -42,18 +42,23 @@ export const TextInput = styled.input<{meta: IMeta}>`
     line-height: normal;
   }
 
-  &:hover {
+  &:hover:enabled {
     box-shadow: 0 3px 18.5px 2px rgba(0, 0, 0, 0.18);
   }
 
   &:focus,
-  &:active {
+  &:active:enabled {
     transform: scale(1.005);
     box-shadow: 0 3px 18.5px 2px rgba(0, 0, 0, 0.18);
   }
 
   &:focus + label {
     transform: translateY(-40px) scale(1);
+  }
+
+  &:disabled {
+    border: none;
+    background: #f5f5f5; 
   }
 
   ${props => props.meta.touched && props.meta.error && css`
