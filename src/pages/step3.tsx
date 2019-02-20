@@ -16,7 +16,7 @@ const StepOne = ({save, markNext}) => (
     <Title>คำถามกลาง</Title>
     <Stepper
       currentStep={"คำถามกลาง"}
-      steps={["ข้อมูลส่วนตัว", "ข้อมูลเพิ่มเติม", "คำถามกลาง", "คำถามสาขา"]}
+      steps={["ข้อมูลนักเวทย์", "ข้อมูลเพิ่มเติม", "คำถามกลาง", "คำถามสาขา"]}
     />
     <QuestionForm onSubmit={save} next={markNext} />
   </Backdrop>
