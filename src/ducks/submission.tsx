@@ -91,7 +91,6 @@ function* saveSubmissionSaga({ payload }) {
     yield fork(updateCamperRecord, payload);
 
     const shouldProceed = yield select(s => {
-      console.log(s);
       return s.submission.shouldProceed;
     });
 
@@ -110,7 +109,6 @@ function* saveSubmissionSaga({ payload }) {
 }
 
 export function* submissionWatcherSaga() {
-  console.log("submission");
   yield takeEvery(SAVE, saveSubmissionSaga);
   yield takeEvery(SUBMIT, submissionSaga);
 }

@@ -57,7 +57,7 @@ function notifySubmissionClosed() {
           ค่ายจะประกาศผลการคัดเลือกในวันที่ 18 มีนาคม ผ่านทางเว็บไซต์{" "}
           <a href={MAIN_PAGE}>{MAIN_PAGE}</a> ค่ะ
         </p>
-        <p>ขอให้โชคดีนะคะ ให้คุกกี้ทำนายกัน! 🥠</p>
+        {/* <p>ขอให้โชคดีนะคะ ให้คุกกี้ทำนายกัน! 🥠</p> */}
       </div>
     ),
     okText: `กลับสู่เว็บไซต์หลัก`,
@@ -132,7 +132,6 @@ export const getUserStatus = () =>
 
 // Attempt to re-authenticate when user resumes their session
 export function* reauthSaga() {
-  console.log(123);
   try {
     const user = yield call(getUserStatus);
     const major = getMajorFromPath();
@@ -179,7 +178,6 @@ export function* reauthSaga() {
 }
 
 export function* userWatcherSaga() {
-  console.log("user");
   yield takeEvery(LOGIN, loginSaga);
   yield takeEvery(LOGOUT, logoutSaga);
   yield takeEvery(RE_AUTH, reauthSaga);
