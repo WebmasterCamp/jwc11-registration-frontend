@@ -14,7 +14,7 @@ const StepOne = ({ save, markNext }) => (
   <Backdrop>
     <NavBar />
     <Stepper
-      currentStep={"ข้อมูลส่วนตัว"}
+      currentStep={"ข้อมูลนักเวทย์"}
       steps={["ข้อมูลนักเวทย์", "ข้อมูลเพิ่มเติม", "คำถามกลาง", "คำถามสาขา"]}
     />
     <Title>ข้อมูลนักเวทย์</Title>
