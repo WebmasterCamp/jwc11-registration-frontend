@@ -9,9 +9,11 @@ import MajorForm from "../components/MajorForm";
 import { save, markNext } from "../ducks/submission";
 import Title from "../components/Title";
 import Stepper from "../components/Stepper";
+import NavBar from "../components/NavBar";
 
 const StepOne = ({ save, questions, markNext }) => (
   <Backdrop>
+    <NavBar />
     <Title>คำถามสาขา</Title>
     <Stepper
       currentStep={"คำถามสาขา"}

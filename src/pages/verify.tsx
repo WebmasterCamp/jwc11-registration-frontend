@@ -24,6 +24,7 @@ import questions, { General } from "../core/questions";
 import { submit } from "../ducks/submission";
 
 import { getMajorFromPath } from "../core/util";
+import NavBar from "../components/NavBar";
 
 export const Container = styled.div`
   width: 100%;
@@ -217,22 +218,23 @@ const PageTitle = styled.div`
   font-size: 1.6em;
 `;
 
-const NavBar = ({ submit, style }) => (
-  <Row style={style}>
-    <Button onClick={prev}>ย้อนกลับไปแก้ไข</Button>
+// const NavBar = ({ submit, style }) => (
+//   <Row style={style}>
+//     <Button onClick={prev}>ย้อนกลับไปแก้ไข</Button>
 
-    <Button onClick={submit} success>
-      ยืนยันการสมัครเข้าค่าย YCC
-    </Button>
-  </Row>
-);
+//     <Button onClick={submit} success>
+//       ยืนยันการสมัครเข้าค่าย YCC
+//     </Button>
+//   </Row>
+// );
 
 const Verify = ({ data = {} as any, submit }) => (
   <Backdrop>
+    <NavBar />
     <PageTitle>ตรวจสอบข้อมูล และยืนยันการสมัคร</PageTitle>
     <Container>
-      <Upload value={data.photo} />
-      <NavBar submit={submit} style={{ marginBottom: "2.8em" }} />
+      <Upload value={data.photo} disabled />
+      {/* <NavBar submit={submit} style={{ marginBottom: "2.8em" }} /> */}
 
       <Section title="ข้อมูลส่วนตัว" fields={personalFields} data={data} />
       <Section title="ข้อมูลผู้ปกครอง" fields={parentFields} data={data} />
@@ -242,7 +244,7 @@ const Verify = ({ data = {} as any, submit }) => (
       />
       <MajorSection data={data} />
 
-      <NavBar submit={submit} style={{}} />
+      {/* <NavBar submit={submit} style={{}} /> */}
     </Container>
   </Backdrop>
 );

@@ -14,6 +14,7 @@ import { Field } from "redux-form";
 import logger from "../core/log";
 
 interface DropZoneProp {
+  disabled?: boolean;
   preview?: string;
   meta?: {
     error?: boolean;
@@ -30,24 +31,24 @@ const DropZoneContainer = styled.div<DropZoneProp>`
 
   position: relative;
 
-  cursor: pointer;
   margin-bottom: 3.2em;
   background: rgba(255, 255, 255, 0.94);
-
+  
   margin: 0 auto;
   margin-bottom: 3.8em;
-
+  
   width: 200px;
   height: 200px;
-
+  
   border: 1px solid #E0E0E0;
   border-radius: 4px;
   transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) all;
-
+  ${props => !props.disabled && css`
+  cursor: pointer;
   &:hover {
     background: rgba(255, 255, 255, 0.8);
     transform: scale(1.045);
-  }
+  }`}
 
   ${props => props.preview && css`
     background-image: url(${props.preview});
@@ -125,6 +126,7 @@ export interface UploadProps {
     error: boolean;
   };
   value?: any;
+  disabled?: boolean;
 }
 
 export interface UploadState {
@@ -230,8 +232,7 @@ class Upload extends Component<UploadProps, UploadState> {
 
   render() {
     const { preview } = this.state;
-    const { meta } = this.props;
-
+    const { meta, disabled } = this.props;
     return (
       <ReactDropzone
         onDrop={this.onDrop}
@@ -241,20 +242,25 @@ class Upload extends Component<UploadProps, UploadState> {
         accept="image/*"
       >
         {({ getRootProps, getInputProps, isDragActive }) => (
-          <DropZoneContainer {...getRootProps()} preview={preview}>
-            <input {...getInputProps()} />
+          <DropZoneContainer
+            {...getRootProps()}
+            preview={preview}
+            disabled={disabled}
+          >
+            <input {...getInputProps()} disabled={disabled} />
+            {disabled ? null : (
+              <Overlay active={!!preview}>
+                <Icon type="upload" css={dropIconStyle} />
 
-            <Overlay active={!!preview}>
-              <Icon type="upload" css={dropIconStyle} />
+                {meta && meta.touched && meta.error ? (
+                  <DropWarning>อัพโหลด</DropWarning>
+                ) : (
+                  <DropTitle>อัพโหลด</DropTitle>
+                )}
 
-              {meta && meta.touched && meta.error ? (
-                <DropWarning>อัพโหลด</DropWarning>
-              ) : (
-                <DropTitle>อัพโหลด</DropTitle>
-              )}
-
-              <Small>รูปที่เห็นหน้าชัดเจน</Small>
-            </Overlay>
+                <Small>รูปที่เห็นหน้าชัดเจน</Small>
+              </Overlay>
+            )}
           </DropZoneContainer>
         )}
       </ReactDropzone>
