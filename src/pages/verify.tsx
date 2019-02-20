@@ -17,14 +17,15 @@ import {
   shirtSizes
 } from "../components/PersonalForm";
 
-import { Backdrop, Row, Paper } from "../components/Layout";
+import { Backdrop, Row, Paper, HeadingFrame } from "../components/Layout";
 
 import questions, { General } from "../core/questions";
 
 import { submit } from "../ducks/submission";
 
 import { getMajorFromPath } from "../core/util";
-import NavBar from "../components/NavBar";
+// import NavBar from "../components/NavBar";
+import TransparentButton from "../components/TransparentButton";
 
 export const Container = styled.div`
   width: 100%;
@@ -218,24 +219,60 @@ const PageTitle = styled.div`
   font-size: 1.6em;
 `;
 
-// const NavBar = ({ submit, style }) => (
-//   <Row style={style}>
-//     <Button onClick={prev}>ย้อนกลับไปแก้ไข</Button>
+const NavBar = ({ submit, style }) => (
+  <Row style={style}>
+    <Button onClick={prev}>ย้อนกลับไปแก้ไข</Button>
 
-//     <Button onClick={submit} success>
-//       ยืนยันการสมัครเข้าค่าย YCC
-//     </Button>
-//   </Row>
+    <Button onClick={submit} success>
+      ยืนยันการสมัครเข้าค่าย JWC
+    </Button>
+  </Row>
+);
+
+const Heading = styled.h1`
+  font-size: 2.8em;
+  font-weight: 300;
+  margin-bottom: 0.3em;
+  text-align: center;
+  color: white;
+`;
+
+// const Verify = ({ data = {} as any, submit }) => (
+//   <Backdrop>
+//     <NavBar />
+//     <HeadingFrame>
+//       <Heading>ตรวจคำตอบ</Heading>
+//     </HeadingFrame>
+//     <Container>
+//       <Upload value={data.photo} disabled />
+//       {/* <NavBar submit={submit} style={{ marginBottom: "2.8em" }} /> */}
+//       <TransparentButton arrow="left">ย้อนกลับ</TransparentButton>
+//       <Section title="ข้อมูลส่วนตัว" fields={personalFields} data={data} />
+//       <Section title="ข้อมูลผู้ปกครอง" fields={parentFields} data={data} />
+//       <GeneralSection
+//         // fields={personalFields}
+//         data={data}
+//       />
+//       <MajorSection data={data} />
+
+//       {/* <NavBar submit={submit} style={{}} /> */}
+//     </Container>
+//   </Backdrop>
 // );
 
 const Verify = ({ data = {} as any, submit }) => (
   <Backdrop>
-    <NavBar />
-    <PageTitle>ตรวจสอบข้อมูล และยืนยันการสมัคร</PageTitle>
+    {/* <NavBar /> */}
+    <HeadingFrame>
+      <Heading>ตรวจคำตอบ</Heading>
+    </HeadingFrame>
     <Container>
-      <Upload value={data.photo} disabled />
-      {/* <NavBar submit={submit} style={{ marginBottom: "2.8em" }} /> */}
-
+      <Paper>
+        <Row>รูปประจำตัว</Row>
+        <Upload value={data.photo} disabled />
+      </Paper>
+      <NavBar submit={submit} style={{ marginBottom: "2.8em" }} />
+      <TransparentButton arrow="left">ย้อนกลับ</TransparentButton>
       <Section title="ข้อมูลส่วนตัว" fields={personalFields} data={data} />
       <Section title="ข้อมูลผู้ปกครอง" fields={parentFields} data={data} />
       <GeneralSection
@@ -244,14 +281,20 @@ const Verify = ({ data = {} as any, submit }) => (
       />
       <MajorSection data={data} />
 
-      {/* <NavBar submit={submit} style={{}} /> */}
+      <NavBar submit={submit} style={{}} />
     </Container>
   </Backdrop>
 );
 
-const mapStateToProps = (state: any) => ({
-  data: getFormValues("submission")(state) || state.camper
-});
+const mapStateToProps = (state: any) => {
+  console.log(state);
+  console.log({
+    data: getFormValues("submission")(state)
+  });
+  return {
+    data: getFormValues("submission")(state) || state.camper
+  };
+};
 
 const enhance = connect(
   mapStateToProps,
