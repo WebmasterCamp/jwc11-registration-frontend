@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FormContainer, Row } from "./Layout";
+import { FormContainer, Row, Paper } from "./Layout";
 import Button from "./Button";
 import Input from "./Input";
 import Select from "./Select";
@@ -58,16 +58,9 @@ const shirtSizeOptions = Options(shirtSizes);
 // prettier-ignore
 const bloodGroups = ['O+', 'O−', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-'].map(toOptions)
 
-const Paper = styled.div`
-  display: grid;
-  background: #f5f5f5;
-  border-radius: 16px;
-  padding: 1.8em 2.2em;
-  margin-bottom: 3.2em;
-  box-shadow: 0 3px 18.5px 2px rgba(0, 0, 0, 0.18);
+const Col = styled.div`
+  padding: 0px 0.5em;
   width: 100%;
-  grid-template: 
-    ''
 `;
 
 const PersonalForm = ({ next, handleSubmit }) => (
@@ -76,68 +69,78 @@ const PersonalForm = ({ next, handleSubmit }) => (
       <UploadField name="photo" />
 
       <Row>
-        <Input float name="firstname" label="ชื่อ" placeholder="แฮรี่" />
-        <Input float name="lastname" label="นามสกุล" placeholder="พ็อตเตอร์" />
-        <Input float name="nickname" label="ชื่อเล่น" placeholder="เจมส์" />
-      </Row>
-
-      <Row>
-        <DatePicker name="birthdate" label="วันเกิด" float />
-        <Select name="gender" label="เพศ" options={genderOptions} />
-      </Row>
-      <Row>
-        <div style={{ display: "flex", flexFlow: "column nowrap" }}>
-          <Select
-            float
-            name="religion"
-            label="ศาสนา"
-            options={religionOptions}
-            placeholder="พุทธ, คริสต์, อิสลาม, ฯลฯ"
-          />
+        <Col>
+          <Input float name="firstname" label="ชื่อ" placeholder="แฮรี่" />
+        </Col>
+        <Col>
           <Input
             float
-            name="school"
-            label="โรงเรียน"
-            placeholder="ฮอกวอตส์วิทยาคม"
+            name="lastname"
+            label="นามสกุล"
+            placeholder="พ็อตเตอร์"
           />
-        </div>
-        <Select name="class" label="ระดับชั้น" options={gradeOptions} />
+        </Col>
+        <Col>
+          <Input float name="nickname" label="ชื่อเล่น" placeholder="เจมส์" />
+        </Col>
       </Row>
 
       <Row>
-        <Input name="phone" label="เบอร์โทรศัพท์" />
-      </Row>
-      <Row>
-        <Input name="email" label="อีเมล" type="email" />
-        <Input name="socialMedia" label="Social Media" />
-      </Row>
-      <Row>
-        <Select name="shirtSize" label="ไซส์เสื้อ" options={shirtSizeOptions} />
-        <Select name="bloodGroup" label="กรุ๊ปเลือด" options={bloodGroups} />
+        <Col>
+          <DatePicker name="birthdate" label="วันเกิด" float />
+        </Col>
+        <Col>
+          <Select name="gender" label="เพศ" options={genderOptions} />
+        </Col>
       </Row>
 
       <Row>
-        <Input name="address" label="ที่อยู่" />
-      </Row>
-      <Row>
-        <Input name="disease" label="โรคประจำตัว" />
+        <Col>
+          <Row>
+            <Select
+              float
+              name="religion"
+              label="ศาสนา"
+              options={religionOptions}
+              placeholder="พุทธ, คริสต์, อิสลาม, ฯลฯ"
+            />
+          </Row>
+          <Row>
+            <Input
+              float
+              name="school"
+              label="โรงเรียน"
+              placeholder="ฮอกวอตส์วิทยาคม"
+            />
+          </Row>
+        </Col>
+        <Col>
+          <Select name="class" label="ระดับชั้น" options={gradeOptions} />
+        </Col>
       </Row>
 
       <Row>
-        <Input name="foodAllergy" label="อาหารที่แพ้" />
-      </Row>
-
-      <Row>
-        <Input name="drugAllergy" label="ยาที่แพ้" />
-      </Row>
-
-      <Row>
-        <TextArea
-          name="activity"
-          label="กิจกรรมหรือผลงานที่น้องๆ เคยทำหรือเข้าร่วม"
-        />
-
-        <TextArea name="expectation" label="คาดหวังอะไรจากค่ายนี้บ้าง" />
+        <Col>
+          <TextArea float name="address" label="ถิ่นที่อยู่" />
+        </Col>
+        <Col>
+          <Row>
+            <Input
+              float
+              name="phone"
+              label="เบอโทรศัพท์มือถือ"
+              placeholder="0931354239"
+            />
+          </Row>
+          <Row>
+            <Input
+              float
+              name="email"
+              label="อีเมล"
+              placeholder="abc_def@xyz.klm"
+            />
+          </Row>
+        </Col>
       </Row>
     </Paper>
 

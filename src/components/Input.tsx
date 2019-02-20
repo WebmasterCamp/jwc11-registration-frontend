@@ -18,6 +18,7 @@ export const TextInput = styled.input<{meta: IMeta}>`
   width: 100%;
   padding: 0.15em 0.6em;
 
+
   min-width: 10em;
   min-height: 40px;
 
@@ -29,6 +30,10 @@ export const TextInput = styled.input<{meta: IMeta}>`
 
   background: white;
   color: #555;
+
+  @media screen and (max-width: 840px) {
+    width: 100%;
+  }
 
   &::placeholder {
     color: #E0E0E0;
