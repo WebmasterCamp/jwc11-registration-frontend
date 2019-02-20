@@ -1,4 +1,5 @@
 import * as firebase from "firebase";
+import { SubmissionState } from "../ducks/submission";
 
 export type Major = "programming" | "design" | "content" | "marketing";
 
@@ -42,4 +43,11 @@ declare global {
   interface Window {
     navigate: any;
   }
+}
+
+export interface IReducer {
+  user;
+  camper;
+  form;
+  submission: SubmissionState;
 }

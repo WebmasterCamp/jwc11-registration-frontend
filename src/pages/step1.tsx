@@ -15,7 +15,7 @@ const StepOne = ({ save, markNext }) => (
     <NavBar />
     <Title>ข้อมูลส่วนตัว</Title>
     <Stepper
-      currentStep={"ข้อมูลเพิ่มเติม"}
+      currentStep={"ข้อมูลส่วนตัว"}
       steps={["ข้อมูลส่วนตัว", "ข้อมูลเพิ่มเติม", "คำถามกลาง", "คำถามสาขา"]}
     />
     <PersonalForm onSubmit={save} next={markNext} />

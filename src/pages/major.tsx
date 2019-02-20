@@ -66,8 +66,8 @@ const enhance = compose(
     mapStateToProps,
     {login, logout}
   ),
-  branch(props => props.authenticating, () => Authenticating),
-  branch(props => props.loading, () => Loading)
+  branch<{authenticating: boolean}>(props => props.authenticating, () => Authenticating),
+  branch<{loading: boolean}>(props => props.loading, () => Loading)
 )
 
 export default enhance(Redirection)

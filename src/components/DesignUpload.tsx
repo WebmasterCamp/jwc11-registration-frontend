@@ -234,13 +234,13 @@ class Upload extends Component<UploadProps, UploadState> {
     return (
       <ReactDropzone
         onDrop={this.onDrop}
-        meta={meta}
+        // meta={meta}
         maxSize={10000000}
         multiple={false}
         accept="image/*"
       >
         {({getRootProps, getInputProps, isDragActive}) => (
-          <DropZoneContainer {...getRootProps()} preview={preview}>
+          <DropZoneContainer {...getRootProps()} preview={Boolean(preview)}>
             <input {...getInputProps()} />
 
             <Overlay active={!!preview}>

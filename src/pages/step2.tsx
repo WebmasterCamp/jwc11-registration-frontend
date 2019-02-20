@@ -6,19 +6,18 @@ import {Backdrop} from '../components/Layout'
 import ParentalForm from '../components/ParentalForm'
 
 import {save, markNext} from '../ducks/submission'
-
-const Title = styled.div`
-  position: absolute;
-  top: 1em;
-  left: 2em;
-
-  color: white;
-  font-size: 1.8em;
-`
+import NavBar from '../components/NavBar';
+import Title from '../components/Title';
+import Stepper from '../components/Stepper';
 
 const StepOne = ({save, markNext}) => (
   <Backdrop>
-    <Title>STEP 2: ข้อมูลผู้ปกครอง</Title>
+    <NavBar />
+    <Title>ข้อมูลเพิ่มเติม</Title>
+    <Stepper
+      currentStep={"ข้อมูลเพิ่มเติม"}
+      steps={["ข้อมูลส่วนตัว", "ข้อมูลเพิ่มเติม", "คำถามกลาง", "คำถามสาขา"]}
+    />
     <ParentalForm onSubmit={save} next={markNext} />
   </Backdrop>
 )

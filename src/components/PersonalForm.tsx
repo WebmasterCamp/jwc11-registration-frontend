@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FormContainer, Paper, Row } from "./Layout";
+import { FormContainer, Row } from "./Layout";
 import Button from "./Button";
 import Input from "./Input";
 import Select from "./Select";
@@ -10,6 +10,7 @@ import { UploadField } from "./Upload";
 
 import withWizard from "../core/form";
 import { next } from "../core/step";
+import styled from "@emotion/styled";
 
 const toOptions = i => ({ value: i, label: i });
 
@@ -57,6 +58,18 @@ const shirtSizeOptions = Options(shirtSizes);
 // prettier-ignore
 const bloodGroups = ['O+', 'O−', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-'].map(toOptions)
 
+const Paper = styled.div`
+  display: grid;
+  background: #f5f5f5;
+  border-radius: 16px;
+  padding: 1.8em 2.2em;
+  margin-bottom: 3.2em;
+  box-shadow: 0 3px 18.5px 2px rgba(0, 0, 0, 0.18);
+  width: 100%;
+  grid-template: 
+    ''
+`;
+
 const PersonalForm = ({ next, handleSubmit }) => (
   <FormContainer onSubmit={handleSubmit}>
     <Paper>
@@ -74,8 +87,19 @@ const PersonalForm = ({ next, handleSubmit }) => (
       </Row>
       <Row>
         <div style={{ display: "flex", flexFlow: "column nowrap" }}>
-          <Select float name="religion" label="ศาสนา" options={religionOptions} placeholder="พุทธ, คริสต์, อิสลาม, ฯลฯ" />
-          <Input float name="school" label="โรงเรียน" placeholder="ฮอกวอตส์วิทยาคม" />
+          <Select
+            float
+            name="religion"
+            label="ศาสนา"
+            options={religionOptions}
+            placeholder="พุทธ, คริสต์, อิสลาม, ฯลฯ"
+          />
+          <Input
+            float
+            name="school"
+            label="โรงเรียน"
+            placeholder="ฮอกวอตส์วิทยาคม"
+          />
         </div>
         <Select name="class" label="ระดับชั้น" options={gradeOptions} />
       </Row>

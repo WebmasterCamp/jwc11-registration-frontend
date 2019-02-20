@@ -52,7 +52,7 @@ function* submissionSaga() {
         uid,
         displayName,
         major
-      });
+      } as any);
     }
   } catch (err) {
     message.error(err.message);

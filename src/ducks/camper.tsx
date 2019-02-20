@@ -246,7 +246,7 @@ export function* loadCamperSaga() {
         createdAt: new Date()
       };
 
-      yield call(rsf.firestore.setDocument, docRef, data);
+      yield call(rsf.firestore.setDocument as any, docRef, data);
 
       if (window.analytics) {
         window.analytics.track("Arrived", { uid, displayName, major });

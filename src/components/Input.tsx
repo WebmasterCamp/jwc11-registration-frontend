@@ -4,8 +4,12 @@ import { css } from "@emotion/core";
 
 import withField from "./withField";
 
+interface IMeta {
+  touched: boolean;
+  error: boolean;
+}
 // prettier-ignore
-export const TextInput = styled.input`
+export const TextInput = styled.input<{meta: IMeta}>`
   font-weight: 300;
   text-align: left;
   font-size: 1.5em;

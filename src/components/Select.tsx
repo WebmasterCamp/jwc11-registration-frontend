@@ -1,47 +1,47 @@
-import React, {ChangeEvent} from 'react'
-import Select from 'react-select'
-import styled from '@emotion/styled'
-import c from 'classnames'
+import React, { ChangeEvent } from "react";
+import Select from "react-select";
+import styled from "@emotion/styled";
+import c from "classnames";
 
-import withField from './withField'
+import withField from "./withField";
 
-type Option = {value: string; label: string}
+type Option = { value: string; label: string };
 
 function getValue(value: string, options: Option[]) {
-  if (!value) return null
+  if (!value) return null;
 
-  const item = options.find(x => x.value === value)
+  const item = options.find(x => x.value === value);
 
   return {
     value,
     label: item ? item.label : value
-  }
+  };
 }
 
 const CustomSelect = withField(props => {
-  const {options, value, onChange} = props
+  const { options, value, onChange } = props;
 
-  const currentValue = options.filter(option => option.value === value)
+  const currentValue = options.filter(option => option.value === value);
 
   return (
     <Select<Option>
       {...props}
       className={c(
-        'custom-select',
+        "custom-select",
         props.meta &&
           props.meta.touched &&
           props.meta.error &&
-          'custom-select-error'
+          "custom-select-error"
       )}
       classNamePrefix="custom-select"
       value={currentValue}
       onBlur={() => {}}
-      onChange={v => v && onChange(v.value)}
+      onChange={v => v && onChange(v instanceof Option && v.value)}
       isSearchable
     />
-  )
-})
+  );
+});
 
 export default props => (
   <CustomSelect {...props} float placeholder="กรุณาเลือก..." />
-)
+);
