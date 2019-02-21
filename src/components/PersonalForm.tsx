@@ -13,6 +13,7 @@ import { next } from "../core/step";
 import styled from "@emotion/styled";
 import RadioGroup from "./RadioGroup";
 import ChangeMajorButton from "./ChangeMajorButton";
+import TransparentButton from "./TransparentButton";
 
 const Underline = styled.div`
   content: "";
@@ -49,7 +50,6 @@ export const genders = {
   male: "ชาย",
   female: "หญิง",
   other: "เพศอื่นๆ",
-  none: "ไม่ระบุ"
 };
 
 export const shirtSizes = {
@@ -118,7 +118,9 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
           />
         </Col>
         <Col>
-          <Select
+          <RadioGroup
+            float
+            direction="row"
             isDisabled={isDisabled}
             name="gender"
             label="เพศ"
@@ -128,7 +130,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
       </Row>
 
       <Row>
-        <Col>
+        <Col style={{ justifySelf: "flex-start", alignSelf: "flex-start" }}>
           <Row>
             <Select
               isDisabled={isDisabled}
@@ -152,6 +154,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
         <Col>
           <RadioGroup
             float
+            disabled={isDisabled}
             direction="column"
             label="ระดับชั้น"
             name="class"
@@ -202,7 +205,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
     {!isDisabled ? (
       <Fragment>
         <Row style={{ marginBottom: "2em" }}>
-          <Button disabled>ขั้นตอนก่อนหน้า</Button>
+          {/* <TransparentButton disabled>ขั้นตอนก่อนหน้า</TransparentButton> */}
 
           <Button onClick={next} type="submit" arrow="right">
             ขั้นตอนถัดไป

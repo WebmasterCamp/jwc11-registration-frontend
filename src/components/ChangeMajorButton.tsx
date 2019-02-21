@@ -16,6 +16,11 @@ export default connect(
   return (
     <Fragment>
       <Modal
+        text={[
+          "คำตอบทั้งหมดที่น้องกรอกในหน้า",
+          `"ยืนยันสาขา"`,
+          "จะถูกลบทั้งหมด น้องยืนยันจะเปลี่ยนสาขาไหม?"
+        ]}
         field={getMajorFromPath()}
         toggle={toggle}
         setToggle={setIsToggle}

@@ -11,6 +11,7 @@ import { prev } from "../core/step";
 import styled from "@emotion/styled";
 import TextArea from "./TextArea";
 import ChangeMajorButton from "./ChangeMajorButton";
+import TransparentButton from "./TransparentButton";
 
 const Col = styled.div`
   padding: 0px 0.5em;
@@ -79,6 +80,7 @@ const ParentalForm = ({ next, handleSubmit }) => (
         <Col>
           <TextArea
             float
+            wordy
             placeholder="เล่าเกี่ยวกับสิ่งที่เคยทำเหล่านั้น ..."
             name="activity"
             label="กิจกรรมที่เข้าร่วมหรือผลงานที่เคยทำ เช่น ค่าย เวทีประกวด การแสดง ฯลฯ"
@@ -125,9 +127,11 @@ const ParentalForm = ({ next, handleSubmit }) => (
     </Paper>
 
     <Row style={{ marginBottom: "2em" }}>
-      <Button onClick={prev}>ขั้นตอนก่อนหน้า</Button>
+      <TransparentButton arrow="left" onClick={prev}>
+        ขั้นตอนก่อนหน้า
+      </TransparentButton>
 
-      <Button onClick={next} type="submit">
+      <Button onClick={next} type="submit" arrow="right">
         ขั้นตอนถัดไป
       </Button>
     </Row>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Button from "./Button";
 import withWizard from "../core/form";
 import styled from "@emotion/styled";
+import TransparentButton from "./TransparentButton";
 
 const Container = styled.div<{ isOpen: boolean }>`
   display: ${props => (props.isOpen ? "flex" : "none")};
@@ -66,32 +67,32 @@ const ButtonContainer = styled.div`
     padding: 0;
   }
 `;
-const CancelButton = styled.div`
-  display: flex;
-  justify-content: center;
-  background-color: transparent;
-  color: #e1a34e;
-  font-size: 1.8em;
-  border: 0;
-  cursor: pointer;
-  appearance: none;
-  align-self: center;
-  outline: none;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  letter-spacing: 0.1em;
-  text-transform: capitalize;
-  padding: 0.5em 1.4em;
+// const CancelButton = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   background-color: transparent;
+//   color: #e1a34e;
+//   font-size: 1.8em;
+//   border: 0;
+//   cursor: pointer;
+//   appearance: none;
+//   align-self: center;
+//   outline: none;
+//   position: relative;
+//   text-align: center;
+//   text-decoration: none;
+//   letter-spacing: 0.1em;
+//   text-transform: capitalize;
+//   padding: 0.5em 1.4em;
 
-  &:hover {
-    transform: translateY(-1px);
-  }
-  ::selection {
-    background-color: transparent;
-    color: #e1a34e;
-  }
-`;
+//   &:hover {
+//     transform: translateY(-1px);
+//   }
+//   ::selection {
+//     background-color: transparent;
+//     color: #e1a34e;
+//   }
+// `;
 
 const Backdrop = styled.div`
   position: fixed;
@@ -108,7 +109,7 @@ interface ModalState {
 interface ModalProps {
   setToggle: (prevState: boolean) => void;
   confirm: () => void;
-  text: String[];
+  text: string[];
 }
 
 class Modal extends Component<ModalProps, ModalState> {
@@ -131,12 +132,13 @@ class Modal extends Component<ModalProps, ModalState> {
     console.log(props);
     // receive props from parent
     //set pictureColor
-    const { field } = props;
+    const { field: major } = props;
+    const field = major.toLowerCase();
     let pictureColor = "";
-    if (field === "Content") pictureColor = "yellow";
-    else if (field === "Design") pictureColor = "pink";
-    else if (field === "Marketing") pictureColor = "green";
-    else if (field === "Programming") pictureColor = "blue";
+    if (field === "content") pictureColor = "yellow";
+    else if (field === "design") pictureColor = "pink";
+    else if (field === "marketing") pictureColor = "green";
+    else if (field === "programming") pictureColor = "blue";
     this.setState({ pictureColor });
     //set toggle
     const { toggle } = props;
@@ -148,13 +150,14 @@ class Modal extends Component<ModalProps, ModalState> {
 
     return (
       <Container id="modal" isOpen={toggle}>
-        <Content pictureColor={pictureColor}>
+        <Backdrop />
+        <Content pictureColor={pictureColor} style={{ zIndex: 1 }}>
           <Text>{text}</Text>
           <ButtonContainer>
-            <CancelButton onClick={() => this.toggleModal()}>
+            <TransparentButton onClick={() => this.toggleModal()} type="button">
               ยกเลิก
-            </CancelButton>
-            <Button onClick={() => this.handlerConfirm()}>
+            </TransparentButton>
+            <Button onClick={() => this.handlerConfirm()} type="button">
               &nbsp;ยืนยัน&nbsp;
             </Button>
           </ButtonContainer>

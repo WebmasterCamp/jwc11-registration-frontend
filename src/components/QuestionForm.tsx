@@ -9,6 +9,7 @@ import { General } from "../core/questions";
 import withWizard from "../core/form";
 import { prev, next } from "../core/step";
 import ChangeMajorButton from "./ChangeMajorButton";
+import TransparentButton from "./TransparentButton";
 
 const QuestionForm = ({ next, save, handleSubmit }) => (
   <FormContainer onSubmit={handleSubmit}>
@@ -24,9 +25,11 @@ const QuestionForm = ({ next, save, handleSubmit }) => (
     </Paper>
 
     <Row style={{ marginBottom: "2em" }}>
-      <Button onClick={prev}>ขั้นตอนก่อนหน้า</Button>
+      <TransparentButton arrow="left" onClick={prev}>
+        ขั้นตอนก่อนหน้า
+      </TransparentButton>
 
-      <Button onClick={next} type="submit">
+      <Button onClick={next} type="submit" arrow="right">
         ขั้นตอนถัดไป
       </Button>
     </Row>

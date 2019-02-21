@@ -32,6 +32,7 @@ import { submit } from "../ducks/submission";
 import { getMajorFromPath } from "../core/util";
 import NavBar from "../components/NavBar";
 import ChangeMajorButton from "../components/ChangeMajorButton";
+import TransparentButton from "../components/TransparentButton";
 // import { formatGroupQuestion } from "react-select/lib/builtins";
 
 // export const Container = styled.div`
@@ -152,11 +153,17 @@ const Row3 = styled.div`
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr 1fr;
+  @media screen and (max-width: 780px) {
+    grid-template-columns: 1fr;
+  }
 `;
 const Row2 = styled.div`
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr;
+  @media screen and (max-width: 780px) {
+    grid-template-columns: 1fr;
+  }
 `;
 const Row1 = styled.div`
   display: grid;
@@ -324,32 +331,51 @@ const Label = styled.label`
 
 const SubmitBar = ({ submit, style }) => (
   <Row style={style}>
-    <Button onClick={prev}>ย้อนกลับไปแก้ไข</Button>
-
+    <TransparentButton arrow="left" onClick={prev}>
+      ย้อนกลับไปแก้ไข
+    </TransparentButton>
     <Button onClick={submit} success>
-      ยืนยันการสมัครเข้าค่าย JWC
+      ยืนยัน
     </Button>
   </Row>
 );
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1440px;
+
+  padding: 2em 2.2em;
+
+  @media screen and (max-width: 480px) {
+    padding: 0 1.2em 1em 1.2em;
+  }
+`;
+
 const Verify = ({ data = {} as any, submit }) => (
   <Section>
-
-    <NavBar style={{ marginBottom: "2.8em" }} />
-  <FormContainer>
     <NavBar />
-    <HeadingFrame>
-      <Heading>ตรวจคำตอบ</Heading>
-    </HeadingFrame>
-    <Paper style={{ marginTop: "100px" }}>
-      <Upload value={data.photo} />
-      <PersonalSection data={data} />
-      <GeneralSection data={data} />
-      <Underline />
-      <MajorSection data={data} />
-    </Paper>
-    <SubmitBar submit={submit} style={{ marginBottom: "2.8em" }} />
-    <ChangeMajorButton />
-  </FormContainer>
+    <Container>
+      <HeadingFrame>
+        <Heading>ตรวจคำตอบ</Heading>
+      </HeadingFrame>
+    </Container>
+    <FormContainer>
+      <Paper>
+        <Upload value={data.photo} />
+        <PersonalSection data={data} />
+        <GeneralSection data={data} />
+        <Underline />
+        <MajorSection data={data} />
+      </Paper>
+      <SubmitBar submit={submit} style={{ marginBottom: "2em" }} />
+      <Row style={{ marginBottom: "2.8em" }}>
+        <ChangeMajorButton />
+      </Row>
+    </FormContainer>
   </Section>
 );
 

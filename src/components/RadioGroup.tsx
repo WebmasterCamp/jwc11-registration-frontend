@@ -5,9 +5,12 @@ import withField from "./withField";
 
 const Label = styled.label`
   font-size: 1.2em;
-  font-weight: 300;
   margin-right: 0.5em;
   margin-bottom: 0.5em;
+  color: #7E8991;
+  font-style: normal;
+  font-weight: 200;
+  line-height: normal;
 `;
 
 const Container = styled.div`
@@ -36,10 +39,11 @@ interface RadioGroupProps {
   label: string;
   value: string;
   onChange;
+  disabled: boolean;
 }
 
 export default withField((props: RadioGroupProps) => {
-  const { options, direction, ...input } = props;
+  const { options, direction, disabled, ...input } = props;
   return (
     <Container style={{ flexDirection: "column" }}>
       <Container style={{ flexDirection: direction }}>
@@ -47,6 +51,7 @@ export default withField((props: RadioGroupProps) => {
           return (
             <Label key={index}>
               <input
+                disabled={disabled}
                 type="radio"
                 {...input}
                 value={choice.value}

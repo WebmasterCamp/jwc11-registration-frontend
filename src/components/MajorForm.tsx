@@ -9,6 +9,7 @@ import withWizard from "../core/form";
 import { getMajorFromPath } from "../core/util";
 import { prev, next } from "../core/step";
 import ChangeMajorButton from "./ChangeMajorButton";
+import TransparentButton from "./TransparentButton";
 
 interface Question {
   Q1?: string;
@@ -38,9 +39,11 @@ const MajorQuestionForm = ({ questions = {} as Question, handleSubmit }) => {
       </Paper>
 
       <Row style={{ marginBottom: "2em" }}>
-        <Button onClick={prev}>ขั้นตอนก่อนหน้า</Button>
+        <TransparentButton arrow="left" onClick={prev}>
+          ขั้นตอนก่อนหน้า
+        </TransparentButton>
 
-        <Button onClick={next} type="submit">
+        <Button onClick={next} type="submit" arrow="right">
           ขั้นตอนถัดไป
         </Button>
       </Row>
