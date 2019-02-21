@@ -10,7 +10,6 @@ import 'antd/lib/date-picker/style/css'
 import withField from './withField'
 
 const CustomDatePicker = (props: any) => {
-  console.log('date',props);
 
   return (
     <DatePicker

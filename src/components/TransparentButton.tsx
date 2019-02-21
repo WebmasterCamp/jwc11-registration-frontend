@@ -29,9 +29,9 @@ const TransparentButtonContainer = styled.button`
   align-self: center;
   border-radius: 9999px;
 
-  background: ${props => props.color || 'transparent'};
+  background: transparent;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  color: #E1A34E;
+  color: ${props => props.color || "#E1A34E"};
 
   outline: none;
   padding: 0.5em 2em;

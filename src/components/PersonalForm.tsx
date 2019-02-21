@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import { FormContainer, Row, Paper } from "./Layout";
 import Button from "./Button";
@@ -11,6 +11,8 @@ import { UploadField } from "./Upload";
 import withWizard from "../core/form";
 import { next } from "../core/step";
 import styled from "@emotion/styled";
+import RadioGroup from "./RadioGroup";
+import ChangeMajorButton from "./ChangeMajorButton";
 
 const Underline = styled.div`
   content: "";
@@ -37,12 +39,10 @@ export const religions = {
 };
 
 export const grades = {
-  m3: "มัธยมศึกษาปีที่ 3",
-  m4: "มัธยมศึกษาปีที่ 4",
-  m5: "มัธยมศึกษาปีที่ 5",
-  m6: "มัธยมศึกษาปีที่ 6",
-  p1: "ปวช.",
-  other: "อื่นๆ"
+  m3: "ม.3 ขึ้น ม.4",
+  m4: "ม.4 ขึ้น ม.5",
+  m5: "ม.5 ขึ้น ม.6",
+  m6: "ม.6 จบการศึกษา"
 };
 
 export const genders = {
@@ -150,12 +150,19 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
           </Row>
         </Col>
         <Col>
-          <Select
+          <RadioGroup
+            float
+            direction="column"
+            label="ระดับชั้น"
+            name="class"
+            options={gradeOptions}
+          />
+          {/* <Select
             isDisabled={isDisabled}
             name="class"
             label="ระดับชั้น"
             options={gradeOptions}
-          />
+          /> */}
         </Col>
       </Row>
       <Underline />
@@ -193,13 +200,18 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
     </Paper>
 
     {!isDisabled ? (
-      <Row style={{ marginBottom: "2.8em" }}>
-        <Button disabled>ขั้นตอนก่อนหน้า</Button>
+      <Fragment>
+        <Row style={{ marginBottom: "2em" }}>
+          <Button disabled>ขั้นตอนก่อนหน้า</Button>
 
-        <Button onClick={next} type="submit">
-          ขั้นตอนถัดไป
-        </Button>
-      </Row>
+          <Button onClick={next} type="submit" arrow="right">
+            ขั้นตอนถัดไป
+          </Button>
+        </Row>
+        <Row style={{ marginBottom: "2.8em" }}>
+          <ChangeMajorButton />
+        </Row>
+      </Fragment>
     ) : (
       ""
     )}

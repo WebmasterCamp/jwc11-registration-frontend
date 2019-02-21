@@ -31,6 +31,7 @@ import { submit } from "../ducks/submission";
 
 import { getMajorFromPath } from "../core/util";
 import NavBar from "../components/NavBar";
+import ChangeMajorButton from "../components/ChangeMajorButton";
 // import { formatGroupQuestion } from "react-select/lib/builtins";
 
 // export const Container = styled.div`
@@ -82,7 +83,6 @@ const parent = {
 };
 const parentFields = Object.entries(parent);
 
-
 const Underline = styled.div`
   content: "";
   width: 100%;
@@ -91,7 +91,7 @@ const Underline = styled.div`
   margin-bottom: 3em;
   bottom: 0;
   left: 0;
-  background-color: #E0E0E0;
+  background-color: #e0e0e0;
 `;
 
 const Item = styled.div`
@@ -317,7 +317,7 @@ const Heading = styled.h1`
 `;
 
 const Label = styled.label`
-  color: #7E8991;
+  color: #7e8991;
   font-size: 1.4em;
   margin: 0.6em 0;
 `;
@@ -335,22 +335,19 @@ const SubmitBar = ({ submit, style }) => (
 const Verify = ({ data = {} as any, submit }) => (
   <FormContainer>
     <PageTitle>ตรวจสอบข้อมูล และยืนยันการสมัคร</PageTitle>
-    <Paper style={{marginTop:'100px'}}>
+    <Paper style={{ marginTop: "100px" }}>
       <Upload value={data.photo} />
       <PersonalSection data={data} />
       <GeneralSection data={data} />
       <Underline />
       <MajorSection data={data} />
     </Paper>
-    <NavBar submit={submit} style={{ marginBottom: "2.8em" }} />
+    <SubmitBar submit={submit} style={{ marginBottom: "2.8em" }} />
+    <ChangeMajorButton />
   </FormContainer>
 );
 
 const mapStateToProps = (state: any) => {
-  console.log(state);
-  console.log({
-    data: getFormValues("submission")(state)
-  });
   return {
     data: getFormValues("submission")(state) || state.camper
   };

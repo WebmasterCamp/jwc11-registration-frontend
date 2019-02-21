@@ -61,7 +61,6 @@ export default props => {
 	const [field, setField] = useState<Character>(Character.content);
 	const isMobile = useIsMobile();
 	const selectHandler = () => {
-		console.log(toggle);
 		if (selector) {
 			self.location = `/${selector}` as any;
 		}

@@ -119,6 +119,7 @@ const withField = Component => {
         name: keyof Fields;
         type?: "email" | "text" | "number";
         placeholder?: string;
+        direction?: "row" | "column";
       }
   ) => {
     return <Field<{}> component={InputField as any} {...props} />;
