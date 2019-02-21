@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Field } from "redux-form";
 import styled from "@emotion/styled";
+import withField from "./withField";
 
 const Label = styled.label`
   font-size: 1.2em;
@@ -29,32 +30,33 @@ const Topic = styled.label`
 `;
 
 interface RadioGroupProps {
-  options: string[];
+  options: { value: string; label: string }[];
   name: string;
   direction: "row" | "column";
   label: string;
+  value: string;
+  onChange;
 }
 
-export default (props: RadioGroupProps) => {
-  const { options, name, direction, label } = props;
+export default withField((props: RadioGroupProps) => {
+  const { options, direction, ...input } = props;
   return (
     <Container style={{ flexDirection: "column" }}>
-      <Topic>{label}</Topic>
       <Container style={{ flexDirection: direction }}>
         {options.map((choice, index) => {
           return (
             <Label key={index}>
-              <Field
-                component={"input"}
-                name={name}
+              <input
                 type="radio"
-                value={choice}
+                {...input}
+                value={choice.value}
+                checked={choice.value === input.value}
               />
-              &nbsp;{choice}
+              &nbsp;{choice.label}
             </Label>
           );
         })}
       </Container>
     </Container>
   );
-};
+});
