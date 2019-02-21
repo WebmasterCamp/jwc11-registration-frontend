@@ -111,7 +111,7 @@ function* saveSubmissionSaga({ payload }) {
 }
 
 function* clearMajorSaga() {
-  yield fork(updateCamperRecord, CLEAR_MAJOR_FIELD);
+  yield call(updateCamperRecord, CLEAR_MAJOR_FIELD);
   navigate("/");
 }
 

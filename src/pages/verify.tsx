@@ -331,10 +331,12 @@ const SubmitBar = ({ submit, style }) => (
     </Button>
   </Row>
 );
-
 const Verify = ({ data = {} as any, submit }) => (
   <FormContainer>
-    <PageTitle>ตรวจสอบข้อมูล และยืนยันการสมัคร</PageTitle>
+    <NavBar />
+    <HeadingFrame>
+      <Heading>ตรวจคำตอบ</Heading>
+    </HeadingFrame>
     <Paper style={{ marginTop: "100px" }}>
       <Upload value={data.photo} />
       <PersonalSection data={data} />
