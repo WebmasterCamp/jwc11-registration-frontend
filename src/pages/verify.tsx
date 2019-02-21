@@ -332,6 +332,9 @@ const SubmitBar = ({ submit, style }) => (
   </Row>
 );
 const Verify = ({ data = {} as any, submit }) => (
+  <Section>
+
+    <NavBar style={{ marginBottom: "2.8em" }} />
   <FormContainer>
     <NavBar />
     <HeadingFrame>
@@ -347,6 +350,7 @@ const Verify = ({ data = {} as any, submit }) => (
     <SubmitBar submit={submit} style={{ marginBottom: "2.8em" }} />
     <ChangeMajorButton />
   </FormContainer>
+  </Section>
 );
 
 const mapStateToProps = (state: any) => {
