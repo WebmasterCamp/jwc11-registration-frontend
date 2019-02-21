@@ -50,7 +50,7 @@ export function Backdrop({
 }) {
   return (
     <BackdropContainer>
-      <ParticleBackdrop />
+      {/* <ParticleBackdrop /> */}
 
       {children}
     </BackdropContainer>
