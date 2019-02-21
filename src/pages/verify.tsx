@@ -365,7 +365,8 @@ const Verify = ({ data = {} as any, submit }) => (
     </Container>
     <FormContainer>
       <Paper>
-        <Upload value={data.photo} />
+        <Label>รูปประจำตัว</Label>
+        <Upload value={data.photo} disabled />
         <PersonalSection data={data} />
         <GeneralSection data={data} />
         <Underline />
