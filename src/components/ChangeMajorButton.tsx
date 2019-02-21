@@ -14,27 +14,31 @@ export default connect(
   null,
   { clearMajor }
 )((props: ChangeMajorButtonProps) => {
-  const { clearMajor, field } = props;
-  const [toggle, setIsToggle] = useState<boolean>(false);
-  const confirm = () => {
-    setIsToggle(!toggle);
-  };
-  return (
-    <Fragment>
-      <Modal
-        text={[
-          "คำตอบทั้งหมดที่น้องกรอกในหน้า",
-          `"ยืนยันสาขา"`,
-          "จะถูกลบทั้งหมด น้องยืนยันจะเปลี่ยนสาขาไหม?"
-        ]}
-        field={field || getMajorFromPath()}
-        toggle={toggle}
-        setToggle={setIsToggle}
-        confirm={clearMajor}
-      />
-      <TransparentButton color="white" onClick={confirm} type="button">
-        เปลี่ยนสาขา
-      </TransparentButton>
-    </Fragment>
-  );
+  if (typeof window !== "undefined") {
+    const { clearMajor, field } = props;
+    const [toggle, setIsToggle] = useState<boolean>(false);
+    const confirm = () => {
+      setIsToggle(!toggle);
+    };
+    return (
+      <Fragment>
+        <Modal
+          text={[
+            "คำตอบทั้งหมดที่น้องกรอกในหน้า",
+            `"ยืนยันสาขา"`,
+            "จะถูกลบทั้งหมด น้องยืนยันจะเปลี่ยนสาขาไหม?"
+          ]}
+          field={field || getMajorFromPath()}
+          toggle={toggle}
+          setToggle={setIsToggle}
+          confirm={clearMajor}
+        />
+        <TransparentButton color="white" onClick={confirm} type="button">
+          เปลี่ยนสาขา
+        </TransparentButton>
+      </Fragment>
+    );
+  } else {
+    return null;
+  }
 });
