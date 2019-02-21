@@ -84,14 +84,10 @@ export function* loginSaga() {
   provider.addScope("public_profile");
 
   try {
-    console.log("before signInWithRedirect");
     // Attempt to Sign In with redirection.
     const auth = yield call(rsf.auth.signInWithRedirect, provider);
-    console.log("finish signInWithRedirect");
-    console.log("before signInAndRetrieveDataWithCredential");
     // Retrieve the user credential by using authentication credential.
     const cred = yield call(rsf.auth.signInAndRetrieveDataWithCredential, auth);
-    console.log("finish signInAndRetrieveDataWithCredential");
 
     if (cred) {
       logger.log("Logged in as", cred.user.displayName, cred.user.uid);
