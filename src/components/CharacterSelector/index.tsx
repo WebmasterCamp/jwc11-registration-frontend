@@ -31,15 +31,15 @@ const Card = styled.div`
 const Description = styled.label`
 	color: white;
 	font-size: 2em;
-  align-self: center;
-  margin-top: 2em;
+	align-self: center;
+	margin-top: 2em;
 `;
 
 enum Character {
-	content = 'content',
-	design = 'design',
-	marketing = 'marketing',
-	programming = 'programming',
+	content = 'Content',
+	design = 'Design',
+	marketing = 'Marketing',
+	programming = 'Programming',
 }
 
 const useIsMobile = () => {
@@ -59,6 +59,7 @@ export default props => {
 	const [selector, setSelector] = useState<Character>(Character.content);
 	const [toggle, setIsToggle] = useState<boolean>(false);
 	const [field, setField] = useState<Character>(Character.content);
+	const [modalText,setModalText] = useState<any>((<div></div>))
 	const isMobile = useIsMobile();
 	const selectHandler = () => {
 		console.log(toggle);
@@ -67,6 +68,9 @@ export default props => {
 		}
 	};
 	const confirm = () => {
+		const tempModalText = <div>แน่ใจแล้วหรอว่าจะสมัครสาขา<br />{`"Web ${selector}"`}<br />ถ้ากดยืนยันแล้วจะเปลี่ยนสาขาไม่ได้แล้วนะ</div>
+		setModalText(tempModalText)
+		console.log(modalText);
 		setIsToggle(!toggle);
 		setField(selector);
 	};
@@ -137,7 +141,7 @@ export default props => {
 	);
 	return (
 		<Container>
-			<Modal field={field} toggle={toggle} setToggle={setIsToggle} confirm={selectHandler} />
+			<Modal field={field} toggle={toggle} text={modalText} setToggle={setIsToggle} confirm={selectHandler} />
 			{isMobile ? MobileContent : DesktopContent}
 			<Button onClick={() => confirm()}>ยืนยันสาขา</Button>
 		</Container>

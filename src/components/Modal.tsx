@@ -49,17 +49,18 @@ const Text = styled.div`
 	text-align: center;
 	line-height: normal;
 	margin-bottom: 30px;
-	padding-left: 10%;
-	padding-right: 10%;
+	padding-left: 24%;
+	padding-right: 24%;
 	@media (max-width: 375px) {
 		font-size: 1.2em;
 	}
 `;
 const ButtonContainer = styled.div`
 	display: flex;
-	justify-content: space-evenly;
-	padding-left: 10%;
-	padding-right: 10%;
+	justify-content: center;
+	padding-left: 5em;
+	padding-right: 5em;
+	text-align: center;
 	@media (max-width: 375px) {
 		font-size: 0.6em;
 		padding: 0;
@@ -100,6 +101,7 @@ interface ModalState {
 interface ModalProps {
 	setToggle: (prevState: boolean) => void;
 	confirm: () => void;
+	text: String[];
 }
 
 class Modal extends Component<ModalProps, ModalState> {
@@ -119,14 +121,15 @@ class Modal extends Component<ModalProps, ModalState> {
 		this.toggleModal();
 	}
 	componentWillReceiveProps(props) {
+		console.log(props)
 		// receive props from parent
 		//set pictureColor
 		const { field } = props;
 		let pictureColor = '';
-		if (field === 'content') pictureColor = 'yellow';
-		else if (field === 'design') pictureColor = 'pink';
-		else if (field === 'marketing') pictureColor = 'green';
-		else if (field === 'programming') pictureColor = 'blue';
+		if (field === 'Content') pictureColor = 'yellow';
+		else if (field === 'Design') pictureColor = 'pink';
+		else if (field === 'Marketing') pictureColor = 'green';
+		else if (field === 'Programming') pictureColor = 'blue';
 		this.setState({ pictureColor });
 		//set toggle
 		const { toggle } = props;
@@ -134,15 +137,15 @@ class Modal extends Component<ModalProps, ModalState> {
 	}
 	render = () => {
 		const { pictureColor, toggle } = this.state;
+		const { text } = this.props;
+		const text1 = <div>earth</div>
+		console.log('in render',text,text1) ;
+
 		return (
 			<Container id="modal" isOpen={toggle}>
 				<Content pictureColor={pictureColor}>
 					<Text>
-						แน่ใจแล้วหรอว่าจะสมัครสาขา
-						<br />
-						“Web Content”
-						<br />
-						ถ้ากดยืนยันแล้วจะเปลี่ยนสาขาไม่ได้แล้วนะ
+						{text}
 					</Text>
 					<ButtonContainer>
 						<CancelButton onClick={() => this.toggleModal()}>ยกเลิก</CancelButton>
