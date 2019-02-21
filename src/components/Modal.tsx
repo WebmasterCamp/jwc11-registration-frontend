@@ -110,6 +110,7 @@ interface ModalProps {
   setToggle: (prevState: boolean) => void;
   confirm: () => void;
   text: string[];
+  confirmHref?: string;
 }
 
 class Modal extends Component<ModalProps, ModalState> {
@@ -133,7 +134,7 @@ class Modal extends Component<ModalProps, ModalState> {
     // receive props from parent
     //set pictureColor
     const { field: major } = props;
-    const field = major.toLowerCase();
+    const field = major ? major.toLowerCase() : "content";
     let pictureColor = "";
     if (field === "content") pictureColor = "yellow";
     else if (field === "design") pictureColor = "pink";
@@ -146,7 +147,7 @@ class Modal extends Component<ModalProps, ModalState> {
   }
   render = () => {
     const { pictureColor, toggle } = this.state;
-    const { text } = this.props;
+    const { text, confirmHref } = this.props;
 
     return (
       <Container id="modal" isOpen={toggle}>
@@ -157,9 +158,17 @@ class Modal extends Component<ModalProps, ModalState> {
             <TransparentButton onClick={() => this.toggleModal()} type="button">
               ยกเลิก
             </TransparentButton>
-            <Button onClick={() => this.handlerConfirm()} type="button">
-              &nbsp;ยืนยัน&nbsp;
-            </Button>
+            {confirmHref ? (
+              <a href={confirmHref}>
+                <Button onClick={() => this.handlerConfirm()} type="button">
+                  &nbsp;ยืนยัน&nbsp;
+                </Button>
+              </a>
+            ) : (
+              <Button onClick={() => this.handlerConfirm()} type="button">
+                &nbsp;ยืนยัน&nbsp;
+              </Button>
+            )}
           </ButtonContainer>
         </Content>
       </Container>

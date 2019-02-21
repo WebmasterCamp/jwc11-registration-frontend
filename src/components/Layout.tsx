@@ -3,12 +3,10 @@ import styled from "@emotion/styled";
 import { ParticleBackdrop } from "./ParticleBackdrop";
 
 export const Heading = styled.h1`
-  color: #555;
+  color: white;
   font-size: 1.85em;
   font-weight: 300;
-
   text-align: center;
-  margin-bottom: 1.2em;
 `;
 
 export const HeadingFrame = styled.div`
@@ -43,11 +41,7 @@ export const BackdropContainer = styled.div`
   min-height: 100vh;
 `;
 
-export function Backdrop({
-  children
-}: {
-  children: any;
-}) {
+export function Backdrop({ children }: { children: any }) {
   return (
     <BackdropContainer>
       {/* <ParticleBackdrop /> */}

@@ -5,6 +5,7 @@ import Button from "../Button";
 import CharacterCard from "./CharacterCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from "../../components/Modal";
+import { navigate } from "@reach/router";
 
 const Container = styled.div`
   display: flex;
@@ -62,9 +63,9 @@ export default props => {
   const [modalText, setModalText] = useState<any>(<div />);
   const isMobile = useIsMobile();
   const selectHandler = () => {
-    if (selector) {
-      self.location = `/${selector}` as any;
-    }
+    // if (selector) {
+    //   navigate(`/${selector}`);
+    // }
   };
   const confirm = () => {
     const tempModalText = (
@@ -76,7 +77,6 @@ export default props => {
       </div>
     );
     setModalText(tempModalText);
-    console.log(modalText);
     setIsToggle(!toggle);
     setField(selector);
   };
@@ -176,6 +176,7 @@ export default props => {
         text={modalText}
         setToggle={setIsToggle}
         confirm={selectHandler}
+        confirmHref={`/${selector}`}
       />
       {isMobile ? MobileContent : DesktopContent}
       <Button onClick={() => confirm()}>ยืนยันสาขา</Button>

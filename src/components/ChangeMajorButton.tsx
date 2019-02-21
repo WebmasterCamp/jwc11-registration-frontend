@@ -5,10 +5,16 @@ import { Fragment, useState } from "react";
 import Modal from "./Modal";
 import { getMajorFromPath } from "../core/util";
 
+interface ChangeMajorButtonProps {
+  field?: string;
+  clearMajor?: () => void;
+}
+
 export default connect(
   null,
   { clearMajor }
-)(({ clearMajor }) => {
+)((props: ChangeMajorButtonProps) => {
+  const { clearMajor, field } = props;
   const [toggle, setIsToggle] = useState<boolean>(false);
   const confirm = () => {
     setIsToggle(!toggle);
@@ -21,7 +27,7 @@ export default connect(
           `"ยืนยันสาขา"`,
           "จะถูกลบทั้งหมด น้องยืนยันจะเปลี่ยนสาขาไหม?"
         ]}
-        field={getMajorFromPath()}
+        field={field || getMajorFromPath()}
         toggle={toggle}
         setToggle={setIsToggle}
         confirm={clearMajor}

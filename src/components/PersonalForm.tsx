@@ -49,7 +49,7 @@ export const grades = {
 export const genders = {
   male: "ชาย",
   female: "หญิง",
-  other: "เพศอื่นๆ",
+  other: "เพศอื่นๆ"
 };
 
 export const shirtSizes = {
@@ -179,7 +179,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
             label="ถิ่นที่อยู่"
           />
         </Col>
-        <Col>
+        <Col style={{ alignSelf: "flex-start", justifySelf: "flex-start" }}>
           <Row>
             <Input
               disabled={isDisabled}
