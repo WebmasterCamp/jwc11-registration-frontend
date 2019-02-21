@@ -19,7 +19,7 @@ const db = app.firestore();
 
 // Disable this flag in order to allow major to be changed.
 // I'm counting on you.
-const MAJOR_CANNOT_BE_CHANGED = false;
+const MAJOR_CANNOT_BE_CHANGED = true;
 
 export const STORE_CAMPER = "STORE_CAMPER";
 
@@ -28,7 +28,7 @@ export const storeCamper = Creator(STORE_CAMPER);
 const LoadingMessage = `กำลังดึงข้อมูลการสมัครเข้าค่าย กรุณารอสักครู่...`;
 const MajorRedirectLog = `User has chosen a major before. Redirecting to:`;
 const MajorRedirectMessage = `กำลังเปลี่ยนหน้าไปที่แบบฟอร์มสมัครเข้าสาขา `;
-const ChangeDeniedMessage = `คุณไม่สามารถเปลี่ยนสาขาได้อีก หลังจากที่เลือกสาขานั้นๆ ไปแล้ว`;
+const ChangeDeniedMessage = `คุณได้เลือกสาขาอื่นไปแล้ว`;
 
 // Check if user is at major root, e.g. /:major
 function isMajorRoot(major: string) {

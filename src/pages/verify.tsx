@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import styled from "@emotion/styled";
 
@@ -17,13 +17,22 @@ import {
   shirtSizes
 } from "../components/PersonalForm";
 
-import { Backdrop, Row, Paper, FormContainer } from "../components/Layout";
+import {
+  Backdrop,
+  Row,
+  Paper,
+  FormContainer,
+  HeadingFrame
+} from "../components/Layout";
 
 import questions, { General } from "../core/questions";
 
 import { submit } from "../ducks/submission";
 
 import { getMajorFromPath } from "../core/util";
+import NavBar from "../components/NavBar";
+import ChangeMajorButton from "../components/ChangeMajorButton";
+import TransparentButton from "../components/TransparentButton";
 // import { formatGroupQuestion } from "react-select/lib/builtins";
 
 // export const Container = styled.div`
@@ -75,7 +84,16 @@ const parent = {
 };
 const parentFields = Object.entries(parent);
 
-
+const Underline = styled.div`
+  content: "";
+  width: 100%;
+  height: 1px;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  bottom: 0;
+  left: 0;
+  background-color: #e0e0e0;
+`;
 
 const Item = styled.div`
   color: #333;
@@ -135,11 +153,17 @@ const Row3 = styled.div`
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr 1fr;
+  @media screen and (max-width: 780px) {
+    grid-template-columns: 1fr;
+  }
 `;
 const Row2 = styled.div`
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr;
+  @media screen and (max-width: 780px) {
+    grid-template-columns: 1fr;
+  }
 `;
 const Row1 = styled.div`
   display: grid;
@@ -163,6 +187,7 @@ const PersonalSection = ({ data }) => (
       <PersonalItem title={"school"} data={data} />
       <PersonalItem title={"class"} data={data} />
     </Row3>
+    <Underline />
     <Row2>
       <Row1>
         <PersonalItem title={"address"} data={data} />
@@ -172,6 +197,7 @@ const PersonalSection = ({ data }) => (
         <PersonalItem title={"email"} data={data} />
       </Row1>
     </Row2>
+    <Underline />
     <Row2>
       <PersonalItem title={"disease"} data={data} />
       <PersonalItem title={"foodAllergy"} data={data} />
@@ -181,12 +207,14 @@ const PersonalSection = ({ data }) => (
     <Row1>
       <PersonalItem title={"activity"} data={data} />
     </Row1>
+    <Underline />
     <Row2>
       <ParentalItem title={"parentFirstName"} data={data} />
       <ParentalItem title={"parentLastName"} data={data} />
       <ParentalItem title={"parentRelation"} data={data} />
       <ParentalItem title={"parentPhone"} data={data} />
     </Row2>
+    <Underline />
   </Section>
 );
 
@@ -254,7 +282,7 @@ const MajorSection = ({ data }) => {
         <Question>{Q1}</Question>
 
         {major === "design" ? (
-          <DesignUpload />
+          <DesignUpload disabled />
         ) : (
           <Answer>{data.majorAnswer1}</Answer>
         )}
@@ -287,34 +315,71 @@ const PageTitle = styled.div`
   font-size: 1.6em;
 `;
 
-const NavBar = ({ submit, style }) => (
-  <Row style={style}>
-    <Button onClick={prev}>ย้อนกลับไปแก้ไข</Button>
+const Heading = styled.h1`
+  font-size: 2.8em;
+  font-weight: 300;
+  margin-bottom: 0.3em;
+  text-align: center;
+  color: white;
+`;
 
+const Label = styled.label`
+  color: #7e8991;
+  font-size: 1.4em;
+  margin: 0.6em 0;
+`;
+
+const SubmitBar = ({ submit, style }) => (
+  <Row style={style}>
+    <TransparentButton arrow="left" onClick={prev}>
+      ย้อนกลับไปแก้ไข
+    </TransparentButton>
     <Button onClick={submit} success>
-      ยืนยันการสมัครเข้าค่าย JWC
+      ยืนยัน
     </Button>
   </Row>
 );
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1440px;
+
+  padding: 2em 2.2em;
+
+  @media screen and (max-width: 480px) {
+    padding: 0 1.2em 1em 1.2em;
+  }
+`;
 
 const Verify = ({ data = {} as any, submit }) => (
-  <FormContainer>
-    <PageTitle>ตรวจสอบข้อมูล และยืนยันการสมัคร</PageTitle>
-    <Paper style={{marginTop:'100px'}}>
-      <Upload value={data.photo} />
-      <PersonalSection data={data} />
-      <GeneralSection data={data} />
-      <MajorSection data={data} />
-    </Paper>
-    <NavBar submit={submit} style={{ marginBottom: "2.8em" }} />
-  </FormContainer>
+  <Section>
+    <NavBar />
+    <Container>
+      <HeadingFrame>
+        <Heading>ตรวจคำตอบ</Heading>
+      </HeadingFrame>
+    </Container>
+    <FormContainer>
+      <Paper>
+        <Upload value={data.photo} />
+        <PersonalSection data={data} />
+        <GeneralSection data={data} />
+        <Underline />
+        <MajorSection data={data} />
+      </Paper>
+      <SubmitBar submit={submit} style={{ marginBottom: "2em" }} />
+      <Row style={{ marginBottom: "2.8em" }}>
+        <ChangeMajorButton />
+      </Row>
+    </FormContainer>
+  </Section>
 );
 
 const mapStateToProps = (state: any) => {
-  console.log(state);
-  console.log({
-    data: getFormValues("submission")(state)
-  });
   return {
     data: getFormValues("submission")(state) || state.camper
   };

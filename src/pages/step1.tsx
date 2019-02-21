@@ -9,12 +9,13 @@ import { save, markNext } from "../ducks/submission";
 import Stepper from "../components/Stepper";
 import NavBar from "../components/NavBar";
 import Title from "../components/Title";
+import ChangeMajorButton from "../components/ChangeMajorButton";
 
 const StepOne = ({ save, markNext }) => (
   <Backdrop>
     <NavBar />
     <Stepper
-      currentStep={"ข้อมูลส่วนตัว"}
+      currentStep={"ข้อมูลนักเวทย์"}
       steps={["ข้อมูลนักเวทย์", "ข้อมูลเพิ่มเติม", "คำถามกลาง", "คำถามสาขา"]}
     />
     <Title>ข้อมูลนักเวทย์</Title>
