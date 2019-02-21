@@ -15,14 +15,12 @@ export const SUBMIT = "@CAMP/SUBMIT";
 export const SET_LOADING = "@CAMP/SET_LOADING";
 export const MARK_NEXT = "@CAMP/MARK_NEXT";
 export const UNMARK_NEXT = "@CAMP/UNMARK_NEXT";
-export const CLEAR_MAJOR = "@CAMP/CLEAR_MAJOR";
 
 export const save = Creator(SAVE);
 export const submit = Creator(SUBMIT);
 export const setLoading = Creator(SET_LOADING);
 export const markNext = Creator(MARK_NEXT);
 export const unmarkNext = Creator(UNMARK_NEXT);
-export const clearMajor = Creator(CLEAR_MAJOR);
 
 const db = app.firestore();
 
@@ -110,13 +108,7 @@ function* saveSubmissionSaga({ payload }) {
   }
 }
 
-function* clearMajorSaga() {
-  yield call(updateCamperRecord, CLEAR_MAJOR_FIELD);
-  navigate("/");
-}
-
 export function* submissionWatcherSaga() {
-  yield takeEvery(CLEAR_MAJOR, clearMajorSaga);
   yield takeEvery(SAVE, saveSubmissionSaga);
   yield takeEvery(SUBMIT, submissionSaga);
 }
@@ -136,9 +128,3 @@ export default createReducer(initial, state => ({
   [MARK_NEXT]: () => ({ ...state, shouldProceed: true }),
   [UNMARK_NEXT]: () => ({ ...state, shouldProceed: false })
 }));
-
-export const CLEAR_MAJOR_FIELD = {
-  major: "",
-  majorAnswer1: "",
-  majorAnswer2: ""
-};

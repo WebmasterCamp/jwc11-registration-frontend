@@ -10,18 +10,24 @@ interface IMeta {
 }
 // prettier-ignore
 export const TextInput = styled.input<{meta: IMeta}>`
+  font-weight: 300;
   text-align: left;
-  font-size: 18px;
+  font-size: 1.5em;
   line-height: 1.2em;
+
   width: 100%;
   padding: 0.15em 0.6em;
-  letter-spacing: 0.01em;
+
+
   min-width: 10em;
   min-height: 40px;
+
   outline: none;
   transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) all;
+
   border: 1px solid #E0E0E0;
   border-radius: 4px;
+
   background: white;
   color: #555;
 
@@ -30,13 +36,10 @@ export const TextInput = styled.input<{meta: IMeta}>`
   }
 
   &::placeholder {
-    font-family: Pridi;
-    font-style: normal;
-    font-weight: 100;
-    line-height: normal;
-    font-size: 18px;
-    letter-spacing: 0.01em;
     color: #E0E0E0;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
   }
 
   &:hover:enabled {

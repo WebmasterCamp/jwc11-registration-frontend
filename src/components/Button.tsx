@@ -27,11 +27,12 @@ const ButtonContainer = styled.button`
   // margin-left: 1em;
   align-self: center;
   border-radius: 9999px;
+
   background: ${props => props.color || '#E1A34E'};
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   
   outline: none;
-  padding: 0.5em 3em;
+  padding: 0.5em 2em;
   position: relative;
   text-align: center;
   text-decoration: none;

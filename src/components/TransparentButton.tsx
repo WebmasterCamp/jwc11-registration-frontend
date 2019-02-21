@@ -29,11 +29,12 @@ const TransparentButtonContainer = styled.button`
   align-self: center;
   border-radius: 9999px;
 
-  background: transparent;
-  color: ${props => props.color || "#E1A34E"};
+  background: ${props => props.color || 'transparent'};
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  color: #E1A34E;
 
   outline: none;
-  padding: 0.5em 3em;
+  padding: 0.5em 2em;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -97,7 +98,7 @@ const TransparentButton = ({
         transform: "translateY(-50%)",
         right: arrow === "right" ? "16px" : undefined,
         left: arrow === "left" ? "16px" : undefined,
-        position: "absolute",
+        position: "absolute"
       }}
     />
   ) : null;

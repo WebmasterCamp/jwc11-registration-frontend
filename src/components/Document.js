@@ -6,7 +6,7 @@ export function Document(props) {
       <Head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href="https://fonts.googleapis.com/css?family=Pridi:200,300,400&amp;subset=thai" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Pridi" rel="stylesheet" />
         <link rel="apple-touch-icon" sizes="57x57" href="/logo/apple-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/logo/apple-icon-60x60.png" />
         <link rel="apple-touch-icon" sizes="72x72" href="/logo/apple-icon-72x72.png" />

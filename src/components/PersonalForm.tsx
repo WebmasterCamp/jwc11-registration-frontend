@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import { FormContainer, Row, Paper } from "./Layout";
 import Button from "./Button";
@@ -11,20 +11,6 @@ import { UploadField } from "./Upload";
 import withWizard from "../core/form";
 import { next } from "../core/step";
 import styled from "@emotion/styled";
-import RadioGroup from "./RadioGroup";
-import ChangeMajorButton from "./ChangeMajorButton";
-import TransparentButton from "./TransparentButton";
-
-const Underline = styled.div`
-  content: "";
-  width: 100%;
-  height: 1px;
-  margin-top: 5em;
-  margin-bottom: 5em;
-  bottom: 0;
-  left: 0;
-  background-color: #e0e0e0;
-`;
 
 const toOptions = i => ({ value: i, label: i });
 
@@ -40,16 +26,19 @@ export const religions = {
 };
 
 export const grades = {
-  m3: "ม.3 ขึ้น ม.4",
-  m4: "ม.4 ขึ้น ม.5",
-  m5: "ม.5 ขึ้น ม.6",
-  m6: "ม.6 จบการศึกษา"
+  m3: "มัธยมศึกษาปีที่ 3",
+  m4: "มัธยมศึกษาปีที่ 4",
+  m5: "มัธยมศึกษาปีที่ 5",
+  m6: "มัธยมศึกษาปีที่ 6",
+  p1: "ปวช.",
+  other: "อื่นๆ"
 };
 
 export const genders = {
   male: "ชาย",
   female: "หญิง",
-  other: "เพศอื่นๆ"
+  other: "เพศอื่นๆ",
+  none: "ไม่ระบุ"
 };
 
 export const shirtSizes = {
@@ -73,20 +62,14 @@ const Col = styled.div`
   width: 100%;
 `;
 
-const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
+const PersonalForm = ({ next, handleSubmit ,isDisabled = false }) => (
   <FormContainer onSubmit={handleSubmit}>
     <Paper>
       <UploadField name="photo" />
 
       <Row>
         <Col>
-          <Input
-            float
-            name="firstname"
-            disabled={isDisabled}
-            label="ชื่อ"
-            placeholder="แฮรี่"
-          />
+          <Input float name="firstname" disabled={isDisabled} label="ชื่อ" placeholder="แฮรี่" />
         </Col>
         <Col>
           <Input
@@ -98,39 +81,21 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
           />
         </Col>
         <Col>
-          <Input
-            disabled={isDisabled}
-            float
-            name="nickname"
-            label="ชื่อเล่น"
-            placeholder="เจมส์"
-          />
+          <Input  disabled={isDisabled} float name="nickname" label="ชื่อเล่น" placeholder="เจมส์" />
         </Col>
       </Row>
 
       <Row>
         <Col>
-          <DatePicker
-            isDisabled={isDisabled}
-            name="birthdate"
-            label="วันเกิด"
-            float
-          />
+          <DatePicker isDisabled={isDisabled} name="birthdate" label="วันเกิด" float />
         </Col>
         <Col>
-          <RadioGroup
-            float
-            direction="row"
-            isDisabled={isDisabled}
-            name="gender"
-            label="เพศ"
-            options={genderOptions}
-          />
+          <Select isDisabled={isDisabled} name="gender" label="เพศ" options={genderOptions} />
         </Col>
       </Row>
 
       <Row>
-        <Col style={{ justifySelf: "flex-start", alignSelf: "flex-start" }}>
+        <Col>
           <Row>
             <Select
               isDisabled={isDisabled}
@@ -143,7 +108,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
           </Row>
           <Row>
             <Input
-              disabled={isDisabled}
+            disabled={isDisabled}
               float
               name="school"
               label="โรงเรียน"
@@ -152,37 +117,18 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
           </Row>
         </Col>
         <Col>
-          <RadioGroup
-            float
-            disabled={isDisabled}
-            direction="column"
-            label="ระดับชั้น"
-            name="class"
-            options={gradeOptions}
-          />
-          {/* <Select
-            isDisabled={isDisabled}
-            name="class"
-            label="ระดับชั้น"
-            options={gradeOptions}
-          /> */}
+          <Select isDisabled={isDisabled} name="class" label="ระดับชั้น" options={gradeOptions} />
         </Col>
       </Row>
-      <Underline />
+
       <Row>
         <Col>
-          <TextArea
-            disabled={isDisabled}
-            float
-            placeholder="บ้านเลขที่, ถนน, แขวง, เขต ฯลฯ"
-            name="address"
-            label="ถิ่นที่อยู่"
-          />
+          <TextArea  disabled={isDisabled} float name="address" label="ถิ่นที่อยู่" />
         </Col>
-        <Col style={{ alignSelf: "flex-start", justifySelf: "flex-start" }}>
+        <Col>
           <Row>
             <Input
-              disabled={isDisabled}
+            disabled={isDisabled}
               float
               name="phone"
               label="เบอโทรศัพท์มือถือ"
@@ -191,7 +137,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
           </Row>
           <Row>
             <Input
-              disabled={isDisabled}
+             disabled={isDisabled}
               float
               name="email"
               label="อีเมล"
@@ -202,22 +148,13 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
       </Row>
     </Paper>
 
-    {!isDisabled ? (
-      <Fragment>
-        <Row style={{ marginBottom: "2em" }}>
-          {/* <TransparentButton disabled>ขั้นตอนก่อนหน้า</TransparentButton> */}
+    { !isDisabled ? <Row>
+      <Button disabled>ขั้นตอนก่อนหน้า</Button>
 
-          <Button onClick={next} type="submit" arrow="right">
-            ขั้นตอนถัดไป
-          </Button>
-        </Row>
-        <Row style={{ marginBottom: "2.8em" }}>
-          <ChangeMajorButton />
-        </Row>
-      </Fragment>
-    ) : (
-      ""
-    )}
+      <Button onClick={next} type="submit">
+        ขั้นตอนถัดไป
+      </Button>
+    </Row> : ''}
   </FormContainer>
 );
 

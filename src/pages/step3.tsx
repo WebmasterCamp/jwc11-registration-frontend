@@ -9,7 +9,6 @@ import {save, markNext} from '../ducks/submission'
 import Title from '../components/Title';
 import Stepper from '../components/Stepper';
 import NavBar from '../components/NavBar';
-import ChangeMajorButton from '../components/ChangeMajorButton';
 
 const StepOne = ({save, markNext}) => (
   <Backdrop>
@@ -17,7 +16,7 @@ const StepOne = ({save, markNext}) => (
     <Title>คำถามกลาง</Title>
     <Stepper
       currentStep={"คำถามกลาง"}
-      steps={["ข้อมูลนักเวทย์", "ข้อมูลเพิ่มเติม", "คำถามกลาง", "คำถามสาขา"]}
+      steps={["ข้อมูลส่วนตัว", "ข้อมูลเพิ่มเติม", "คำถามกลาง", "คำถามสาขา"]}
     />
     <QuestionForm onSubmit={save} next={markNext} />
   </Backdrop>
