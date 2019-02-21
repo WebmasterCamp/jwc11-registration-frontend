@@ -333,6 +333,9 @@ const SubmitBar = ({ submit, style }) => (
 );
 
 const Verify = ({ data = {} as any, submit }) => (
+  <Section>
+
+    <NavBar submit={submit} style={{ marginBottom: "2.8em" }} />
   <FormContainer>
     <PageTitle>ตรวจสอบข้อมูล และยืนยันการสมัคร</PageTitle>
     <Paper style={{marginTop:'100px'}}>
@@ -342,8 +345,8 @@ const Verify = ({ data = {} as any, submit }) => (
       <Underline />
       <MajorSection data={data} />
     </Paper>
-    <NavBar submit={submit} style={{ marginBottom: "2.8em" }} />
   </FormContainer>
+  </Section>
 );
 
 const mapStateToProps = (state: any) => {
