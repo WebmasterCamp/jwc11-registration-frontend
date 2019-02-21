@@ -130,7 +130,6 @@ class Modal extends Component<ModalProps, ModalState> {
     this.toggleModal();
   }
   componentWillReceiveProps(props) {
-    console.log(props);
     // receive props from parent
     //set pictureColor
     const { field: major } = props;
