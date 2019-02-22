@@ -7,7 +7,7 @@ const Label = styled.label`
   font-size: 1.2em;
   margin-right: 0.5em;
   margin-bottom: 0.5em;
-  color: #7E8991;
+  color: #7e8991;
   font-style: normal;
   font-weight: 200;
   line-height: normal;
@@ -18,6 +18,9 @@ const Container = styled.div`
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: flex-start;
+  @media screen and (max-width: 350px) {
+    flex-direction: column !important;
+  }
 `;
 
 const Topic = styled.label`

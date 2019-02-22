@@ -49,7 +49,7 @@ const ParentalForm = ({ next, handleSubmit }) => (
       <Row>
         <Col>
           <Input
-            float
+            wordy
             placeholder="ลิลลี่"
             name="disease"
             label="โรคประจำตัว (ถ้าไม่มีใส่ -)"
@@ -57,7 +57,7 @@ const ParentalForm = ({ next, handleSubmit }) => (
         </Col>
         <Col>
           <Input
-            float
+            wordy
             placeholder="แป้ง ถั่ว กระเทียม ฯลฯ"
             name="foodAllergy"
             label="สิ่งที่แพ้ / อาหารที่แพ้ (ถ้าไม่มีใส่ -)"
@@ -66,10 +66,11 @@ const ParentalForm = ({ next, handleSubmit }) => (
       </Row>
       <Row>
         <Col>
-          <Input float name="drugAllergy" label="ยาที่แพ้ (ถ้าไม่มีใส่ -)" />
+          <Input wordy name="drugAllergy" label="ยาที่แพ้ (ถ้าไม่มีใส่ -)" />
         </Col>
         <Col>
           <Select
+            wordy
             name="shirtSize"
             label="ไซส์เสื้อ"
             options={shirtSizeOptions}
@@ -79,7 +80,6 @@ const ParentalForm = ({ next, handleSubmit }) => (
       <Row>
         <Col>
           <TextArea
-            float
             wordy
             placeholder="เล่าเกี่ยวกับสิ่งที่เคยทำเหล่านั้น ..."
             name="activity"
@@ -91,7 +91,7 @@ const ParentalForm = ({ next, handleSubmit }) => (
       <Row>
         <Col>
           <Input
-            float
+            wordy
             placeholder="ลิลลี่"
             name="parentFirstName"
             label="ชื่อผู้ปกครอง"
@@ -99,7 +99,7 @@ const ParentalForm = ({ next, handleSubmit }) => (
         </Col>
         <Col>
           <Input
-            float
+            wordy
             placeholder="พอตเตอร์"
             name="parentLastName"
             label="นามสกุล"
@@ -109,7 +109,7 @@ const ParentalForm = ({ next, handleSubmit }) => (
       <Row>
         <Col>
           <Input
-            float
+            wordy
             placeholder="บิดา มารดา ฯลฯ"
             name="parentRelation"
             label="ความเกี่ยวข้อง"
@@ -117,7 +117,7 @@ const ParentalForm = ({ next, handleSubmit }) => (
         </Col>
         <Col>
           <Input
-            float
+            wordy
             placeholder="0898765432"
             name="parentPhone"
             label="เบอร์โทรศัพท์"

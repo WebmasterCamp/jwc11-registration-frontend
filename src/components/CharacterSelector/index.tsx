@@ -51,10 +51,11 @@ const useIsMobile = () => {
     const resizeHandler = () => {
       if (typeof window !== "undefined") {
         setIsMobile(window.innerWidth < 780);
-
-        window.addEventListener("resize", resizeHandler);
       }
     };
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", resizeHandler);
+    }
     return () => {
       if (typeof window !== "undefined") {
         window.removeEventListener("resize", resizeHandler);
