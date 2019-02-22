@@ -331,11 +331,11 @@ const Label = styled.label`
 
 const SubmitBar = ({ submit, style }) => (
   <Row style={style}>
-    <TransparentButton arrow="left" onClick={prev}>
+    <TransparentButton arrow="left" onClick={prev} type="button">
       ย้อนกลับไปแก้ไข
     </TransparentButton>
-    <Button onClick={submit} success>
-      ยืนยัน
+    <Button onClick={submit} type="button">
+      ส่งใบสมัคร
     </Button>
   </Row>
 );

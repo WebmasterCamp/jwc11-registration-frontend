@@ -81,7 +81,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
       <Row>
         <Col>
           <Input
-            float
+            wordy
             name="firstname"
             disabled={isDisabled}
             label="ชื่อ"
@@ -91,7 +91,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
         <Col>
           <Input
             disabled={isDisabled}
-            float
+            wordy
             name="lastname"
             label="นามสกุล"
             placeholder="พ็อตเตอร์"
@@ -100,7 +100,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
         <Col>
           <Input
             disabled={isDisabled}
-            float
+            wordy
             name="nickname"
             label="ชื่อเล่น"
             placeholder="เจมส์"
@@ -114,12 +114,12 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
             isDisabled={isDisabled}
             name="birthdate"
             label="วันเกิด"
-            float
+            wordy
           />
         </Col>
         <Col>
           <RadioGroup
-            float
+            wordy
             direction="row"
             isDisabled={isDisabled}
             name="gender"
@@ -134,7 +134,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
           <Row>
             <Select
               isDisabled={isDisabled}
-              float
+              wordy
               name="religion"
               label="ศาสนา"
               options={religionOptions}
@@ -144,7 +144,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
           <Row>
             <Input
               disabled={isDisabled}
-              float
+              wordy
               name="school"
               label="โรงเรียน"
               placeholder="ฮอกวอตส์วิทยาคม"
@@ -153,7 +153,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
         </Col>
         <Col>
           <RadioGroup
-            float
+            wordy
             disabled={isDisabled}
             direction="column"
             label="ระดับชั้น"
@@ -173,7 +173,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
         <Col>
           <TextArea
             disabled={isDisabled}
-            float
+            wordy
             placeholder="บ้านเลขที่, ถนน, แขวง, เขต ฯลฯ"
             name="address"
             label="ถิ่นที่อยู่"
@@ -183,7 +183,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
           <Row>
             <Input
               disabled={isDisabled}
-              float
+              wordy
               name="phone"
               label="เบอโทรศัพท์มือถือ"
               placeholder="0931354239"
@@ -192,7 +192,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
           <Row>
             <Input
               disabled={isDisabled}
-              float
+              wordy
               name="email"
               label="อีเมล"
               placeholder="abc_def@xyz.klm"
