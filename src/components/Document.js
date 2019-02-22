@@ -56,12 +56,12 @@ export function Document(props) {
           content="พบกันเร็วๆ นี้ กับค่าย Junior Webmaster Camp"
         />
 
-        <meta name="twitter:site" content="@ycc_th" />
-        <meta name="twitter:creator" content="@ycc_th" />
+        <meta name="twitter:site" content="@jwcth" />
+        <meta name="twitter:creator" content="@jwcth" />
 
         <meta
           name="twitter:image:src"
-          content="https://join.ycc.in.th/images/og.png"
+          content="hhttps://registration.jwc.in.th/images/og.png"
         />
 
         <meta
@@ -78,7 +78,7 @@ export function Document(props) {
           property="og:image"
           content="https://join.ycc.in.th/images/og.png"
         /> */}
-        <meta property="og:url" content="https://join.ycc.in.th" />
+        <meta property="og:url" content="https://registration.jwc.in.th/" />
         <meta property="og:site_name" content="Junior Webmaster Camp" />
         <meta property="og:locale" content="th_TH" />
         <meta property="fb:admins" content="100013664474455" />
