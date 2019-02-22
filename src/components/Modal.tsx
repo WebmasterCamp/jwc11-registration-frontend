@@ -37,7 +37,7 @@ const Content = styled.div<Partial<ModalState>>`
 	display: flex;
 	justify-content: center;
 	flex-flow: column;
-	@media (max-width: 375px) {
+	@media (max-width: 600px) {
 		background-size: contain;
 		font-size: 0.9em;
 		padding: 0;
@@ -52,7 +52,10 @@ const Text = styled.div`
   margin-bottom: 30px;
   padding-left: 24%;
   padding-right: 24%;
-  @media (max-width: 375px) {
+  @media (max-width: 600px) {
+    font-size: 1.6em;
+  }
+  @media (max-width: 450px) {
     font-size: 1.2em;
   }
 `;
@@ -62,7 +65,11 @@ const ButtonContainer = styled.div`
   padding-left: 5em;
   padding-right: 5em;
   text-align: center;
-  @media (max-width: 375px) {
+  @media (max-width: 600px) {
+    font-size: 0.8em;
+    padding: 0;
+  }
+  @media (max-width: 450px) {
     font-size: 0.6em;
     padding: 0;
   }
