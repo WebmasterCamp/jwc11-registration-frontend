@@ -179,6 +179,8 @@ export default props => {
     );
     return (
       <Container>
+        {isMobile ? MobileContent : DesktopContent}
+        <Button onClick={() => confirm()}>ยืนยันสาขา</Button>
         <Modal
           field={field}
           toggle={toggle}
@@ -187,8 +189,6 @@ export default props => {
           confirm={selectHandler}
           confirmHref={`/${selector}`}
         />
-        {isMobile ? MobileContent : DesktopContent}
-        <Button onClick={() => confirm()}>ยืนยันสาขา</Button>
       </Container>
     );
   } else {
