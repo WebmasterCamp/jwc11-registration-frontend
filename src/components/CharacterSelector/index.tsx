@@ -31,7 +31,7 @@ const Card = styled.div`
 
 const Description = styled.label`
   color: white;
-  font-size: 2em;
+  font-size: 1.9em;
   align-self: center;
   margin-top: 2em;
 `;
