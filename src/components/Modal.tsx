@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Button from "./Button";
 import withWizard from "../core/form";
 import styled from "@emotion/styled";
@@ -156,28 +156,40 @@ class Modal extends Component<ModalProps, ModalState> {
     const { text, confirmHref } = this.props;
 
     return (
-      <Container id="modal" isOpen={toggle}>
-        <Backdrop />
-        <Content pictureColor={pictureColor} style={{ zIndex: 1 }}>
-          <Text>{text}</Text>
-          <ButtonContainer>
-            <TransparentButton onClick={() => this.toggleModal()} type="button">
-              ยกเลิก
-            </TransparentButton>
-            {confirmHref ? (
-              <a href={confirmHref}>
+      <Fragment>
+        <Container id="modal" isOpen={toggle}>
+          <Backdrop />
+          <Content pictureColor={pictureColor} style={{ zIndex: 1 }}>
+            <Text>{text}</Text>
+            <ButtonContainer>
+              <TransparentButton
+                onClick={() => this.toggleModal()}
+                type="button"
+              >
+                ยกเลิก
+              </TransparentButton>
+              {confirmHref ? (
+                <a href={confirmHref}>
+                  <Button onClick={() => this.handlerConfirm()} type="button">
+                    &nbsp;ยืนยัน&nbsp;
+                  </Button>
+                </a>
+              ) : (
                 <Button onClick={() => this.handlerConfirm()} type="button">
                   &nbsp;ยืนยัน&nbsp;
                 </Button>
-              </a>
-            ) : (
-              <Button onClick={() => this.handlerConfirm()} type="button">
-                &nbsp;ยืนยัน&nbsp;
-              </Button>
-            )}
-          </ButtonContainer>
-        </Content>
-      </Container>
+              )}
+            </ButtonContainer>
+          </Content>
+        </Container>
+        <div style={{ display: "none" }}>
+          {/* Preload background image */}
+          <img src="/images/yellow.png" />
+          <img src="/images/pink.png" />
+          <img src="/images/green.png" />
+          <img src="/images/blue.png" />
+        </div>
+      </Fragment>
     );
   };
 }
