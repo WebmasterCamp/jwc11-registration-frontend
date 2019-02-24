@@ -332,8 +332,11 @@ const Label = styled.label`
 const ButtonGroup = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  @media screen and (max-width: 780px) {
+  @media screen and (max-width: 650px) {
     font-size: 0.6em;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 0.5em;
   }
 `;
 
