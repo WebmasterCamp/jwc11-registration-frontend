@@ -329,14 +329,27 @@ const Label = styled.label`
   margin: 0.6em 0;
 `;
 
+const ButtonGroup = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  @media screen and (max-width: 650px) {
+    font-size: 0.6em;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 0.5em;
+  }
+`;
+
 const SubmitBar = ({ submit, style }) => (
   <Row style={style}>
-    <TransparentButton arrow="left" onClick={prev} type="button">
-      ย้อนกลับไปแก้ไข
-    </TransparentButton>
-    <Button onClick={submit} type="button">
-      ส่งใบสมัคร
-    </Button>
+    <ButtonGroup>
+      <TransparentButton arrow="left" onClick={prev} type="button">
+        ย้อนกลับไปแก้ไข
+      </TransparentButton>
+      <Button onClick={submit} type="button">
+        ส่งใบสมัคร
+      </Button>
+    </ButtonGroup>
   </Row>
 );
 const Container = styled.div`
