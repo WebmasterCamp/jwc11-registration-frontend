@@ -160,7 +160,16 @@ class Modal extends Component<ModalProps, ModalState> {
         <Container id="modal" isOpen={toggle}>
           <Backdrop />
           <Content pictureColor={pictureColor} style={{ zIndex: 1 }}>
-            <Text>{text}</Text>
+            <Text>
+              {text instanceof Array
+                ? text.map((t, i) => (
+                    <span key={i}>
+                      {t}
+                      <br />
+                    </span>
+                  ))
+                : text}
+            </Text>
             <ButtonContainer>
               <TransparentButton
                 onClick={() => this.toggleModal()}

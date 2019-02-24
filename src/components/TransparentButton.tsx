@@ -40,17 +40,16 @@ const TransparentButtonContainer = styled.button`
   letter-spacing: 0.1em;
   text-transform: capitalize;
 
-  // @media screen and (max-width: 840px) {
-  //   width: 100%;
-  //   margin: 0;
-  //   margin-bottom: 1em;
-  // }
+  @media screen and (max-width: 600px) {
+    padding: 0.5em 2.5em;
+  }
 
   &:hover {
     // box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
     //   0 2px 10px 0 rgba(0, 0, 0, 0.12);
     transform: translateY(-1px);
   }
+  
 
   ${(props) => (props as any).success && css`
     background: #2ecc71;
@@ -97,7 +96,7 @@ const TransparentButton = ({
         transform: "translateY(-50%)",
         right: arrow === "right" ? "16px" : undefined,
         left: arrow === "left" ? "16px" : undefined,
-        position: "absolute",
+        position: "absolute"
       }}
     />
   ) : null;

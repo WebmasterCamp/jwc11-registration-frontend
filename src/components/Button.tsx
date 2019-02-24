@@ -38,11 +38,9 @@ const ButtonContainer = styled.button`
   letter-spacing: 0.1em;
   text-transform: capitalize;
 
-  // @media screen and (max-width: 840px) {
-  //   width: 100%;
-  //   margin: 0;
-  //   margin-bottom: 1em;
-  // }
+  @media screen and (max-width: 600px) {
+    padding: 0.5em 2.5em;
+  }
 
   &:hover {
     background: #efa540;
