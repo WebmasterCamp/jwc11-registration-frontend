@@ -177,6 +177,14 @@ export default props => {
       trackMouse: false, // track mouse input
       rotationAngle: 0
     });
+    const getStyleFromDx = (dx: number) => {
+      const x = Math.abs(dx);
+      const maxDx = 200;
+      return {
+        transform: `scale(${x > maxDx ? 0 : 1 - x / maxDx})`,
+        opacity: x > maxDx ? 0 : 1 - x / maxDx
+      };
+    };
     const MobileContent = (
       <Row>
         <div
@@ -193,7 +201,7 @@ export default props => {
             active={true}
             src={`/images/${selector}.png`}
             {...swipeHandler}
-            style={{ transform: `translateX(${-1 * swipeX}px)` }}
+            style={getStyleFromDx(swipeX)}
           />
           <Description>
             Web {selector[0].toUpperCase() + selector.substr(1)}
