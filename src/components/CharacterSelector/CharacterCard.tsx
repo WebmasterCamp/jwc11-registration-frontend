@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 
 const Character = styled.img`
   height: 25em;
-  transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) all;
+  transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) scale;
   opacity: 0.5;
   cursor: pointer;
   &.active {
@@ -27,8 +27,13 @@ interface CharacterCardProps {
 }
 
 export default (props: CharacterCardProps) => {
-  const { src, active, onClick } = props;
+  const { src, active, onClick, ...rest } = props;
   return (
-    <Character className={active ? "active" : ""} src={src} onClick={onClick} />
+    <Character
+      className={active ? "active" : ""}
+      src={src}
+      onClick={onClick}
+      {...rest}
+    />
   );
 };

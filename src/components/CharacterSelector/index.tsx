@@ -78,6 +78,7 @@ export default props => {
     const [toggle, setIsToggle] = useState<boolean>(false);
     const [field, setField] = useState<Character>(Character.content);
     const [modalText, setModalText] = useState<any>(<div />);
+    const [swipeX, setSwipeX] = useState(0);
     const isMobile = useIsMobile();
 
     const selectHandler = () => {
@@ -159,11 +160,16 @@ export default props => {
       }
     };
     const swipeHandler = useSwipeable({
-      onSwipedLeft: () => {
-        move("left");
+      onSwiping: e => {
+        setSwipeX(e.deltaX);
       },
-      onSwipedRight: () => {
+      onSwipedLeft: e => {
+        move("left");
+        setSwipeX(0);
+      },
+      onSwipedRight: e => {
         move("right");
+        setSwipeX(0);
       },
       delta: 10, // min distance(px) before a swipe starts
       preventDefaultTouchmoveEvent: false, // preventDefault on touchmove, *See Details*
@@ -182,8 +188,13 @@ export default props => {
             style={{ color: "#ffbc5f", fontSize: "3em", cursor: "pointer" }}
           />
         </div>
-        <Card {...swipeHandler}>
-          <CharacterCard active={true} src={`/images/${selector}.png`} />
+        <Card>
+          <CharacterCard
+            active={true}
+            src={`/images/${selector}.png`}
+            {...swipeHandler}
+            style={{ transform: `translateX(${-1 * swipeX}px)` }}
+          />
           <Description>
             Web {selector[0].toUpperCase() + selector.substr(1)}
           </Description>
