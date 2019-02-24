@@ -10,11 +10,22 @@ import { getMajorFromPath } from "../core/util";
 import { prev, next } from "../core/step";
 import ChangeMajorButton from "./ChangeMajorButton";
 import TransparentButton from "./TransparentButton";
-
+import styled from "@emotion/styled";
 interface Question {
   Q1?: string;
   Q2?: string;
 }
+const ButtonGroup = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  @media screen and (max-width: 650px) {
+    font-size: 0.6em;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 0.5em;
+  }
+`;
+
 
 const MajorQuestionForm = ({ questions = {} as Question, handleSubmit }) => {
   const major = getMajorFromPath();
@@ -39,13 +50,15 @@ const MajorQuestionForm = ({ questions = {} as Question, handleSubmit }) => {
       </Paper>
 
       <Row style={{ marginBottom: "2em" }}>
-        <TransparentButton arrow="left" onClick={prev}>
+      <ButtonGroup>
+        <TransparentButton arrow="left" onClick={prev} style={{ marginRight: "0.8em" }}>
           ขั้นตอนก่อนหน้า
         </TransparentButton>
 
-        <Button onClick={next} type="submit" arrow="right">
+        <Button onClick={next} type="submit" arrow="right" style={{ marginLeft: "0.8em" }}>
           ขั้นตอนถัดไป
         </Button>
+      </ButtonGroup>
       </Row>
       <Row style={{ marginBottom: "2.8em" }}>
         <ChangeMajorButton />

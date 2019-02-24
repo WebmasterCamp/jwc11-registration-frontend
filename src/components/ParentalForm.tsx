@@ -18,6 +18,17 @@ const Col = styled.div`
   width: 100%;
 `;
 
+const ButtonGroup = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  @media screen and (max-width: 650px) {
+    font-size: 0.6em;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 0.5em;
+  }
+`;
+
 const Underline = styled.div`
   content: "";
   width: 100%;
@@ -126,13 +137,15 @@ const ParentalForm = ({ next, handleSubmit }) => (
     </Paper>
 
     <Row style={{ marginBottom: "2em" }}>
-      <TransparentButton arrow="left" onClick={prev}>
-        ขั้นตอนก่อนหน้า
-      </TransparentButton>
+      <ButtonGroup>
+        <TransparentButton arrow="left" onClick={prev} style={{ marginRight: "0.8em" }}>
+          ขั้นตอนก่อนหน้า
+        </TransparentButton>
 
-      <Button onClick={next} type="submit" arrow="right">
-        ขั้นตอนถัดไป
-      </Button>
+        <Button onClick={next} type="submit" arrow="right" style={{ marginLeft: "0.8em" }}>
+          ขั้นตอนถัดไป
+        </Button>
+      </ButtonGroup>
     </Row>
     <Row style={{ marginBottom: "2.8em" }}>
       <ChangeMajorButton />
