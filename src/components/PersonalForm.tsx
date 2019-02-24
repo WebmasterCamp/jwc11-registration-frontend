@@ -183,7 +183,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
         {/* <TransparentButton disabled>ขั้นตอนก่อนหน้า</TransparentButton> */}
 
         <Button onClick={next} type="submit" arrow="right">
-          ขั้นตอนถัดไป
+          ถัดไป
         </Button>
       </Row>
       <Row style={{ marginBottom: "2.8em" }}>

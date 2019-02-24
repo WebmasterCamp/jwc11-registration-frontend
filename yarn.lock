@@ -10024,6 +10024,13 @@ react-static@^6.0.18:
     webpack-flush-chunks "^2.0.1"
     webpack-node-externals "^1.7.2"
 
+react-swipeable@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-5.0.1.tgz#e2876b27f31bd4b95a4cd273befa093c74b1fd7b"
+  integrity sha512-TRBBlAA5xJi5ISqhhxYA+K/6r+ibsMXI3l/en7XbiqzAMC8CqAH3v44Al7OND0lWMT6jAUkC2WKPtQSX6CUKPQ==
+  dependencies:
+    prop-types "^15.6.2"
+
 react-transition-group@^2.2.1:
   version "2.5.3"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.5.3.tgz#26de363cab19e5c88ae5dbae105c706cf953bb92"

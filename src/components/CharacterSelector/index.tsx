@@ -6,6 +6,7 @@ import CharacterCard from "./CharacterCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from "../../components/Modal";
 import { navigate } from "@reach/router";
+import { useSwipeable } from "react-swipeable";
 
 const Container = styled.div`
   display: flex;
@@ -43,6 +44,13 @@ enum Character {
   programming = "programming"
 }
 
+const majors = [
+  Character.content,
+  Character.design,
+  Character.marketing,
+  Character.programming
+];
+
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState<boolean>(
     typeof window !== "undefined" ? window.innerWidth < 780 : false
@@ -71,6 +79,7 @@ export default props => {
     const [field, setField] = useState<Character>(Character.content);
     const [modalText, setModalText] = useState<any>(<div />);
     const isMobile = useIsMobile();
+
     const selectHandler = () => {
       // if (selector) {
       //   navigate(`/${selector}`);
@@ -149,6 +158,19 @@ export default props => {
         );
       }
     };
+    const swipeHandler = useSwipeable({
+      onSwipedLeft: () => {
+        move("left");
+      },
+      onSwipedRight: () => {
+        move("right");
+      },
+      delta: 10, // min distance(px) before a swipe starts
+      preventDefaultTouchmoveEvent: false, // preventDefault on touchmove, *See Details*
+      trackTouch: true, // track touch input
+      trackMouse: false, // track mouse input
+      rotationAngle: 0
+    });
     const MobileContent = (
       <Row>
         <div
@@ -160,11 +182,20 @@ export default props => {
             style={{ color: "#ffbc5f", fontSize: "3em", cursor: "pointer" }}
           />
         </div>
-        <Card>
+        <Card {...swipeHandler}>
           <CharacterCard active={true} src={`/images/${selector}.png`} />
           <Description>
             Web {selector[0].toUpperCase() + selector.substr(1)}
           </Description>
+
+          {/* GET image into memory to make smooth image transition */}
+          {majors.map((major, i) => (
+            <img
+              key={i}
+              src={`/images/${major}.png`}
+              style={{ display: "none" }}
+            />
+          ))}
         </Card>
         <div
           onClick={() => move("right")}

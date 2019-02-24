@@ -39,14 +39,15 @@ export const TextInput = styled.input<{meta: IMeta}>`
     color: #E0E0E0;
   }
 
-  &:hover:enabled {
-    box-shadow: 0 3px 18.5px 2px rgba(0, 0, 0, 0.18);
-  }
+  // &:hover:enabled {
+  //   box-shadow: 0 3px 18.5px 2px rgba(0, 0, 0, 0.18);
+  // }
 
   &:focus,
   &:active:enabled {
-    transform: scale(1.005);
-    box-shadow: 0 3px 18.5px 2px rgba(0, 0, 0, 0.18);
+    // transform: scale(1.005);
+    // box-shadow: 0 3px 18.5px 2px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 0 0 2px rgba(24,144,255,.4);
   }
 
   &:focus + label {

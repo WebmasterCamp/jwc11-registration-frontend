@@ -22,10 +22,10 @@ const ButtonGroup = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   @media screen and (max-width: 650px) {
-    font-size: 0.6em;
+    font-size: 0.9em;
   }
   @media screen and (max-width: 400px) {
-    font-size: 0.5em;
+    font-size: 0.8em;
   }
 `;
 
@@ -139,11 +139,11 @@ const ParentalForm = ({ next, handleSubmit }) => (
     <Row style={{ marginBottom: "2em" }}>
       <ButtonGroup>
         <TransparentButton arrow="left" onClick={prev} style={{ marginRight: "0.8em" }}>
-          ขั้นตอนก่อนหน้า
+          ก่อนหน้า
         </TransparentButton>
 
         <Button onClick={next} type="submit" arrow="right" style={{ marginLeft: "0.8em" }}>
-          ขั้นตอนถัดไป
+          ถัดไป
         </Button>
       </ButtonGroup>
     </Row>
