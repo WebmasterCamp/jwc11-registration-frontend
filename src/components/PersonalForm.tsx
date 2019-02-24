@@ -80,17 +80,10 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
 
       <Row>
         <Col>
-          <Input
-            wordy
-            name="firstname"
-            disabled={isDisabled}
-            label="ชื่อ"
-            placeholder="แฮรี่"
-          />
+          <Input wordy name="firstname" label="ชื่อ" placeholder="แฮรี่" />
         </Col>
         <Col>
           <Input
-            disabled={isDisabled}
             wordy
             name="lastname"
             label="นามสกุล"
@@ -98,30 +91,18 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
           />
         </Col>
         <Col>
-          <Input
-            disabled={isDisabled}
-            wordy
-            name="nickname"
-            label="ชื่อเล่น"
-            placeholder="เจมส์"
-          />
+          <Input wordy name="nickname" label="ชื่อเล่น" placeholder="เจมส์" />
         </Col>
       </Row>
 
       <Row>
         <Col>
-          <DatePicker
-            isDisabled={isDisabled}
-            name="birthdate"
-            label="วันเกิด"
-            wordy
-          />
+          <DatePicker name="birthdate" label="วันเกิด" wordy />
         </Col>
         <Col>
           <RadioGroup
             wordy
             direction="row"
-            isDisabled={isDisabled}
             name="gender"
             label="เพศ"
             options={genderOptions}
@@ -133,7 +114,7 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
         <Col style={{ justifySelf: "flex-start", alignSelf: "flex-start" }}>
           <Row>
             <Select
-              isDisabled={isDisabled}
+              i
               wordy
               name="religion"
               label="ศาสนา"
@@ -143,7 +124,6 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
           </Row>
           <Row>
             <Input
-              disabled={isDisabled}
               wordy
               name="school"
               label="โรงเรียน"
@@ -154,14 +134,13 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
         <Col>
           <RadioGroup
             wordy
-            disabled={isDisabled}
             direction="column"
             label="ระดับชั้น"
             name="class"
             options={gradeOptions}
           />
           {/* <Select
-            isDisabled={isDisabled}
+            i
             name="class"
             label="ระดับชั้น"
             options={gradeOptions}
@@ -172,7 +151,6 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
       <Row>
         <Col>
           <TextArea
-            disabled={isDisabled}
             wordy
             placeholder="บ้านเลขที่, ถนน, แขวง, เขต ฯลฯ"
             name="address"
@@ -182,7 +160,6 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
         <Col style={{ alignSelf: "flex-start", justifySelf: "flex-start" }}>
           <Row>
             <Input
-              disabled={isDisabled}
               wordy
               name="phone"
               label="เบอโทรศัพท์มือถือ"
@@ -191,7 +168,6 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
           </Row>
           <Row>
             <Input
-              disabled={isDisabled}
               wordy
               name="email"
               label="อีเมล"
@@ -202,22 +178,18 @@ const PersonalForm = ({ next, handleSubmit, isDisabled = false }) => (
       </Row>
     </Paper>
 
-    {!isDisabled ? (
-      <Fragment>
-        <Row style={{ marginBottom: "2em" }}>
-          {/* <TransparentButton disabled>ขั้นตอนก่อนหน้า</TransparentButton> */}
+    <Fragment>
+      <Row style={{ marginBottom: "2em" }}>
+        {/* <TransparentButton disabled>ขั้นตอนก่อนหน้า</TransparentButton> */}
 
-          <Button onClick={next} type="submit" arrow="right">
-            ขั้นตอนถัดไป
-          </Button>
-        </Row>
-        <Row style={{ marginBottom: "2.8em" }}>
-          <ChangeMajorButton />
-        </Row>
-      </Fragment>
-    ) : (
-      ""
-    )}
+        <Button onClick={next} type="submit" arrow="right">
+          ขั้นตอนถัดไป
+        </Button>
+      </Row>
+      <Row style={{ marginBottom: "2.8em" }}>
+        <ChangeMajorButton />
+      </Row>
+    </Fragment>
   </FormContainer>
 );
 
