@@ -15,7 +15,7 @@ const Container = styled.div<{ isOpen: boolean }>`
   left: 0;
   top: 0;
   overflow: auto;
-  -webkit-animation: fadein 0.8s;
+  -webkit-animation: fadein 150ms;
   @keyframes fadein {
     from {
       opacity: 0;

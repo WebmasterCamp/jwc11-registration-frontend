@@ -50,7 +50,6 @@ const ParentalForm = ({ next, handleSubmit }) => (
         <Col>
           <Input
             wordy
-            placeholder="ลิลลี่"
             name="disease"
             label="โรคประจำตัว (ถ้าไม่มีใส่ -)"
           />
