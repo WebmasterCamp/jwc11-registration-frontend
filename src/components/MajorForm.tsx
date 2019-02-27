@@ -30,9 +30,17 @@ const ButtonGroup = styled.div`
 
 const MajorQuestionForm = ({ handleSubmit, next, save }) => {
   const major = getMajorFromPath();
-  const questions = Questions[major];
+  let questions = {};
+  if (typeof Questions !== "undefined") {
+    if (typeof Questions[major] !== "undefined") {
+      questions = Questions[major];
+    }
+  }
   // const Q4 = major === "design" ? DesignUpload : TextArea;
-  const Q3 = major === "programming" ? Q3Dev : questions.Q3;
+  let Q3 = "";
+  if (typeof questions !== "undefined") {
+    Q3 = major === "programming" ? Q3Dev : questions.Q3;
+  }
 
   return (
     <FormContainer onSubmit={handleSubmit}>
