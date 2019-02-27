@@ -3,7 +3,7 @@ import {css} from '@emotion/core'
 import Image from 'react-medium-image-zoom'
 
 import {Programming} from '../core/questions'
-import devAssignment from '../assets/dev_assignment.png'
+import devAssignment from '../assets/programming_question.jpg'
 
 const image = {
   src: devAssignment,

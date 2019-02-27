@@ -33,6 +33,7 @@ import { getMajorFromPath } from "../core/util";
 import NavBar from "../components/NavBar";
 import ChangeMajorButton from "../components/ChangeMajorButton";
 import TransparentButton from "../components/TransparentButton";
+import Q3Dev from "../components/Q3Dev";
 // import { formatGroupQuestion } from "react-select/lib/builtins";
 
 // export const Container = styled.div`
@@ -289,7 +290,11 @@ const MajorSection = ({ data }) => {
       </Item> */}
       {Object.keys(majorQuestions).map((key, index) => (
         <Item>
-          <Question>{majorQuestions[key]}</Question>
+          {major === "programming" && index === 2 ? (
+            <div style={{ color: "#7e8991" }}>{Q3Dev}</div>
+          ) : (
+            <Question>{majorQuestions[key]}</Question>
+          )}
           {major === "design" && index === 3 ? (
             <DesignUpload disabled />
           ) : (
