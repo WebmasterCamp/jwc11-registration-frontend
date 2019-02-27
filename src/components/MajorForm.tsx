@@ -28,20 +28,29 @@ const ButtonGroup = styled.div`
 
 const MajorQuestionForm = ({ questions = {} as Question, handleSubmit }) => {
   const major = getMajorFromPath();
-  // const Q1Field = major === "design" ? DesignUpload : TextArea;
+  // const Q4 = major === "design" ? DesignUpload : TextArea;
   // const Q3 = major === 'programming' ? Q3Dev : questions.Q3
 
   return (
     <FormContainer onSubmit={handleSubmit}>
       <Paper>
-        {Object.keys(questions).map((key, index) => (
-          <TextArea
-            placeholder="ว่ามา ฉันอ่านทั้งหมด เริ่ม!"
-            name={"majorAnswer" + (index + 1)}
-            label={questions[key]}
-            wordy
-          />
-        ))}
+        {Object.keys(questions).map((key, index) =>
+          index == 3 && major === "design" ? (
+            <DesignUpload
+              placeholder="ว่ามา ฉันอ่านทั้งหมด เริ่ม!"
+              name={"majorAnswer" + (index + 1)}
+              label={questions[key]}
+              wordy
+            />
+          ) : (
+            <TextArea
+              placeholder="ว่ามา ฉันอ่านทั้งหมด เริ่ม!"
+              name={"majorAnswer" + (index + 1)}
+              label={questions[key]}
+              wordy
+            />
+          )
+        )}
       </Paper>
 
       <Row style={{ marginBottom: "2em" }}>
