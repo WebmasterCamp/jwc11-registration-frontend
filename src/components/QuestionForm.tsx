@@ -44,6 +44,7 @@ const QuestionForm = ({ next, save, handleSubmit }) => (
           arrow="left"
           onClick={prev}
           style={{ marginRight: "0.8em" }}
+          type="button"
         >
           ก่อนหน้า
         </TransparentButton>

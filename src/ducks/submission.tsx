@@ -91,14 +91,11 @@ function* updateCamperRecord(payload) {
 function* saveSubmissionSaga({ payload }) {
   if (payload) {
     yield fork(updateCamperRecord, payload);
-
     const shouldProceed = yield select(s => {
       return s.submission.shouldProceed;
     });
-
     if (shouldProceed) {
       yield put(unmarkNext(true));
-
       yield call(next);
     }
   } else {

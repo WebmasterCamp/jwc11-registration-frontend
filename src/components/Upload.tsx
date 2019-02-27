@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import { connect } from "react-redux";
 import styled from "@emotion/styled";
 import { captureException } from "@sentry/browser";
@@ -135,7 +135,7 @@ export interface UploadState {
 
 class Upload extends Component<UploadProps, UploadState> {
   state: UploadState = {};
-
+  overlay = createRef<HTMLDivElement>();
   async componentDidMount() {
     await this.loadPreview(this.props.uid);
   }
@@ -219,7 +219,6 @@ class Upload extends Component<UploadProps, UploadState> {
       if (input && input.onChange) {
         input.onChange(snapshot.downloadURL);
       }
-
       message.success("อัพโหลดรูปประจำตัวเรียบร้อยแล้ว");
     } catch (err) {
       message.error(err.message);
@@ -244,6 +243,7 @@ class Upload extends Component<UploadProps, UploadState> {
         {({ getRootProps, getInputProps, isDragActive }) => (
           <DropZoneContainer
             {...getRootProps()}
+            ref={this.overlay}
             preview={preview}
             disabled={disabled}
           >

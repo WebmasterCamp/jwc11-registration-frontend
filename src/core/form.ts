@@ -38,7 +38,7 @@ const personalFields: (keyof Fields)[] = [
   "shirtSize",
   "activity",
   "expectation",
-  "bloodGroup",
+  "bloodGroup"
 ];
 
 const parentFields: (keyof Fields)[] = [
@@ -48,21 +48,31 @@ const parentFields: (keyof Fields)[] = [
   "parentPhone"
 ];
 
-const generalQuestionFields: (keyof Fields)[] = ["generalAnswer1"];
-
-// 'generalAnswer3'
-const majorQuestionFields: (keyof Fields)[] = ["majorAnswer1", "majorAnswer2"];
-
-const requiredFields = [...personalFields, ...parentFields];
-const questionFields = [...generalQuestionFields, ...majorQuestionFields];
-
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const phoneRegex = /^\d{10}$/;
 
 function validate(values: Partial<Fields>) {
   const major = getMajorFromPath();
   const errors: ErrorMessages<Fields> = {};
+  const generalQuestionFields: (keyof Fields)[] = [
+    "generalAnswer1",
+    "generalAnswer2",
+    "generalAnswer3"
+  ];
 
+  const majorQuestionFields: (keyof Fields)[] = [
+    "majorAnswer1",
+    "majorAnswer2",
+    "majorAnswer3"
+  ];
+  if (major === "design") {
+    majorQuestionFields.push("majorAnswer4");
+  }
+  if (major === "marketing") {
+    majorQuestionFields.push("majorAnswer5");
+  }
+  const requiredFields = [...personalFields, ...parentFields];
+  const questionFields = [...generalQuestionFields, ...majorQuestionFields];
   if (!values.photo) {
     errors.photo = "กรุณาอัพโหลดรูปภาพ";
   }
@@ -90,7 +100,6 @@ function validate(values: Partial<Fields>) {
   if (!phoneRegex.test(values.parentPhone || "")) {
     errors.parentPhone = "เบอร์โทรศัพท์ไม่ถูกต้อง";
   }
-
   return errors;
 }
 

@@ -4,7 +4,7 @@ import { FormContainer, Paper, Row } from "./Layout";
 import Button from "./Button";
 import TextArea from "./TextArea";
 import DesignUpload from "./DesignUpload";
-
+import Questions from "../core/questions";
 import withWizard from "../core/form";
 import { getMajorFromPath } from "../core/util";
 import { prev, next } from "../core/step";
@@ -28,10 +28,11 @@ const ButtonGroup = styled.div`
   }
 `;
 
-const MajorQuestionForm = ({ questions = {} as Question, handleSubmit }) => {
+const MajorQuestionForm = ({ handleSubmit, next, save }) => {
   const major = getMajorFromPath();
+  const questions = Questions[major];
   // const Q4 = major === "design" ? DesignUpload : TextArea;
-  const Q3 = major === 'programming' ? Q3Dev : questions.Q3
+  const Q3 = major === "programming" ? Q3Dev : questions.Q3;
 
   return (
     <FormContainer onSubmit={handleSubmit}>
@@ -39,6 +40,7 @@ const MajorQuestionForm = ({ questions = {} as Question, handleSubmit }) => {
         {Object.keys(questions).map((key, index) =>
           index == 3 && major === "design" ? (
             <DesignUpload
+              key={key}
               placeholder="ว่ามา ฉันอ่านทั้งหมด เริ่ม!"
               name={"majorAnswer" + (index + 1)}
               label={questions[key]}
@@ -46,6 +48,7 @@ const MajorQuestionForm = ({ questions = {} as Question, handleSubmit }) => {
             />
           ) : (
             <TextArea
+              key={key}
               placeholder="ว่ามา ฉันอ่านทั้งหมด เริ่ม!"
               name={"majorAnswer" + (index + 1)}
               label={index === 2 ? Q3 : questions[key]}
@@ -61,6 +64,7 @@ const MajorQuestionForm = ({ questions = {} as Question, handleSubmit }) => {
             arrow="left"
             onClick={prev}
             style={{ marginRight: "0.8em" }}
+            type="button"
           >
             ก่อนหน้า
           </TransparentButton>
