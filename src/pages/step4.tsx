@@ -11,7 +11,7 @@ import Title from "../components/Title";
 import Stepper from "../components/Stepper";
 import NavBar from "../components/NavBar";
 
-const StepOne = ({ save, markNext }) => (
+const StepOne = ({ questions, save, markNext }) => (
   <Backdrop>
     <NavBar />
     <Title>คำถามสาขา</Title>
@@ -19,7 +19,7 @@ const StepOne = ({ save, markNext }) => (
       currentStep={"คำถามสาขา"}
       steps={["ข้อมูลนักเวทย์", "ข้อมูลเพิ่มเติม", "คำถามกลาง", "คำถามสาขา"]}
     />
-    <MajorForm onSubmit={save} next={markNext} />
+    <MajorForm onSubmit={save} next={markNext} questions={questions}/>
   </Backdrop>
 );
 
