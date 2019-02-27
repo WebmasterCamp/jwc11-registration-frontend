@@ -290,7 +290,11 @@ const MajorSection = ({ data }) => {
       {Object.keys(majorQuestions).map((key, index) => (
         <Item>
           <Question>{majorQuestions[key]}</Question>
-          <Answer>{data["majorAnswer" + (index + 1)]}</Answer>
+          {major === "design" && index === 3 ? (
+            <DesignUpload disabled />
+          ) : (
+            <Answer>{data["majorAnswer" + (index + 1)]}</Answer>
+          )}
         </Item>
       ))}
 
