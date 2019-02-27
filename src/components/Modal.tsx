@@ -179,12 +179,12 @@ class Modal extends Component<ModalProps, ModalState> {
               </TransparentButton>
               {confirmHref ? (
                 <a href={confirmHref}>
-                  <Button onClick={() => this.handlerConfirm()} type="button">
+                  <Button onClick={() => this.handlerConfirm()} type="submit">
                     &nbsp;ยืนยัน&nbsp;
                   </Button>
                 </a>
               ) : (
-                <Button onClick={() => this.handlerConfirm()} type="button">
+                <Button onClick={() => this.handlerConfirm()} type="submit">
                   &nbsp;ยืนยัน&nbsp;
                 </Button>
               )}
