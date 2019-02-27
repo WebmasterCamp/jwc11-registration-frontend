@@ -69,6 +69,7 @@ function validate(values: Partial<Fields>) {
     majorQuestionFields.push("majorAnswer4");
   }
   if (major === "marketing") {
+    majorQuestionFields.push("majorAnswer4");
     majorQuestionFields.push("majorAnswer5");
   }
   const requiredFields = [...personalFields, ...parentFields];
