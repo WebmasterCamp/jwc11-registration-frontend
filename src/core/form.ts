@@ -69,7 +69,7 @@ function validate(values: Partial<Fields>) {
 
   requiredFields.forEach(field => {
     if (!values[field]) {
-      errors[field] = "กรุณาระบุข้อมูลดังกล่าว";
+      errors[field] = "จำเป็น";
     }
   });
 
