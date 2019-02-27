@@ -270,7 +270,7 @@ const MajorSection = ({ data }) => {
   }
 
   let { Q1, Q2 } = questions[major];
-
+  const majorQuestions = questions[major];
   // if (major === 'programming') {
   //   Q3 = Q3Dev
   // }
@@ -278,7 +278,7 @@ const MajorSection = ({ data }) => {
   return (
     <Section>
       <Title>คำถามสาขา</Title>
-      <Item>
+      {/* <Item>
         <Question>{Q1}</Question>
 
         {major === "design" ? (
@@ -286,12 +286,13 @@ const MajorSection = ({ data }) => {
         ) : (
           <Answer>{data.majorAnswer1}</Answer>
         )}
-      </Item>
-
-      <Item>
-        <Question>{Q2}</Question>
-        <Answer>{data.majorAnswer2}</Answer>
-      </Item>
+      </Item> */}
+      {Object.keys(majorQuestions).map((key, index) => (
+        <Item>
+          <Question>{majorQuestions[key]}</Question>
+          <Answer>{data["majorAnswer" + (index + 1)]}</Answer>
+        </Item>
+      ))}
 
       {/* <Item>
         <Question>{Q3}</Question>
