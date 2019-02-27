@@ -11,6 +11,7 @@ import { prev, next } from "../core/step";
 import ChangeMajorButton from "./ChangeMajorButton";
 import TransparentButton from "./TransparentButton";
 import styled from "@emotion/styled";
+import Q3Dev from "./Q3Dev";
 interface Question {
   Q1?: string;
   Q2?: string;
@@ -29,7 +30,7 @@ const ButtonGroup = styled.div`
 const MajorQuestionForm = ({ questions = {} as Question, handleSubmit }) => {
   const major = getMajorFromPath();
   // const Q4 = major === "design" ? DesignUpload : TextArea;
-  // const Q3 = major === 'programming' ? Q3Dev : questions.Q3
+  const Q3 = major === 'programming' ? Q3Dev : questions.Q3
 
   return (
     <FormContainer onSubmit={handleSubmit}>
@@ -46,7 +47,7 @@ const MajorQuestionForm = ({ questions = {} as Question, handleSubmit }) => {
             <TextArea
               placeholder="ว่ามา ฉันอ่านทั้งหมด เริ่ม!"
               name={"majorAnswer" + (index + 1)}
-              label={questions[key]}
+              label={index === 2 ? Q3 : questions[key]}
               wordy
             />
           )
