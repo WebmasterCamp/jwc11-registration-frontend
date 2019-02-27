@@ -343,10 +343,10 @@ const ButtonGroup = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   @media screen and (max-width: 650px) {
-    font-size: 0.6em;
+    font-size: 0.9em;
   }
   @media screen and (max-width: 400px) {
-    font-size: 0.5em;
+    font-size: 0.8em;
   }
 `;
 
@@ -354,7 +354,7 @@ const SubmitBar = ({ submit, style }) => (
   <Row style={style}>
     <ButtonGroup>
       <TransparentButton arrow="left" onClick={prev} type="button">
-        ย้อนกลับไปแก้ไข
+        ย้อนกลับ
       </TransparentButton>
       <Button onClick={submit} type="button">
         ส่งใบสมัคร

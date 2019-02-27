@@ -78,7 +78,6 @@ export default props => {
     const [toggle, setIsToggle] = useState<boolean>(false);
     const [field, setField] = useState<Character>(Character.content);
     const [modalText, setModalText] = useState<any>(<div />);
-    const [swipeX, setSwipeX] = useState(0);
     const isMobile = useIsMobile();
 
     const selectHandler = () => {
@@ -160,16 +159,11 @@ export default props => {
       }
     };
     const swipeHandler = useSwipeable({
-      onSwiping: e => {
-        setSwipeX(e.deltaX);
-      },
       onSwipedLeft: e => {
         move("left");
-        setSwipeX(0);
       },
       onSwipedRight: e => {
         move("right");
-        setSwipeX(0);
       },
       delta: 10, // min distance(px) before a swipe starts
       preventDefaultTouchmoveEvent: false, // preventDefault on touchmove, *See Details*
@@ -177,14 +171,6 @@ export default props => {
       trackMouse: false, // track mouse input
       rotationAngle: 0
     });
-    const getStyleFromDx = (dx: number) => {
-      const x = Math.abs(dx);
-      const maxDx = 200;
-      return {
-        transform: `scale(${x > maxDx ? 0 : 1 - x / maxDx})`,
-        opacity: x > maxDx ? 0 : 1 - x / maxDx
-      };
-    };
     const MobileContent = (
       <Row>
         <div
@@ -201,7 +187,6 @@ export default props => {
             active={true}
             src={`/images/${selector}.png`}
             {...swipeHandler}
-            style={getStyleFromDx(swipeX)}
           />
           <Description>
             Web {selector[0].toUpperCase() + selector.substr(1)}

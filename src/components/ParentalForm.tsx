@@ -59,11 +59,7 @@ const ParentalForm = ({ next, handleSubmit }) => (
     <Paper>
       <Row>
         <Col>
-          <Input
-            wordy
-            name="disease"
-            label="โรคประจำตัว (ถ้าไม่มีใส่ -)"
-          />
+          <Input wordy name="disease" label="โรคประจำตัว (ถ้าไม่มีใส่ -)" />
         </Col>
         <Col>
           <Input
@@ -138,11 +134,21 @@ const ParentalForm = ({ next, handleSubmit }) => (
 
     <Row style={{ marginBottom: "2em" }}>
       <ButtonGroup>
-        <TransparentButton arrow="left" onClick={prev} style={{ marginRight: "0.8em" }}>
+        <TransparentButton
+          arrow="left"
+          onClick={prev}
+          style={{ marginRight: "0.8em" }}
+          type="button"
+        >
           ก่อนหน้า
         </TransparentButton>
 
-        <Button onClick={next} type="submit" arrow="right" style={{ marginLeft: "0.8em" }}>
+        <Button
+          onClick={next}
+          type="submit"
+          arrow="right"
+          style={{ marginLeft: "0.8em" }}
+        >
           ถัดไป
         </Button>
       </ButtonGroup>

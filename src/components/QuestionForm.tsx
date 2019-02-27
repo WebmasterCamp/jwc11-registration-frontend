@@ -10,14 +10,15 @@ import withWizard from "../core/form";
 import { prev, next } from "../core/step";
 import ChangeMajorButton from "./ChangeMajorButton";
 import TransparentButton from "./TransparentButton";
+
 const ButtonGroup = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   @media screen and (max-width: 650px) {
-    font-size: 0.6em;
+    font-size: 0.9em;
   }
   @media screen and (max-width: 400px) {
-    font-size: 0.5em;
+    font-size: 0.8em;
   }
 `;
 
@@ -43,6 +44,7 @@ const QuestionForm = ({ next, save, handleSubmit }) => (
           arrow="left"
           onClick={prev}
           style={{ marginRight: "0.8em" }}
+          type="button"
         >
           ก่อนหน้า
         </TransparentButton>
