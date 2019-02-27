@@ -24,23 +24,35 @@ const ButtonGroup = styled.div`
 const QuestionForm = ({ next, save, handleSubmit }) => (
   <FormContainer onSubmit={handleSubmit}>
     <Paper>
-      <TextArea
-        placeholder="ว่ามา ฉันอ่านทั้งหมด เริ่ม!"
-        name="generalAnswer1"
-        label={General.Q1}
-        wordy
-      />
+      {Object.keys(General).map((key, index) => (
+        <TextArea
+          key={key}
+          placeholder="ว่ามา ฉันอ่านทั้งหมด เริ่ม!"
+          name={"generalAnswer" + (index + 1)}
+          label={General[key]}
+          wordy
+        />
+      ))}
       {/* <TextArea name="generalAnswer2" label={General.Q2} wordy />
       <TextArea name="generalAnswer3" label={General.Q3} wordy /> */}
     </Paper>
 
     <Row style={{ marginBottom: "2em" }}>
       <ButtonGroup>
-        <TransparentButton arrow="left" onClick={prev} style={{ marginRight: "0.8em" }}>
+        <TransparentButton
+          arrow="left"
+          onClick={prev}
+          style={{ marginRight: "0.8em" }}
+        >
           ก่อนหน้า
         </TransparentButton>
 
-        <Button onClick={next} type="submit" arrow="right" style={{ marginLeft: "0.8em" }}>
+        <Button
+          onClick={next}
+          type="submit"
+          arrow="right"
+          style={{ marginLeft: "0.8em" }}
+        >
           ถัดไป
         </Button>
       </ButtonGroup>

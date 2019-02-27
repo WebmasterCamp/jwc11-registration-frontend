@@ -27,8 +27,14 @@ export interface SubmissionFormData {
   parentPhone: string;
 
   generalAnswer1: string;
+  generalAnswer2: string;
+  generalAnswer3: string;
+
   majorAnswer1: string;
   majorAnswer2: string;
+  majorAnswer3: string;
+  majorAnswer4: string;
+  majorAnswer5: string;
 }
 
 export interface CamperData extends SubmissionFormData {
