@@ -140,5 +140,8 @@ export default createReducer(initial, state => ({
 export const CLEAR_MAJOR_FIELD = {
   major: "",
   majorAnswer1: "",
-  majorAnswer2: ""
+  majorAnswer2: "",
+  majorAnswer3: "",
+  majorAnswer4: "",
+  majorAnswer5: ""
 };

@@ -26,39 +26,43 @@ const ButtonGroup = styled.div`
   }
 `;
 
-
 const MajorQuestionForm = ({ questions = {} as Question, handleSubmit }) => {
   const major = getMajorFromPath();
-  const Q1Field = major === "design" ? DesignUpload : TextArea;
+  // const Q1Field = major === "design" ? DesignUpload : TextArea;
   // const Q3 = major === 'programming' ? Q3Dev : questions.Q3
 
   return (
     <FormContainer onSubmit={handleSubmit}>
       <Paper>
-        <Q1Field
-          placeholder="ว่ามา ฉันอ่านทั้งหมด เริ่ม!"
-          name="majorAnswer1"
-          label={questions.Q1}
-          wordy
-        />
-        <TextArea
-          placeholder="ว่ามา ฉันอ่านทั้งหมด เริ่ม!"
-          name="majorAnswer2"
-          label={questions.Q2}
-          wordy
-        />
+        {Object.keys(questions).map((key, index) => (
+          <TextArea
+            placeholder="ว่ามา ฉันอ่านทั้งหมด เริ่ม!"
+            name={"majorAnswer" + (index + 1)}
+            label={questions[key]}
+            wordy
+          />
+        ))}
       </Paper>
 
       <Row style={{ marginBottom: "2em" }}>
-      <ButtonGroup>
-        <TransparentButton arrow="left" onClick={prev} style={{ marginRight: "0.8em" }}>
-          ก่อนหน้า
-        </TransparentButton>
+        <ButtonGroup>
+          <TransparentButton
+            arrow="left"
+            onClick={prev}
+            style={{ marginRight: "0.8em" }}
+          >
+            ก่อนหน้า
+          </TransparentButton>
 
-        <Button onClick={next} type="submit" arrow="right" style={{ marginLeft: "0.8em" }}>
-          ถัดไป
-        </Button>
-      </ButtonGroup>
+          <Button
+            onClick={next}
+            type="submit"
+            arrow="right"
+            style={{ marginLeft: "0.8em" }}
+          >
+            ถัดไป
+          </Button>
+        </ButtonGroup>
       </Row>
       <Row style={{ marginBottom: "2.8em" }}>
         <ChangeMajorButton />
