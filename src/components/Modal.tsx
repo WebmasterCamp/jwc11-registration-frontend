@@ -37,11 +37,11 @@ const Content = styled.div<Partial<ModalState>>`
 	display: flex;
 	justify-content: center;
 	flex-flow: column;
-	@media (max-width: 600px) {
+	@media (max-width: 667px) {
 		background-size: contain;
 		font-size: 0.9em;
 		padding: 0;
-	}
+  }
 `;
 
 const Text = styled.div`
@@ -179,12 +179,12 @@ class Modal extends Component<ModalProps, ModalState> {
               </TransparentButton>
               {confirmHref ? (
                 <a href={confirmHref}>
-                  <Button onClick={() => this.handlerConfirm()} type="submit">
+                  <Button onClick={() => this.handlerConfirm()} type="button">
                     &nbsp;ยืนยัน&nbsp;
                   </Button>
                 </a>
               ) : (
-                <Button onClick={() => this.handlerConfirm()} type="submit">
+                <Button onClick={() => this.handlerConfirm()} type="button">
                   &nbsp;ยืนยัน&nbsp;
                 </Button>
               )}

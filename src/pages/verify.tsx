@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment ,useState} from "react";
 import { connect } from "react-redux";
 import styled from "@emotion/styled";
 
@@ -34,6 +34,7 @@ import NavBar from "../components/NavBar";
 import ChangeMajorButton from "../components/ChangeMajorButton";
 import TransparentButton from "../components/TransparentButton";
 import Q3Dev from "../components/Q3Dev";
+import Modal from "../components/Modal";
 // import { formatGroupQuestion } from "react-select/lib/builtins";
 
 // export const Container = styled.div`
@@ -231,6 +232,7 @@ const Answer = styled.div`
   letter-spacing: 0.01em;
   margin: 0em 0em 1em 0em;
   color: #223442;
+  word-break: break-word;
 `;
 
 const GeneralSection = ({ data }) => (
@@ -289,7 +291,7 @@ const MajorSection = ({ data }) => {
         )}
       </Item> */}
       {Object.keys(majorQuestions).map((key, index) => (
-        <Item>
+        <Item key={index}>
           {major === "programming" && index === 2 ? (
             <div style={{ color: "#7e8991" }}>{Q3Dev}</div>
           ) : (
@@ -350,18 +352,34 @@ const ButtonGroup = styled.div`
   }
 `;
 
-const SubmitBar = ({ submit, style }) => (
-  <Row style={style}>
+const SubmitBar = ({ submit, style }) => {
+  if (typeof window !== "undefined") {
+    const [toggle, setIsToggle] = useState<boolean>(false);
+    const confirm = () => {
+      setIsToggle(!toggle);
+    };
+  return (<Row style={style}>
     <ButtonGroup>
       <TransparentButton arrow="left" onClick={prev} type="button">
         ย้อนกลับ
       </TransparentButton>
-      <Button onClick={submit} type="button">
+      <Button onClick={() => confirm()} type="button">
         ส่งใบสมัคร
       </Button>
     </ButtonGroup>
-  </Row>
-);
+    <Modal
+      text={[
+        "เมื่อยยืนยันแล้วจะไม่สามารถแก้ไขข้อมูลใดๆ ได้อีก",
+        `"ยืนยันข้อมูล"`
+      ]}
+      field={getMajorFromPath()}
+      toggle={toggle}
+      setToggle={setIsToggle}
+      confirm={submit}
+    />
+  </Row>)
+  }
+};
 const Container = styled.div`
   display: flex;
   flex-direction: column;
