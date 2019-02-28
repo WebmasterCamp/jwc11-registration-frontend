@@ -357,8 +357,8 @@ const SubmitBar = ({ submit, style }) => {
     const [toggle, setIsToggle] = useState<boolean>(false);
     const confirm = () => {
       setIsToggle(!toggle);
-    };
-  return (<Row style={style}>
+      };
+      return (<Row style={style}>
     <ButtonGroup>
       <TransparentButton arrow="left" onClick={prev} type="button">
         ย้อนกลับ
@@ -376,8 +376,10 @@ const SubmitBar = ({ submit, style }) => {
       toggle={toggle}
       setToggle={setIsToggle}
       confirm={submit}
-    />
+      />
   </Row>)
+  } else {
+    return <div />;
   }
 };
 const Container = styled.div`
