@@ -42,7 +42,7 @@ export function Document(props) {
           content="พบกันเร็วๆ นี้ กับค่าย Junior Webmaster Camp"
         />
 
-        <meta itemProp="image" content="https://registration.jwc.in.th/images/og23021229.jpg" />
+        <meta itemProp="image" content="https://registration.jwc.in.th/images/og01031423.jpg" />
 
         <meta name="twitter:card" content="summary" />
 
@@ -61,7 +61,7 @@ export function Document(props) {
 
         <meta
           name="twitter:image:src"
-          content="https://registration.jwc.in.th/images/og23021229.jpg"
+          content="https://registration.jwc.in.th/images/og01031423.jpg"
         />
 
         <meta
@@ -76,7 +76,7 @@ export function Document(props) {
 
         <meta
           property="og:image"
-          content="https://registration.jwc.in.th/images/og23021229.jpg"
+          content="https://registration.jwc.in.th/images/og01031423.jpg"
         />
         <meta property="og:url" content="https://registration.jwc.in.th/" />
         <meta property="og:site_name" content="Junior Webmaster Camp" />
