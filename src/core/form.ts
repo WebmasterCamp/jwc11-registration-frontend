@@ -68,10 +68,6 @@ function validate(values: Partial<Fields>) {
   if (major === "design") {
     majorQuestionFields.push("majorAnswer4");
   }
-  if (major === "marketing") {
-    majorQuestionFields.push("majorAnswer4");
-    majorQuestionFields.push("majorAnswer5");
-  }
   const requiredFields = [...personalFields, ...parentFields];
   const questionFields = [...generalQuestionFields, ...majorQuestionFields];
   if (!values.photo) {
