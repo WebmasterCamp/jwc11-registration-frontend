@@ -79,7 +79,7 @@ export default function segment() {
 
   // Load Analytics.js with your key, which will automatically
   // load the tools you've enabled for your account. Boosh!
-  analytics.load('a3q16CwDzJwp4Hn1ghb8UBHEUyxAPKsa')
+  analytics.load('gkds2kkaEp52BjRkBRPl6zWKEYQfaAJr')
 
   // Make the first page call to load the integrations. If
   // you'd like to manually name or tag the page, edit or
