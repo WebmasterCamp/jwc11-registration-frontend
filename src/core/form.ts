@@ -63,10 +63,8 @@ function validate(values: Partial<Fields>) {
   const majorQuestionFields: (keyof Fields)[] = [
     "majorAnswer1",
     "majorAnswer2",
+    "majorAnswer3",
   ];
-  if (major !== "programming" ) {
-    majorQuestionFields.push("majorAnswer3");
-  }
   if (major === "design" ) {
     majorQuestionFields.push("majorAnswer4");
   }

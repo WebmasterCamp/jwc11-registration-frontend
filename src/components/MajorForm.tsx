@@ -54,6 +54,17 @@ const MajorQuestionForm = ({ handleSubmit, next, save }) => {
               label={questions[key]}
               wordy
             />
+          ) : index == 2 && major === "programming" ? (
+            <div>
+              <h1 style={{color : 'red', fontSize : '30px'}}>เลือกทำข้อ 3.1 หรือ 3.2 เพียง 1 ข้อเท่านั้น</h1>
+              <TextArea
+                key={key}
+                placeholder="ว่ามา ฉันอ่านทั้งหมด เริ่ม!"
+                name={"majorAnswer" + (index + 1)}
+                label={index === 2 ? Q3 : questions[key]}
+                wordy
+              />
+            </div>
           ) : (
             <TextArea
               key={key}
