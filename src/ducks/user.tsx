@@ -37,17 +37,17 @@ export const setAuthenticating = Creator(SET_AUTHENTICATING);
 export const reAuth = Creator(RE_AUTH);
 
 // The epoch timestamp in which the registration system will be closed
-const SUBMISSION_CLOSED_TIME = new Date("Mar 21 2019 01:00:00").getTime();
-// const SUBMISSION_CLOSED_TIME = moment()
-//   .tz("Asia/Bangkok")
-//   .year(2019)
-//   .month(2)
-//   .date(21)
-//   .hour(0)
-//   .minute(0)
-//   .second(0)
-//   .millisecond(0)
-//   .valueOf();
+// const SUBMISSION_CLOSED_TIME = new Date("Mar 21 2019 01:00:00").getTime();
+const SUBMISSION_CLOSED_TIME = moment()
+  .tz("Asia/Bangkok")
+  .year(2019)
+  .month(2)
+  .date(21)
+  .hour(0)
+  .minute(0)
+  .second(0)
+  .millisecond(0)
+  .valueOf();
 // Serializes the user's information into an object
 const userProps = R.pick([
   "uid",
